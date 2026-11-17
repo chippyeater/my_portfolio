@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Croissant+One&family=Playfair+Display:ital,wght@0,500;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@600;700;800&family=Noto+Serif+SC:wght@400;600;700;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-display: "Syne", sans-serif;
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-serif-cn: "Noto Serif SC", "Songti SC", STSong, serif;
+  --font-croissant: "Croissant One", serif;
+  
+  --color-paper-bg: #f8f6f0; /* 统一纸质浅暖色底色，纯净温润特种艺术纸 */
+  --color-paper-card: #ffffff; /* 纸质叠层卡片纯净亮白，建立清爽明快层级 */
+  --color-paper-contrast: #161719; /* 浓缩生墨黑 */
+  --color-ink-black: #161719; /* 印刷黑 */
+  --color-ink-muted: #5e626b; /* 石墨灰 */
+  --color-accent-terracotta: #c84b31; /* 陶土红 / 朱砂 */
+  --color-accent-cobalt: #1d3e6d; /* 靛蓝 / 钴蓝 */
+  --color-accent-ochre: #d69836; /* 暖赭 / 藤黄 */
+  --color-accent-sage: #4e6b56; /* 苔绿 */
+  --color-neon-lime: #ccff00; /* 高能荧光黄绿 / Lime Chartreuse */
+  --color-neon-lime-muted: #b8ea00;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #0d0e12;
+  color: #161719;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: #ccff00;
+  color: #0d0e12;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 75s linear infinite;
+}
+
+.font-editorial {
+  font-family: var(--font-serif);
+}
+
+.font-editorial-cn {
+  font-family: var(--font-serif-cn);
+}
+
+.font-display-title {
+  font-family: var(--font-display);
+}
+
+/* Tactile Uncoated Paper Texture with subtle neutral & lime atmospheric grain */
+.bg-tactile-paper {
+  background-color: #f8f6f0;
+  background-image: 
+    radial-gradient(circle at 12% 18%, rgba(204, 255, 0, 0.03) 0%, transparent 45%),
+    radial-gradient(circle at 88% 82%, rgba(22, 23, 25, 0.02) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(22, 23, 25, 0.01) 0%, transparent 70%);
+}
+
+/* Authentic Paper Shadows & Gallery Cards */
+.paper-shadow {
+  box-shadow: 0 4px 20px -2px rgba(22, 23, 25, 0.06), 0 2px 6px -1px rgba(22, 23, 25, 0.04);
+}
+
+.paper-shadow-lg {
+  box-shadow: 0 16px 40px -6px rgba(22, 23, 25, 0.09), 0 4px 16px -2px rgba(22, 23, 25, 0.05);
+}
+
+.paper-shadow-hover {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.paper-shadow-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 48px -8px rgba(22, 23, 25, 0.12), 0 6px 18px -2px rgba(22, 23, 25, 0.06);
+}
+
+/* Washi Tape / Paper Stamp Accents - Natural Semi-translucent with tactile edges */
+.washi-tape-lime {
+  background: #ccff00;
+  color: #0d0e12;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.25), inset 0 0 0 1px rgba(0,0,0,0.1);
+  backdrop-filter: blur(2px);
+  position: relative;
+}
+.washi-tape-lime::before, .washi-tape-lime::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  opacity: 0.5;
+}
+.washi-tape-lime::before {
+  left: -2px;
+  border-left: 2px dotted rgba(0,0,0,0.4);
+}
+.washi-tape-lime::after {
+  right: -2px;
+  border-right: 2px dotted rgba(0,0,0,0.4);
+}
+
+.washi-tape-coral {
+  background: #ccff00;
+  color: #0d0e12;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.25), inset 0 0 0 1px rgba(0,0,0,0.1);
+  backdrop-filter: blur(2px);
+  position: relative;
+}
+.washi-tape-coral::before, .washi-tape-coral::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  opacity: 0.5;
+}
+.washi-tape-coral::before {
+  left: -2px;
+  border-left: 2px dotted rgba(0,0,0,0.4);
+}
+.washi-tape-coral::after {
+  right: -2px;
+  border-right: 2px dotted rgba(0,0,0,0.4);
+}
+
+.washi-tape-blue {
+  background: rgba(29, 62, 109, 0.88);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), inset 0 0 0 1px rgba(255,255,255,0.2);
+  backdrop-filter: blur(2px);
+  position: relative;
+}
+.washi-tape-blue::before, .washi-tape-blue::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  opacity: 0.6;
+}
+.washi-tape-blue::before {
+  left: -2px;
+  border-left: 2px dotted rgba(255,255,255,0.4);
+}
+.washi-tape-blue::after {
+  right: -2px;
+  border-right: 2px dotted rgba(255,255,255,0.4);
+}
+
+.washi-tape-neutral {
+  background: rgba(85, 80, 72, 0.82);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), inset 0 0 0 1px rgba(255,255,255,0.2);
+  backdrop-filter: blur(2px);
+  position: relative;
+}
+
+/* Enforce strict non-italic editorial typesetting */
+* {
+  font-style: normal !important;
+}
+
+/* Spatial Depth & Perspective 3D Utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.perspective-1200 {
+  perspective: 1200px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* Deep Spatial Floating Shadow with Atmospheric Dark Backing */
+.spatial-shadow-float {
+  box-shadow: 
+    0 24px 60px -12px rgba(0, 0, 0, 0.45),
+    0 10px 24px -6px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.spatial-card-depth {
+  box-shadow:
+    0 35px 80px -15px rgba(0, 0, 0, 0.65),
+    0 15px 30px -5px rgba(0, 0, 0, 0.4),
+    0 0 40px -10px rgba(204, 255, 0, 0.08);
+}
+
+.neon-lime-glow {
+  box-shadow: 0 0 25px rgba(204, 255, 0, 0.45);
+}
+
+.neon-lime-text-glow {
+  text-shadow: 0 0 20px rgba(204, 255, 0, 0.6);
+}
+
+/* Glassmorphism Dark Spatial Bar */
+.spatial-glass-dark {
+  background: rgba(18, 19, 24, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.spatial-glass-lime {
+  background: rgba(204, 255, 0, 0.12);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(204, 255, 0, 0.3);
+}
+
+/* Editorial Print Registration Crosshair / Edge Mark */
+.print-mark {
+  position: relative;
+}
+.print-mark::before, .print-mark::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+
+
+
+

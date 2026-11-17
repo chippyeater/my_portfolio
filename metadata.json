@@ -1,0 +1,6 @@
+{
+  "name": "Personal Portfolio",
+  "description": "A high-end personal portfolio website for internship hunting and long-term personal branding.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
