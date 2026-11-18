@@ -17,7 +17,7 @@ export function MainLayout() {
             <span className="w-1.5 h-1.5 rounded-full bg-[#ccff00] shadow-[0_0_8px_#ccff00]" />
           </div>
           <span className="text-xs text-white/50 font-medium hidden sm:inline-block">
-            Interaction Design & Agent Prototypes
+            Personal Archive
           </span>
         </Link>
 
@@ -25,15 +25,11 @@ export function MainLayout() {
         <nav className="hidden md:flex items-center gap-8 text-xs font-semibold tracking-wider text-white/70">
           <a href="/#about" className="hover:text-[#ccff00] transition-colors flex items-center gap-1.5">
             <span className="text-[#ccff00] font-mono text-[11px] font-bold">01</span>
-            <span>关于与理念</span>
+            <span>About</span>
           </a>
           <a href="/#works" className="hover:text-[#ccff00] transition-colors flex items-center gap-1.5">
             <span className="text-[#ccff00] font-mono text-[11px] font-bold">02</span>
             <span>Selected Work</span>
-          </a>
-          <a href="/#notebook" className="hover:text-[#ccff00] transition-colors flex items-center gap-1.5">
-            <span className="text-[#ccff00] font-mono text-[11px] font-bold">03</span>
-            <span>研究笔记</span>
           </a>
         </nav>
 
@@ -49,7 +45,7 @@ export function MainLayout() {
             }}
             className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#ccff00] text-[#0d0e12] hover:bg-white text-xs font-bold transition-all duration-300 shadow-[0_0_20px_rgba(204,255,0,0.35)] hover:shadow-[0_0_25px_rgba(255,255,255,0.5)] hover:translate-y-[-1px]"
           >
-            <span>Contact me</span>
+            <span>Contact</span>
             <ArrowUpRight size={13} className="text-[#0d0e12]" />
           </a>
         </div>
@@ -60,8 +56,8 @@ export function MainLayout() {
         <Outlet />
       </main>
 
-      {/* Editorial Grand Colophon Footer */}
-      <footer id="contact" className="w-full px-6 md:px-16 pt-16 pb-12 bg-[#161719] text-[#f6f3eb] relative z-10 overflow-hidden">
+      {/* Editorial Personal Contact Footer */}
+      <footer id="contact" className="w-full px-6 md:px-16 pt-14 pb-10 bg-[#161719] text-[#f6f3eb] relative z-10 overflow-hidden">
         
         {/* Soft Organic Atmospheric Glows in Dark Contrast Section */}
         <div className="absolute -bottom-24 right-1/4 w-[500px] h-[500px] bg-[#ccff00]/10 blur-[170px] pointer-events-none rounded-full" />
@@ -69,49 +65,35 @@ export function MainLayout() {
 
         <div className="max-w-7xl mx-auto flex flex-col justify-between relative z-10">
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-12 pb-10 border-b border-white/10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-10 pb-8 border-b border-white/10 items-end">
             
             <div className="lg:col-span-7">
               <span className="text-xs uppercase tracking-widest text-[#ccff00] font-mono font-semibold block mb-3">
-                COLOPHON & INQUIRY · Contact me
+                CONTACT · 联系与交流
               </span>
-              <h2 className="text-4xl sm:text-5xl md:text-6xl font-display text-[#f6f3eb] tracking-tight leading-[1.08] mb-5">
-                Let's build <br />
-                <span className="font-serif font-normal text-[#ccff00]">tangible, thoughtful agents.</span>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display text-[#f6f3eb] tracking-tight leading-[1.12] mb-4">
+                Clara · <span className="font-serif font-normal text-[#ccff00]">Personal Archive</span>
               </h2>
               <p className="text-sm sm:text-base text-stone-300 max-w-xl font-light leading-relaxed">
-                我正在持续积累 AI Agent 工程与可验证交互原型的构建能力。如果你对人与智能体协作、具身硬件交互、知识界面架构有共同的探索兴趣，欢迎随时来信。
+                记录在人工智能与交互设计学习过程中的研究、原型与实验。如需交流项目或研究内容，欢迎通过联系渠道沟通。
               </p>
             </div>
 
-            <div className="lg:col-span-5 flex flex-col justify-between">
-              <div className="p-6 sm:p-7 rounded-2xl bg-[#202227] border border-white/10 shadow-xl relative">
-                <div className="washi-tape-lime absolute -top-3 left-8 px-3 py-0.5 text-[#0d0e12] font-bold rounded-xs tracking-wider">
-                  POSTAL MEMO
+            <div className="lg:col-span-5">
+              <div className="p-6 rounded-2xl bg-[#202227] border border-white/10 shadow-xl relative">
+                <div className="washi-tape-lime absolute -top-3 left-8 px-3 py-0.5 text-[#0d0e12] font-bold rounded-xs tracking-wider text-[10px]">
+                  CLARA ARCHIVE
                 </div>
-                <span className="text-xs font-semibold text-stone-400 block mb-2 uppercase tracking-wider">
-                  联络邮箱 · INBOX
-                </span>
-                <div className="text-lg sm:text-xl font-serif text-[#f6f3eb] break-all border-b border-white/15 pb-3 mb-3">
-                  [clara.design.ai@placeholder.com]
-                </div>
-                <div className="text-xs text-stone-400 leading-relaxed">
-                  上海 · 人机交互与智能体系统设计研究
-                </div>
-              </div>
-
-              <div className="grid grid-cols-3 gap-3 mt-4 text-xs text-stone-300">
-                <div className="p-3 rounded-xl bg-white/5 border border-white/5">
-                  <span className="text-stone-400 text-[11px] block">研究方向</span>
-                  <span className="font-bold text-white">Agent 交互</span>
-                </div>
-                <div className="p-3 rounded-xl bg-white/5 border border-white/5">
-                  <span className="text-stone-400 text-[11px] block">交叉背景</span>
-                  <span className="font-bold text-white">算法与工程</span>
-                </div>
-                <div className="p-3 rounded-xl bg-white/5 border border-white/5">
-                  <span className="text-stone-400 text-[11px] block">当前阶段</span>
-                  <span className="font-bold text-[#ccff00]">在研原型验证</span>
+                <div className="space-y-2 text-xs text-stone-300 pt-1">
+                  <div className="font-medium text-[#f6f3eb] text-sm">
+                    Clara
+                  </div>
+                  <div className="text-stone-400 leading-relaxed">
+                    上海 · 同济大学设计创意学院（交互设计在读）
+                  </div>
+                  <div className="pt-2 border-t border-white/10 text-[11px] text-stone-400">
+                    个人联系渠道与社交链接整理更新中
+                  </div>
                 </div>
               </div>
             </div>
@@ -121,12 +103,12 @@ export function MainLayout() {
           {/* Sub-footer */}
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-xs text-stone-400 font-medium">
             <div>
-              <span>© {new Date().getFullYear()} Clara · Interaction Design & Autonomous Agent Prototypes</span>
+              <span>© {new Date().getFullYear()} Clara · Personal Archive</span>
             </div>
-            <div className="flex items-center gap-6 text-stone-400">
+            <div className="flex items-center gap-4 text-stone-400">
               <span className="text-[#ccff00]">CLARA ARCHIVE</span>
               <span>·</span>
-              <span>持续构建与迭代中</span>
+              <span>持续记录中</span>
             </div>
           </div>
 
