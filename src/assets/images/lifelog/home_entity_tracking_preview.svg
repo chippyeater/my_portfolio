@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" width="960" height="600">
+  <rect width="960" height="600" fill="#f4f6f8"/>
+  <rect x="24" y="24" width="912" height="552" rx="20" fill="#ffffff" stroke="#d5dee8" stroke-width="2"/>
+  <!-- Top Header Strip (right-aligned to avoid Home card top-left badge overlay) -->
+  <rect x="546" y="42" width="194" height="28" rx="14" fill="#e8f0f8"/>
+  <text x="643" y="61" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="600" fill="#1d3e6d">EVENT · 挑选冷藏饮品</text>
+  <rect x="752" y="42" width="164" height="28" rx="14" fill="#e9f0eb"/>
+  <text x="834" y="61" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="600" fill="#4e6b56">交互实体追踪实验台</text>
+
+  <!-- Left: Video Frame + Bounding Box -->
+  <rect x="44" y="88" width="420" height="280" rx="14" fill="#eef3f7" stroke="#c3d2e0" stroke-width="1.5"/>
+  <rect x="74" y="114" width="360" height="200" rx="10" fill="#dce6ef"/>
+  <!-- Simulated Fridge / Drink Interaction Box -->
+  <rect x="190" y="148" width="120" height="136" rx="8" fill="#ffffff" fill-opacity="0.7" stroke="#4e6b56" stroke-width="2.5" stroke-dasharray="6 4"/>
+  <rect x="190" y="128" width="120" height="20" rx="4" fill="#4e6b56"/>
+  <text x="250" y="142" text-anchor="middle" font-family="monospace" font-size="10" fill="#ffffff">ENTITY_01 · 0.94</text>
+  <text x="254" y="348" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#475569">第一人称关键交互帧与实体框</text>
+
+  <!-- Right Top: Entity Features -->
+  <rect x="484" y="88" width="432" height="190" rx="14" fill="#f8fafc" stroke="#d5dee8" stroke-width="1.5"/>
+  <text x="504" y="116" font-family="monospace" font-size="11" font-weight="700" fill="#1d3e6d">ENTITY FEATURES · 实体视觉特征</text>
+  <rect x="504" y="132" width="188" height="58" rx="8" fill="#e8f0f8"/>
+  <text x="518" y="154" font-family="sans-serif" font-size="12" font-weight="600" fill="#161719">目标类别：瓶装饮品</text>
+  <text x="518" y="174" font-family="sans-serif" font-size="11" fill="#475569">外观颜色 / 包装标签核验</text>
+  <rect x="708" y="132" width="188" height="58" rx="8" fill="#e9f0eb"/>
+  <text x="722" y="154" font-family="sans-serif" font-size="12" font-weight="600" fill="#161719">交互动作：开柜拿取</text>
+  <text x="722" y="174" font-family="sans-serif" font-size="11" fill="#475569">时序片段 00:42 - 00:58</text>
+  <rect x="504" y="204" width="392" height="54" rx="8" fill="#ffffff" stroke="#d5dee8"/>
+  <text x="520" y="226" font-family="sans-serif" font-size="12" font-weight="600" fill="#161719">证据链对齐状态：已通过视觉帧核验</text>
+  <text x="520" y="244" font-family="sans-serif" font-size="11" fill="#64748b">待替换为上传的真实实验平台截图</text>
+
+  <!-- Right Bottom + Span: Generated Guided Recall Question -->
+  <rect x="484" y="294" width="432" height="170" rx="14" fill="#e9f0eb" stroke="#b9cebf" stroke-width="1.5"/>
+  <text x="504" y="322" font-family="monospace" font-size="11" font-weight="700" fill="#3d5a47">GENERATED GUIDED QUESTION · 生成回忆问题</text>
+  <rect x="504" y="338" width="392" height="106" rx="10" fill="#ffffff"/>
+  <text x="522" y="366" font-family="sans-serif" font-size="13" font-weight="600" fill="#161719">L1 活动回顾：当时在便利店冷柜前准备做什么？</text>
+  <text x="522" y="394" font-family="sans-serif" font-size="13" font-weight="600" fill="#1d3e6d">L2 实体细节：最终从冷柜中拿取了哪一款饮品？</text>
+  <text x="522" y="422" font-family="sans-serif" font-size="11" fill="#64748b">关联事件 → 视频帧 → 实体特征 → 引导回忆线索</text>
+
+  <!-- Left Bottom: Event Timeline Bar -->
+  <rect x="44" y="384" width="420" height="170" rx="14" fill="#ffffff" stroke="#d5dee8" stroke-width="1.5"/>
+  <text x="64" y="414" font-family="monospace" font-size="11" font-weight="700" fill="#1d3e6d">EVENT TIMELINE · 事件切片关系</text>
+  <line x1="64" y1="454" x2="444" y2="454" stroke="#cbd5e1" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="110" cy="454" r="8" fill="#94a3b8"/>
+  <circle cx="240" cy="454" r="10" fill="#4e6b56"/>
+  <circle cx="380" cy="454" r="8" fill="#1d3e6d"/>
+  <text x="240" y="490" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="600" fill="#161719">挑选冷藏饮品（交互实体聚焦）</text>
+  <text x="240" y="514" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#64748b">待上传「挑选冷藏饮品 / 交互实体追踪」真实截图</text>
+</svg>

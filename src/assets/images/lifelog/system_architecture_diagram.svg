@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <rect width="1280" height="720" fill="#f9faf9"/>
+  <rect x="24" y="24" width="1232" height="672" rx="24" fill="#ffffff" stroke="#d6e0dc" stroke-width="2"/>
+  <text x="64" y="72" font-family="monospace" font-size="14" font-weight="700" fill="#4e6b56">01 / SYSTEM ARCHITECTURE · FIGMA ARCHITECTURE DIAGRAM PLACEHOLDER</text>
+  <text x="64" y="102" font-family="sans-serif" font-size="22" font-weight="700" fill="#161719">From Life Logs to Memories — 系统整体架构占位图</text>
+
+  <!-- Stage 1 -->
+  <rect x="64" y="150" width="240" height="440" rx="18" fill="#f2f6fa" stroke="#c2d3e3" stroke-width="2"/>
+  <text x="184" y="192" text-anchor="middle" font-family="monospace" font-size="13" font-weight="700" fill="#1d3e6d">01 · INPUT</text>
+  <text x="184" y="218" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#161719">第一人称生活记录</text>
+  <rect x="92" y="250" width="184" height="84" rx="10" fill="#ffffff" stroke="#c2d3e3"/>
+  <text x="184" y="298" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#334155">Egocentric Video / Audio</text>
+  <rect x="92" y="354" width="184" height="84" rx="10" fill="#ffffff" stroke="#c2d3e3"/>
+  <text x="184" y="402" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#334155">场景时序上下文</text>
+  <rect x="92" y="458" width="184" height="84" rx="10" fill="#ffffff" stroke="#c2d3e3"/>
+  <text x="184" y="506" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#334155">交互时刻切片</text>
+
+  <!-- Arrow 1 -->
+  <path d="M316 370 L358 370" stroke="#1d3e6d" stroke-width="3" stroke-linecap="round"/>
+  <polygon points="358,362 374,370 358,378" fill="#1d3e6d"/>
+
+  <!-- Stage 2 -->
+  <rect x="384" y="150" width="460" height="440" rx="18" fill="#f2f7f4" stroke="#bfd1c5" stroke-width="2"/>
+  <text x="614" y="192" text-anchor="middle" font-family="monospace" font-size="13" font-weight="700" fill="#4e6b56">02 · UNDERSTANDING &amp; VERIFICATION</text>
+  <text x="614" y="218" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#161719">视频理解 · 实体视觉核验 · 事件仲裁</text>
+  <rect x="416" y="250" width="396" height="90" rx="12" fill="#ffffff" stroke="#bfd1c5"/>
+  <text x="614" y="292" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="600" fill="#161719">Full-Context 多模态事件与候选实体生成</text>
+  <text x="614" y="316" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#64748b">全局活动识别与结构化事件梳理</text>
+  <rect x="416" y="362" width="396" height="90" rx="12" fill="#e8f0f8" stroke="#9eb8d1"/>
+  <text x="614" y="404" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="600" fill="#1d3e6d">交互帧抽取与独立实体视觉核验</text>
+  <text x="614" y="428" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#475569">Evidence-Based Verification</text>
+  <rect x="416" y="474" width="396" height="84" rx="12" fill="#ffffff" stroke="#bfd1c5"/>
+  <text x="614" y="514" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="600" fill="#161719">事件结构修正与回忆线索生成</text>
+  <text x="614" y="536" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#64748b">渐进式回忆材料（活动 → 实体细节）</text>
+
+  <!-- Arrow 2 -->
+  <path d="M856 370 L898 370" stroke="#4e6b56" stroke-width="3" stroke-linecap="round"/>
+  <polygon points="898,362 914,370 898,378" fill="#4e6b56"/>
+
+  <!-- Stage 3 -->
+  <rect x="924" y="150" width="292" height="440" rx="18" fill="#f8f6f0" stroke="#d9d4c7" stroke-width="2"/>
+  <text x="1070" y="192" text-anchor="middle" font-family="monospace" font-size="13" font-weight="700" fill="#161719">03 · INTERFACES</text>
+  <text x="1070" y="218" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#161719">双端引导式回忆应用</text>
+  <rect x="952" y="256" width="236" height="136" rx="12" fill="#e8f0f8" stroke="#b8cde0"/>
+  <text x="1070" y="314" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#1d3e6d">Unity User Interface</text>
+  <text x="1070" y="340" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#475569">患者端渐进式回忆任务</text>
+  <rect x="952" y="416" width="236" height="136" rx="12" fill="#e9f0eb" stroke="#b9cebf"/>
+  <text x="1070" y="474" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#4e6b56">Doctor Web Platform</text>
+  <text x="1070" y="500" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#475569">医生端任务管理与评估报告</text>
+
+  <text x="640" y="646" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#64748b">待替换为上传的 Figma 系统架构大图（src/assets/images/lifelog/system_architecture_diagram）</text>
+</svg>

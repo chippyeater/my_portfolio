@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 900" width="720" height="900">
+  <rect width="720" height="900" fill="#f3f6fa"/>
+  <rect x="24" y="24" width="672" height="852" rx="22" fill="#ffffff" stroke="#c8d6e5" stroke-width="2"/>
+  <rect x="48" y="48" width="220" height="28" rx="14" fill="#e8f0f8"/>
+  <text x="158" y="67" text-anchor="middle" font-family="monospace" font-size="11" font-weight="700" fill="#1d3e6d">FIGMA · UNITY USER INTERFACE</text>
+
+  <!-- Progressive Step 1 -->
+  <rect x="48" y="102" width="624" height="220" rx="16" fill="#f7fafd" stroke="#d5e1ee" stroke-width="1.5"/>
+  <text x="72" y="136" font-family="monospace" font-size="12" font-weight="700" fill="#1d3e6d">LEVEL 1 · 活动整体回顾</text>
+  <rect x="72" y="154" width="320" height="142" rx="12" fill="#dce7f2"/>
+  <text x="232" y="230" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#475569">Unity 引导界面画面 01</text>
+  <rect x="414" y="154" width="234" height="62" rx="10" fill="#ffffff" stroke="#d5e1ee"/>
+  <text x="430" y="190" font-family="sans-serif" font-size="12" fill="#161719">语音/文字开放引导提问</text>
+  <rect x="414" y="234" width="234" height="62" rx="10" fill="#e9f0eb"/>
+  <text x="430" y="270" font-family="sans-serif" font-size="12" fill="#3d5a47">时间线索提示按钮</text>
+
+  <!-- Progressive Step 2 -->
+  <rect x="48" y="346" width="624" height="220" rx="16" fill="#f7fafd" stroke="#d5e1ee" stroke-width="1.5"/>
+  <text x="72" y="380" font-family="monospace" font-size="12" font-weight="700" fill="#1d3e6d">LEVEL 2 · 事件线索提示</text>
+  <rect x="72" y="398" width="320" height="142" rx="12" fill="#dce7f2"/>
+  <text x="232" y="474" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#475569">Unity 引导界面画面 02</text>
+  <rect x="414" y="398" width="234" height="142" rx="10" fill="#ffffff" stroke="#d5e1ee"/>
+  <text x="430" y="438" font-family="sans-serif" font-size="12" fill="#161719">渐进式局部关键帧呈现</text>
+  <text x="430" y="468" font-family="sans-serif" font-size="12" fill="#64748b">降低一次性认知负担</text>
+
+  <!-- Progressive Step 3 -->
+  <rect x="48" y="590" width="624" height="220" rx="16" fill="#f4f8f5" stroke="#c3d7ca" stroke-width="1.5"/>
+  <text x="72" y="624" font-family="monospace" font-size="12" font-weight="700" fill="#4e6b56">LEVEL 3 · 实体细节确认与正向反馈</text>
+  <rect x="72" y="642" width="320" height="142" rx="12" fill="#dbe9df"/>
+  <text x="232" y="718" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#3d5a47">Unity 引导界面画面 03</text>
+  <rect x="414" y="642" width="234" height="142" rx="10" fill="#ffffff" stroke="#c3d7ca"/>
+  <text x="430" y="682" font-family="sans-serif" font-size="12" fill="#161719">交互实体特征核对</text>
+  <text x="430" y="712" font-family="sans-serif" font-size="12" fill="#64748b">回忆结果记录回传医生端</text>
+
+  <text x="360" y="848" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#64748b">待替换为上传的 Figma 整理版 Unity UI 图片</text>
+</svg>

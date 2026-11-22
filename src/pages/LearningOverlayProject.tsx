@@ -10,7 +10,7 @@ export function LearningOverlayProject() {
         {/* Navigation */}
         <div className="mb-10">
           <Link 
-            to="/#works" 
+            to="/#work-overlay" 
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-black/[0.08] hover:border-[#d69836] text-xs font-semibold text-[#5e626b] hover:text-[#d69836] transition-all paper-shadow"
           >
             <ArrowLeft size={14} /> 返回精选作品列表
