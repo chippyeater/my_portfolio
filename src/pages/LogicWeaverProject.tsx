@@ -52,7 +52,7 @@ const LOGICWEAVER_MEDIA = {
     conflict: "/assets/aistudio/_____8e17fbbe.png",
     hypothesis: "/assets/aistudio/_____aa619a0d.png",
   },
-  prototypeWorkspace: "",
+  prototypeWorkspace: "/assets/logicweaver/workspace-agent-investigation.jpeg",
   langfuseTrace: "/assets/aistudio/image_0ba4fd56.png",
   futureComposite: "",
 };
@@ -1894,11 +1894,23 @@ export function LogicWeaverProject() {
 
                 <div className="rounded-2xl lw-silver-frame overflow-hidden">
                   {LOGICWEAVER_MEDIA.prototypeWorkspace ? (
-                    <img
-                      src={LOGICWEAVER_MEDIA.prototypeWorkspace}
-                      alt="LogicWeaver 工作区与 Agent 调查交互形态"
-                      className="w-full object-contain bg-[#090C11] p-3"
-                    />
+                    <a
+                      href={LOGICWEAVER_MEDIA.prototypeWorkspace}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="查看工作区与 Agent 调查交互完整截图（新窗口）"
+                      className="block bg-[#090C11] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#A8D56C] focus-visible:-outline-offset-2"
+                    >
+                      <img
+                        src={LOGICWEAVER_MEDIA.prototypeWorkspace}
+                        alt="LogicWeaver 运行原型：案件材料、证据画布与 Agent 调查变更记录"
+                        width={2538}
+                        height={1311}
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full h-auto object-contain block"
+                      />
+                    </a>
                   ) : (
                     <div className="min-h-[260px] bg-[#090C11] lw-grid-sub p-6 flex flex-col justify-center gap-5">
                       <div className="grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-white/10 border-y border-white/10 py-5 gap-4 sm:gap-0">
@@ -2056,98 +2068,72 @@ export function LogicWeaverProject() {
                 08 / WHAT'S NEXT
               </div>
               <h2 className="text-2xl sm:text-4xl font-editorial-cn font-bold text-[#EDF0F2] leading-tight">
-                让信息结构进一步随任务变化
+                让 Agent 跟随用户变化的推理思路
               </h2>
+              <div className="text-xs font-mono text-[#E5A85F]">
+                Future Exploration · 以下方向尚未实现
+              </div>
               <div className="space-y-4 text-base sm:text-[17px] text-[#A0AAB4] leading-[1.75]">
                 <p>
-                  项目最初的设计已经提出：面对不同推理目标，AI 应帮助用户切换与组织适合的信息结构，让分析成果超越固定对话窗口的线性限制。
+                  用户会随着新证据修正假设、切换争点，也会暂时搁置一条推理路径。下一步的核心问题是：<span className="text-[#A8D56C] font-medium">Agent 如何理解这些转向，持续跟上用户正在思考的问题？</span>
                 </p>
                 <p>
-                  在 MVP 阶段优先跑通证据整理与调查闭环之后，三种视图的自动选择、布局生成与持续更新成为下一阶段的演进方向。
-                </p>
-                <p>
-                  下一步值得探索的是如何在现有可追溯数据结构上恢复这一能力，同时确保 AI 生成的内容<span className="text-[#A8D56C] font-medium">可检查、可编辑，并能与用户手工调整的画布状态保持一致</span>。
+                  我希望进一步探索，Agent 如何理解用户尚未明说的判断前提、对证据重要性的取舍，以及何时值得继续追问；再以低打扰的建议介入，将推理过程延伸到法条对应与成果整理。
                 </p>
               </div>
             </div>
 
-            {/* 3 Exploration Questions (Open 3-Column Divider Row) */}
+            {/* Three future directions, distinct from implemented capabilities */}
             <div className="grid grid-cols-1 md:grid-cols-3 border-y border-white/12 divide-y md:divide-y-0 md:divide-x divide-white/10">
               <div className="py-6 md:px-6 first:md:pl-0 space-y-2.5">
-                <div className="font-mono text-xs font-semibold text-[#A8D56C]">01</div>
-                <p className="text-sm sm:text-[15px] text-[#EDF0F2] leading-relaxed">
-                  什么时候应建议切换视图，什么时候应保留用户当前的布局？
+                <div className="font-mono text-xs font-semibold text-[#A8D56C]">01 / 推理协同</div>
+                <h3 className="text-base font-editorial-cn font-semibold text-[#EDF0F2]">
+                  跟上推理的转向
+                </h3>
+                <p className="text-sm sm:text-[15px] text-[#A0AAB4] leading-relaxed">
+                  探索如何结合用户当前关注的证据、手动修改与假设变化，识别调查目标的转移；在意图不明确时主动澄清，让后续调查与用户的思路保持衔接。
                 </p>
               </div>
               <div className="py-6 md:px-6 space-y-2.5">
-                <div className="font-mono text-xs font-semibold text-[#A79AF4]">02</div>
-                <p className="text-sm sm:text-[15px] text-[#EDF0F2] leading-relaxed">
-                  AI 提议的新关系、解释或视图，应如何与用户确认后的结果区分？
+                <div className="font-mono text-xs font-semibold text-[#A79AF4]">02 / 低打扰交互</div>
+                <h3 className="text-base font-editorial-cn font-semibold text-[#EDF0F2]">
+                  以幽灵提示轻量介入
+                </h3>
+                <p className="text-sm sm:text-[15px] text-[#A0AAB4] leading-relaxed">
+                  借鉴代码自动补全，在当前操作附近轻量呈现候选关系、待核验问题或下一步线索。探索提示的时机与粒度，让用户按需采纳、忽略或展开依据，确认后再写入推理结构。
                 </p>
               </div>
               <div className="py-6 md:px-6 last:md:pr-0 space-y-2.5">
-                <div className="font-mono text-xs font-semibold text-[#E5A85F]">03</div>
-                <p className="text-sm sm:text-[15px] text-[#EDF0F2] leading-relaxed">
-                  当新证据出现时，系统如何更新局部信息而不打断已有推理？
+                <div className="font-mono text-xs font-semibold text-[#E5A85F]">03 / 工作流延伸</div>
+                <h3 className="text-base font-editorial-cn font-semibold text-[#EDF0F2]">
+                  从证据推理到可用成果
+                </h3>
+                <p className="text-sm sm:text-[15px] text-[#A0AAB4] leading-relaxed">
+                  探索争点、法律适用条件与事实证据的对应方式，并设计可筛选、可复核的结构化证据清单与材料导出。保留来源和待核验状态，让分析结果能够进入后续文书与协作流程。
                 </p>
               </div>
             </div>
 
-            {/* Open Conceptual Composite Strip */}
-            <figure className="space-y-4">
+            <div className="space-y-4">
               <div className="flex flex-wrap items-center justify-between gap-2 text-xs pb-2 border-b border-white/12">
-                <span className="text-[#EDF0F2]">任务自适应推理工作台概念组合</span>
-                <span className="text-[#E5A85F]">
-                  概念探索
-                </span>
+                <span className="text-[#EDF0F2]">成果导出的现状与下一步</span>
+                <span className="text-[#A0AAB4]">能力边界</span>
               </div>
-
-              {LOGICWEAVER_MEDIA.futureComposite ? (
-                <div className="rounded-2xl lw-silver-frame p-4">
-                  <img
-                    src={LOGICWEAVER_MEDIA.futureComposite}
-                    alt="LogicWeaver 未来任务自适应推理界面概念组合图"
-                    className="w-full h-auto object-contain block"
-                  />
+              <div className="grid grid-cols-1 md:grid-cols-2 border-b border-white/12 divide-y md:divide-y-0 md:divide-x divide-white/10 pb-6">
+                <div className="py-3 md:pr-6 space-y-2">
+                  <div className="text-xs font-mono text-[#A8D56C]">已有原型 / 离线归档</div>
+                  <p className="text-sm text-[#A0AAB4] leading-relaxed">
+                    已支持离线 ZIP 导出，包含六章节 HTML、manifest 清单与原始文件。
+                  </p>
                 </div>
-              ) : (
-                <div className="grid grid-cols-1 md:grid-cols-4 border-b border-white/12 divide-y md:divide-y-0 md:divide-x divide-white/10 pb-6">
-                  <div className="py-3 md:pr-5 space-y-1.5">
-                    <div className="flex items-center gap-1.5 text-xs font-mono text-[#A8D56C]">
-                      <MessageSquareText size={13} />
-                      <span>可追溯数据结构</span>
-                    </div>
-                    <div className="text-xs text-[#A0AAB4]">
-                      工作台既有 InfoUnit 与 Relation 底座
-                    </div>
-                  </div>
-                  <div className="py-3 md:px-5 space-y-1.5">
-                    <div className="text-xs font-mono text-[#EDF0F2]">
-                      Timeline 视图组合
-                    </div>
-                    <div className="text-xs text-[#A0AAB4]">
-                      事件顺序与时间差核对
-                    </div>
-                  </div>
-                  <div className="py-3 md:px-5 space-y-1.5">
-                    <div className="text-xs font-mono text-[#E5A85F]">
-                      Conflict 视图组合
-                    </div>
-                    <div className="text-xs text-[#A0AAB4]">
-                      并列争点与候选冲突处理
-                    </div>
-                  </div>
-                  <div className="py-3 md:pl-5 space-y-1.5">
-                    <div className="text-xs font-mono text-[#A79AF4]">
-                      Hypothesis 视图组合
-                    </div>
-                    <div className="text-xs text-[#A0AAB4]">
-                      命题、反证与缺口联动更新
-                    </div>
-                  </div>
+                <div className="py-3 md:pl-6 space-y-2">
+                  <div className="text-xs font-mono text-[#E5A85F]">待探索 / 结构化交付</div>
+                  <p className="text-sm text-[#A0AAB4] leading-relaxed">
+                    尚无结构化法律证据清单与法条映射；导出内容的组织方式、筛选与预览交互仍待设计和验证。
+                  </p>
                 </div>
-              )}
-            </figure>
+              </div>
+            </div>
           </section>
         </div>
       </main>
