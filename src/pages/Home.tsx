@@ -11,7 +11,6 @@ import spatialDesk from "../assets/images/spatial_desk_plane_1791717198835.jpg";
 // Project visuals
 import lifelogOverviewImg from "../assets/images/lifelog/lifelog_overview_diagram.webp";
 import thesisConceptImg from "../assets/images/thesis_research_concept_1795349826933.jpg";
-import processNotebook from "../assets/images/clara_process_notebook_1791704505546.jpg";
 
 // LogicWeaver 高保真工作台主界面设计稿
 const LOGICWEAVER_WORKSPACE_COVER = "/assets/aistudio/____60210af4.png";
@@ -330,16 +329,18 @@ export function Home() {
                   精选片段
                 </div>
 
-                {/* Photographic Process Card */}
-                <div className="aspect-[4/3] rounded-2xl overflow-hidden mb-5 border border-black/[0.08] relative group/photo tactile-inset">
+                {/* LogicWeaver working prototype */}
+                <div className="aspect-[2538/1311] rounded-2xl overflow-hidden mb-5 border border-black/[0.08] bg-[#0b0b14] relative tactile-inset">
                   <img 
-                    src={processNotebook} 
-                    alt="草图、设备与原型实践" 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover/photo:scale-105"
+                    src="/assets/logicweaver/workspace-agent-investigation.jpeg"
+                    alt="LogicWeaver 工作区与 Agent 调查运行原型"
+                    width={2538}
+                    height={1311}
+                    className="w-full h-full object-contain"
                   />
                   <div className="absolute bottom-2.5 left-2.5 px-2.5 py-1 rounded-md bg-black/75 text-white text-[10px] backdrop-blur-md font-sans flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#ccff00]" />
-                    <span>草图、设备与原型实践</span>
+                    <span>LogicWeaver · Agent 调查原型</span>
                   </div>
                 </div>
 
@@ -367,7 +368,7 @@ export function Home() {
               </div>
 
               {/* Decorative Geometric Stamp */}
-              <div className="hidden sm:flex absolute -bottom-5 -right-4 w-20 h-20 rounded-full border-2 border-dashed border-[#ccff00]/60 items-center justify-center text-center p-1.5 text-[9px] font-bold text-[#ccff00] rotate-[-12deg] pointer-events-none backdrop-blur-sm bg-black/40 leading-snug">
+              <div className="hidden sm:flex absolute -bottom-5 -right-4 w-20 h-20 rounded-full border-2 border-dashed border-[#ccff00]/60 items-center justify-center text-center p-1.5 text-sm font-bold text-[#ccff00] rotate-[-12deg] pointer-events-none backdrop-blur-sm bg-black/40 leading-[1.35]">
                 思考<br />制作<br />探索
               </div>
 
