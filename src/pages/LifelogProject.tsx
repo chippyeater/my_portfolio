@@ -283,7 +283,7 @@ export function LifelogProject() {
           <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12 py-12 sm:py-16">
             <div className="max-w-4xl">
               <div className="text-xs font-medium text-[#0284c7] mb-3 tracking-wide">
-                团队研究项目 · 2025.10—2026.08
+                团队研究项目 · 2025.11-2026.8
               </div>
 
               <div className="flex flex-wrap items-baseline gap-x-4 gap-y-2 mb-5">

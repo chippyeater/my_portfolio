@@ -262,7 +262,7 @@ export function LogicWeaverProject() {
           </Link>
 
           <div className="flex items-center gap-2 text-xs font-mono text-[#A0AAB4] whitespace-nowrap shrink-0">
-            <span className="text-[#A8D56C] tabular-nums">03</span>
+            <span className="text-[#A8D56C] tabular-nums">02</span>
             <span aria-hidden="true" className="text-[#3A444F]">/</span>
             <span>LogicWeaver</span>
           </div>
@@ -304,7 +304,7 @@ export function LogicWeaverProject() {
                 </p>
 
                 <div className="pt-4 border-t border-white/12 text-xs text-[#A0AAB4]">
-                  团队项目 · 交互设计 · AI Agent · 2026
+                  团队项目 · 交互设计 · AI Agent · 2026.3-2026.4
                 </div>
               </div>
 

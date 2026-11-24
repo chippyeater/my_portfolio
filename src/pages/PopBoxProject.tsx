@@ -155,7 +155,7 @@ export function PopBoxProject() {
             <div className="lg:col-span-4 border-l-2 border-[#161719] pl-5 space-y-2.5 text-xs">
               <div>
                 <span className="text-[#5e626b] text-[11px] block">时间</span>
-                <span className="font-bold">2026.03—2026.06</span>
+                <span className="font-bold">2026.5-2026.6</span>
               </div>
               <div>
                 <span className="text-[#5e626b] text-[11px] block">个人工作</span>

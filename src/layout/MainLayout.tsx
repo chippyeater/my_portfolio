@@ -19,34 +19,34 @@ const NAV_WORK_ITEMS: NavProjectItem[] = [
   },
   {
     number: "02",
-    hookTitle: "把生活录像，拆解成可找回的记忆",
-    projectLabel: "Lifelog · 引导式回忆辅助系统",
-    link: "/project/lifelog",
-  },
-  {
-    number: "03",
     hookTitle: "把分散案卷放进可追溯的推理画布",
     projectLabel: "LogicWeaver · 法律案件事实与证据推理工作台",
     link: "/project/logicweaver",
   },
   {
-    number: "04",
-    hookTitle: "移动浏览中，Agent 何时介入才合适",
-    projectLabel: "硕士毕业设计 · 情境自适应主动交互",
-    link: "/project/thesis",
-    nonClickable: true,
+    number: "03",
+    hookTitle: "把生活录像，拆解成可找回的记忆",
+    projectLabel: "Lifelog · 引导式回忆辅助系统",
+    link: "/project/lifelog",
   },
   {
-    number: "05",
+    number: "04",
     hookTitle: "让重要的事被记住，也被推进",
     projectLabel: "Mesee · 任务记忆增强 Agent 概念设计",
     link: "/project/mesee",
   },
   {
-    number: "06",
+    number: "05",
     hookTitle: "让家具定制从调参数变成表达需求",
     projectLabel: "Resonance · 对话式参数化家具定制",
     link: "/project/resonance",
+  },
+  {
+    number: "06",
+    hookTitle: "移动浏览中，Agent 何时介入才合适",
+    projectLabel: "硕士毕业设计 · 情境自适应主动交互",
+    link: "/project/thesis",
+    nonClickable: true,
   },
 ];
 

@@ -1,4 +1,6 @@
-/** Resolve a path relative to public/ against the current deployment base. */
 export function publicAssetUrl(path: string): string {
-  return `${import.meta.env.BASE_URL}${path}`;
+  const base = import.meta.env.BASE_URL || "/";
+  const normalizedBase = base.endsWith("/") ? base : `${base}/`;
+  const normalizedPath = path.replace(/^\/+/, "");
+  return `${normalizedBase}${normalizedPath}`;
 }
