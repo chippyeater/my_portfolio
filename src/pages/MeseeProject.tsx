@@ -1,32 +1,33 @@
+import { publicAssetUrl } from "../lib/assets";
 import { useState, useEffect } from "react";
 import { ArrowLeft, Expand, X } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const MESEE_MEDIA = {
-  showcaseBoard: "/assets/mesee/mesee_showcase_board.png",
+  showcaseBoard: publicAssetUrl("assets/mesee/mesee_showcase_board.png"),
   diagrams: {
-    journeyMap: "/assets/aistudio/_____b8515ea7.png",
-    systemConcept: "/assets/aistudio/_____86a93625.png",
+    journeyMap: publicAssetUrl("assets/aistudio/_____b8515ea7.png"),
+    systemConcept: publicAssetUrl("assets/aistudio/_____86a93625.png"),
   },
   capture: {
-    taskAddDrag: "/assets/aistudio/mesee-task-add_961fc000.png",
-    taskDetectModal: "/assets/aistudio/mesee-task-detect_40230906.png",
-    taskEditDetail: "/assets/aistudio/mesee-task-edit_321ac8b1.png",
+    taskAddDrag: publicAssetUrl("assets/aistudio/mesee-task-add_961fc000.png"),
+    taskDetectModal: publicAssetUrl("assets/aistudio/mesee-task-detect_40230906.png"),
+    taskEditDetail: publicAssetUrl("assets/aistudio/mesee-task-edit_321ac8b1.png"),
   },
   remind: {
-    timedLockScreen: "/assets/aistudio/mesee-timed-reminder1_70e24df0.png",
-    timedUnlockBanner: "/assets/aistudio/mesee-timed-reminder2_ec2b2714.png",
-    timedAgentCall: "/assets/aistudio/mesee-timed-reminder-call_5c3b4986.png",
-    contextWidget: "/assets/aistudio/mesee-context-widget_6dd7f665.png",
-    contextActionDetail: "/assets/aistudio/mesee-context-action_6bbfc11c.png",
-    delegatedLockNotice: "/assets/aistudio/mesee-delegated-task1_974469e7.png",
-    delegatedAuthorize: "/assets/aistudio/mesee-delegated-task2_2626944b.png",
-    delegatedDraftWindow: "/assets/aistudio/mesee-delegated-task3_bb277c15.png",
-    delegatedFeedback: "/assets/aistudio/mesee-delegated-task4_42a17f98.png",
+    timedLockScreen: publicAssetUrl("assets/aistudio/mesee-timed-reminder1_70e24df0.png"),
+    timedUnlockBanner: publicAssetUrl("assets/aistudio/mesee-timed-reminder2_ec2b2714.png"),
+    timedAgentCall: publicAssetUrl("assets/aistudio/mesee-timed-reminder-call_5c3b4986.png"),
+    contextWidget: publicAssetUrl("assets/aistudio/mesee-context-widget_6dd7f665.png"),
+    contextActionDetail: publicAssetUrl("assets/aistudio/mesee-context-action_6bbfc11c.png"),
+    delegatedLockNotice: publicAssetUrl("assets/aistudio/mesee-delegated-task1_974469e7.png"),
+    delegatedAuthorize: publicAssetUrl("assets/aistudio/mesee-delegated-task2_2626944b.png"),
+    delegatedDraftWindow: publicAssetUrl("assets/aistudio/mesee-delegated-task3_bb277c15.png"),
+    delegatedFeedback: publicAssetUrl("assets/aistudio/mesee-delegated-task4_42a17f98.png"),
   },
   memory: {
-    canvasBoard: "/assets/aistudio/mesee-memory-board_f28ead62.png",
-    recallGraph: "/assets/aistudio/mesee-memory-recall_43292464.png",
+    canvasBoard: publicAssetUrl("assets/aistudio/mesee-memory-board_f28ead62.png"),
+    recallGraph: publicAssetUrl("assets/aistudio/mesee-memory-recall_43292464.png"),
   },
 };
 

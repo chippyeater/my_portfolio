@@ -1,3 +1,4 @@
+import { publicAssetUrl } from "../lib/assets";
 import { useEffect, useState } from "react";
 import { ArrowLeft, ChevronLeft, ChevronRight, ListOrdered, Maximize2, ScanSearch, SlidersHorizontal, X } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -5,7 +6,7 @@ import { Link } from "react-router-dom";
 import lifelogOverviewImg from "../assets/images/lifelog/lifelog_overview_diagram.webp";
 import pipelineEarlyImg from "../assets/images/lifelog/pipeline_early_full_context.png";
 
-const pipelineRefinedImg = "/assets/aistudio/02____Full_Context___________941c30d3.png";
+const pipelineRefinedImg = publicAssetUrl("assets/aistudio/02____Full_Context___________941c30d3.png");
 
 import unityStage1SelectImg from "../assets/images/lifelog/unity_stage1_theme_select.webp";
 import unityStage1HintImg from "../assets/images/lifelog/unity_stage1_theme_hint.webp";

@@ -1,13 +1,14 @@
+import { publicAssetUrl } from "../lib/assets";
 import { useEffect, useState } from "react";
 import { ArrowLeft, Expand, X } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const RESONANCE_MEDIA = {
-  mainWorkspace: "/assets/aistudio/2_218f39fc.png",
-  manualSliders: "/assets/resonance/resonance_manual_sliders_clean.png",
-  naturalSchemes: "/assets/aistudio/3_1c27e851.png",
-  quoteSummary: "/assets/aistudio/4_ecbc4657.png",
-  demoVideo: "/assets/aistudio/_____1__04e28acd.mp4",
+  mainWorkspace: publicAssetUrl("assets/aistudio/2_218f39fc.png"),
+  manualSliders: publicAssetUrl("assets/resonance/resonance_manual_sliders_clean.png"),
+  naturalSchemes: publicAssetUrl("assets/aistudio/3_1c27e851.png"),
+  quoteSummary: publicAssetUrl("assets/aistudio/4_ecbc4657.png"),
+  demoVideo: publicAssetUrl("assets/aistudio/_____1__04e28acd.mp4"),
 };
 
 interface ZoomTarget {

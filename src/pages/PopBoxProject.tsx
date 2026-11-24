@@ -1,3 +1,4 @@
+import { publicAssetUrl } from "../lib/assets";
 import { useEffect, useState } from "react";
 import { ArrowLeft, GitBranch, Sparkles, Cpu, Globe, Volume2, AlertCircle, Film, Mic, Zap, Trophy, Maximize2, X, ScanFace, MessageCircle } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -9,16 +10,16 @@ import { Link } from "react-router-dom";
  */
 const POPBOX_MEDIA = {
   // 已接入的正式素材
-  physicalPrototype: "/assets/aistudio/popbox____b906b97a.png",
-  conceptStageRender: "/assets/aistudio/AI______2e63cf52.jpg",
-  playGuidePoster: "/assets/aistudio/_______36ae5e3d.png",
-  dailyFront: "/assets/aistudio/__1_670abe8a.png",
-  dailyBack: "/assets/aistudio/__2_b826fb1b.png",
-  promoVideoUrl: "/assets/aistudio/_____72fe4e3c.mp4",
-  coreS3InteractionVideoUrl: "/assets/aistudio/_____32fa5109.mp4",
-  webNotesShot: "/assets/aistudio/image_5b68c5fa.png",
-  webGalleryShot: "/assets/aistudio/image_00331e1f.png",
-  interactionFlowShot: "/assets/aistudio/______84b28fb7.png",
+  physicalPrototype: publicAssetUrl("assets/aistudio/popbox____b906b97a.png"),
+  conceptStageRender: publicAssetUrl("assets/aistudio/AI______2e63cf52.jpg"),
+  playGuidePoster: publicAssetUrl("assets/aistudio/_______36ae5e3d.png"),
+  dailyFront: publicAssetUrl("assets/aistudio/__1_670abe8a.png"),
+  dailyBack: publicAssetUrl("assets/aistudio/__2_b826fb1b.png"),
+  promoVideoUrl: publicAssetUrl("assets/aistudio/_____72fe4e3c.mp4"),
+  coreS3InteractionVideoUrl: publicAssetUrl("assets/aistudio/_____32fa5109.mp4"),
+  webNotesShot: publicAssetUrl("assets/aistudio/image_5b68c5fa.png"),
+  webGalleryShot: publicAssetUrl("assets/aistudio/image_00331e1f.png"),
+  interactionFlowShot: publicAssetUrl("assets/aistudio/______84b28fb7.png"),
 
   // 可选补充素材位（填入真实 URL 后对应区块自动显示）
   webProfileShot: "" as string,

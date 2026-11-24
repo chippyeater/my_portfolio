@@ -1,3 +1,4 @@
+import { publicAssetUrl } from "../lib/assets";
 import { useState } from "react";
 import {
   ArrowLeft,
@@ -26,34 +27,34 @@ import { Link } from "react-router-dom";
  * LogicWeaver 设计素材路径配置
  */
 const LOGICWEAVER_MEDIA = {
-  heroWorkspace: "/assets/aistudio/____60210af4.png",
+  heroWorkspace: publicAssetUrl("assets/aistudio/____60210af4.png"),
   competitors: {
     falkor: [
-      "/assets/aistudio/FALKOR1_a59ce134.png",
-      "/assets/aistudio/FALKOR2_9be99535.png",
-      "/assets/aistudio/FALKOR3_31b2c5c2.png",
-      "/assets/aistudio/FALKOR4_a3ff6fa0.png",
+      publicAssetUrl("assets/aistudio/FALKOR1_a59ce134.png"),
+      publicAssetUrl("assets/aistudio/FALKOR2_9be99535.png"),
+      publicAssetUrl("assets/aistudio/FALKOR3_31b2c5c2.png"),
+      publicAssetUrl("assets/aistudio/FALKOR4_a3ff6fa0.png"),
     ],
     kaseware: [
-      "/assets/aistudio/Kaseware1_0f90cc8a.png",
-      "/assets/aistudio/Kaseware2_36343c06.png",
-      "/assets/aistudio/Kaseware3_1dc46463.png",
-      "/assets/aistudio/Kaseware4_66bde272.png",
+      publicAssetUrl("assets/aistudio/Kaseware1_0f90cc8a.png"),
+      publicAssetUrl("assets/aistudio/Kaseware2_36343c06.png"),
+      publicAssetUrl("assets/aistudio/Kaseware3_1dc46463.png"),
+      publicAssetUrl("assets/aistudio/Kaseware4_66bde272.png"),
     ],
   },
-  infoUnitDetail: "/assets/aistudio/Level3_4ed93913.png",
+  infoUnitDetail: publicAssetUrl("assets/aistudio/Level3_4ed93913.png"),
   semanticZoomLevels: {
-    1: "/assets/aistudio/Level1_699e1cde.png",
-    2: "/assets/aistudio/Level2_7c1a893d.png",
-    3: "/assets/aistudio/Level3_4ed93913.png",
+    1: publicAssetUrl("assets/aistudio/Level1_699e1cde.png"),
+    2: publicAssetUrl("assets/aistudio/Level2_7c1a893d.png"),
+    3: publicAssetUrl("assets/aistudio/Level3_4ed93913.png"),
   } as Record<ZoomLevel, string>,
   reasoningViews: {
-    timeline: "/assets/aistudio/______6779f478.png",
-    conflict: "/assets/aistudio/_____8e17fbbe.png",
-    hypothesis: "/assets/aistudio/_____aa619a0d.png",
+    timeline: publicAssetUrl("assets/aistudio/______6779f478.png"),
+    conflict: publicAssetUrl("assets/aistudio/_____8e17fbbe.png"),
+    hypothesis: publicAssetUrl("assets/aistudio/_____aa619a0d.png"),
   },
-  prototypeWorkspace: "/assets/logicweaver/workspace-agent-investigation.jpeg",
-  langfuseTrace: "/assets/aistudio/image_0ba4fd56.png",
+  prototypeWorkspace: publicAssetUrl("assets/logicweaver/workspace-agent-investigation.jpeg"),
+  langfuseTrace: publicAssetUrl("assets/aistudio/image_0ba4fd56.png"),
   futureComposite: "",
 };
 

@@ -32,10 +32,15 @@ jobs:
         run: npm ci
 
       - name: Build
+        env:
+          VITE_BASE_PATH: /my_portfolio/
         run: npm run build
 
       - name: SPA fallback
         run: cp dist/index.html dist/404.html
+
+      - name: Verify asset paths
+        run: npm run verify:assets -- dist /my_portfolio/
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

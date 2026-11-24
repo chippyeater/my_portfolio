@@ -1,3 +1,4 @@
+import { publicAssetUrl } from "../lib/assets";
 import { useState, useRef, useEffect, useLayoutEffect, MouseEvent } from "react";
 import { 
   ArrowRight, ArrowUpRight, ChevronRight
@@ -13,7 +14,7 @@ import lifelogOverviewImg from "../assets/images/lifelog/lifelog_overview_diagra
 import thesisConceptImg from "../assets/images/thesis_research_concept_1795349826933.jpg";
 
 // LogicWeaver 高保真工作台主界面设计稿
-const LOGICWEAVER_WORKSPACE_COVER = "/assets/aistudio/____60210af4.png";
+const LOGICWEAVER_WORKSPACE_COVER = publicAssetUrl("assets/aistudio/____60210af4.png");
 
 type ProjectCategory = "all" | "research" | "product" | "exploration";
 
@@ -45,7 +46,7 @@ const REAL_PROJECTS: ProjectItem[] = [
     year: "2026.03—2026.06",
     whatItIs: "探索潮玩在摆放观赏之外的互动可能：通过实体舞台装置、M5Stack CoreS3 屏幕语音交互与 Web 端互动页面，让手办角色在对话与日常记录中被重新激活。",
     claraContribution: "参与产品定位、功能讨论与整体交互方案，完成 Web 前端（留言墙、照片墙、静态小故事）及 M5Stack CoreS3 单角色语音对话基础 API 调用。",
-    image: "/assets/aistudio/popbox____b906b97a.png",
+    image: publicAssetUrl("assets/aistudio/popbox____b906b97a.png"),
     link: "/project/popbox",
     category: "product",
   },
@@ -103,7 +104,7 @@ const REAL_PROJECTS: ProjectItem[] = [
     year: "2025.09—11",
     whatItIs: "以任务为核心的记忆增强 Agent 概念设计。探索如何从聊天等日常信息中识别待办，在合适的时机提供提醒，并通过记忆画布帮助用户重新找到相关信息。",
     claraContribution: "参与团队产品定义、信息架构、交互流程及低保真、高保真设计。",
-    image: "/assets/mesee/mesee_showcase_board.png",
+    image: publicAssetUrl("assets/mesee/mesee_showcase_board.png"),
     link: "/project/mesee",
     category: "exploration",
   },
@@ -117,7 +118,7 @@ const REAL_PROJECTS: ProjectItem[] = [
     year: "2026.03—2026.06",
     whatItIs: "基于参数化桌子模型，打造可通过自然语言和可视化参数调节进行家具定制的交互原型，让非专业用户也能直观探索不同的设计方案。",
     claraContribution: "独立完成 Web 交互原型，以及 LLM、Rhino.Compute 几何计算与规则反馈的系统整合。",
-    image: "/assets/aistudio/2_218f39fc.png",
+    image: publicAssetUrl("assets/aistudio/2_218f39fc.png"),
     link: "/project/resonance",
     category: "product",
   },
@@ -332,7 +333,7 @@ export function Home() {
                 {/* LogicWeaver working prototype */}
                 <div className="aspect-[2538/1311] rounded-2xl overflow-hidden mb-5 border border-black/[0.08] bg-[#0b0b14] relative tactile-inset">
                   <img 
-                    src="/assets/logicweaver/workspace-agent-investigation.jpeg"
+                    src={publicAssetUrl("assets/logicweaver/workspace-agent-investigation.jpeg")}
                     alt="LogicWeaver 工作区与 Agent 调查运行原型"
                     width={2538}
                     height={1311}
