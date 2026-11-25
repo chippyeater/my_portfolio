@@ -13,38 +13,38 @@ interface NavProjectItem {
 const NAV_WORK_ITEMS: NavProjectItem[] = [
   {
     number: "01",
-    hookTitle: "走出展示柜的桌面小剧场",
-    projectLabel: "PopBox · 实体舞台与日常交互",
+    hookTitle: "让盲盒，不止于收藏",
+    projectLabel: "PopBox · 实体潮玩与数字交互融合的角色互动体验设计",
     link: "/project/popbox",
   },
   {
     number: "02",
-    hookTitle: "把分散案卷放进可追溯的推理画布",
-    projectLabel: "LogicWeaver · 法律案件事实与证据推理工作台",
+    hookTitle: "用散落的事实，自由创造推理地图",
+    projectLabel: "LogicWeaver · 法律案件 AI 推理辅助工作台",
     link: "/project/logicweaver",
   },
   {
     number: "03",
-    hookTitle: "把生活录像，拆解成可找回的记忆",
-    projectLabel: "Lifelog · 引导式回忆辅助系统",
+    hookTitle: "其实日常生活本身，就是最好的记忆练习",
+    projectLabel: "Lifelog · 基于第一人称生活影像的情景记忆训练系统",
     link: "/project/lifelog",
   },
   {
     number: "04",
-    hookTitle: "让重要的事被记住，也被推进",
+    hookTitle: "你好，我是你的私人专属小秘",
     projectLabel: "Mesee · 任务记忆增强 Agent 概念设计",
     link: "/project/mesee",
   },
   {
     number: "05",
-    hookTitle: "让家具定制从调参数变成表达需求",
-    projectLabel: "Resonance · 对话式参数化家具定制",
+    hookTitle: "用自然语言，进行专业的家具定制",
+    projectLabel: "Resonance · 对话式参数化家具定制体验设计",
     link: "/project/resonance",
   },
   {
     number: "06",
-    hookTitle: "移动浏览中，Agent 何时介入才合适",
-    projectLabel: "硕士毕业设计 · 情境自适应主动交互",
+    hookTitle: "当你沉迷小地瓜，Agent 可以提供什么帮助？",
+    projectLabel: "硕士毕业设计 · 移动信息流中的情境自适应 Agent 交互研究",
     link: "/project/thesis",
     nonClickable: true,
   },
@@ -145,7 +145,7 @@ export function MainLayout() {
 
             {/* Hover Bridge + Spatial Dark Frosted Dropdown */}
             <div
-              className={`absolute top-full left-1/2 -translate-x-1/2 pt-3.5 w-[380px] transition-all duration-200 origin-top ${
+              className={`absolute top-full left-1/2 -translate-x-1/2 pt-3.5 w-[430px] transition-all duration-200 origin-top ${
                 isWorksOpen
                   ? "opacity-100 translate-y-0 pointer-events-auto"
                   : "opacity-0 -translate-y-1.5 pointer-events-none"

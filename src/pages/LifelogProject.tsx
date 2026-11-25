@@ -282,18 +282,15 @@ export function LifelogProject() {
         <section className="w-full bg-white border-b border-[#e2e8f0]">
           <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12 py-12 sm:py-16">
             <div className="max-w-4xl">
-              <div className="text-xs font-medium text-[#0284c7] mb-3 tracking-wide">
-                团队研究项目 · 2025.11-2026.8
+              <div className="flex flex-wrap items-center gap-2 text-xs font-medium text-[#0284c7] mb-3 tracking-wide">
+                <span className="font-display font-bold text-[#0f172a]">Lifelog</span>
+                <span aria-hidden="true" className="text-[#cbd5e1]">·</span>
+                <span>团队研究项目 · 2025.11-2026.8</span>
               </div>
 
-              <div className="flex flex-wrap items-baseline gap-x-4 gap-y-2 mb-5">
-                <h1 className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-[#0f172a]">
-                  Lifelog
-                </h1>
-                <span className="text-xl sm:text-2xl font-editorial-cn font-semibold text-[#1e293b]">
-                  生活记录驱动的引导式回忆辅助系统
-                </span>
-              </div>
+              <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-editorial-cn font-bold tracking-tight text-[#0f172a] leading-[1.2] mb-5 text-balance">
+                基于第一人称生活影像的情景记忆训练系统
+              </h1>
 
               <p className="text-base sm:text-lg text-[#475569] leading-relaxed max-w-3xl mb-9">
                 将第一人称生活记录转化为结构化事件与记忆线索，支持从活动回顾到实体细节的渐进式回忆。
@@ -836,7 +833,7 @@ export function LifelogProject() {
           <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-[#64748b]">
             <span className="font-display font-bold text-[#0f172a]">Lifelog</span>
             <span aria-hidden="true" className="text-[#cbd5e1]">·</span>
-            <span>生活记录驱动的引导式回忆辅助系统</span>
+            <span>基于第一人称生活影像的情景记忆训练系统</span>
           </div>
 
           <Link

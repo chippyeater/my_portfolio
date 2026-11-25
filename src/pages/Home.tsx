@@ -21,6 +21,7 @@ type ProjectCategory = "all" | "research" | "product" | "exploration";
 interface ProjectItem {
   id: string;
   number: string;
+  shortName: string;
   badgeLabel: string;
   badgeTone: "terracotta" | "cobalt" | "ochre" | "sage" | "ink";
   statusLabel?: string;
@@ -40,9 +41,10 @@ const REAL_PROJECTS: ProjectItem[] = [
   {
     id: "popbox",
     number: "01",
+    shortName: "PopBox",
     badgeLabel: "实物原型",
     badgeTone: "terracotta",
-    title: "PopBox ｜ 让潮玩，不止于观赏。",
+    title: "实体潮玩与数字交互融合的角色互动体验设计",
     keywords: ["潮玩语音互动", "跨 IP 社交联动", "软硬件协同", "桌面舞台装置"],
     categoryLabel: "实体装置 · Web 前端 · CoreS3 单角色语音",
     year: "2026.5-2026.6",
@@ -55,9 +57,10 @@ const REAL_PROJECTS: ProjectItem[] = [
   {
     id: "logicweaver",
     number: "02",
+    shortName: "LogicWeaver",
     badgeLabel: "团队课程项目 · 原型迭代",
     badgeTone: "ink",
-    title: "LogicWeaver｜法律案件事实与证据推理工作台",
+    title: "法律案件 AI 推理辅助工作台",
     keywords: ["复杂信息整理", "信息画布", "假设—证据推理", "Agent 调查"],
     categoryLabel: "Human–AI Interaction · 信息架构 · AI Agent · Vibe Coding",
     year: "2026.3-2026.4",
@@ -70,9 +73,10 @@ const REAL_PROJECTS: ProjectItem[] = [
   {
     id: "lifelog",
     number: "03",
+    shortName: "Lifelog",
     badgeLabel: "团队研究项目",
     badgeTone: "cobalt",
-    title: "Lifelog｜生活记录驱动的引导式回忆辅助系统",
+    title: "基于第一人称生活影像的情景记忆训练系统",
     keywords: ["记忆材料提取", "引导式回忆", "多模态事件核验", "医患双端系统"],
     categoryLabel: "引导式回忆辅助 · 全链路系统搭建",
     year: "2025.11-2026.8",
@@ -85,9 +89,10 @@ const REAL_PROJECTS: ProjectItem[] = [
   {
     id: "mesee",
     number: "04",
+    shortName: "Mesee",
     badgeLabel: "交互设计课程 · 高保真设计",
     badgeTone: "cobalt",
-    title: "Mesee｜让重要的事被记住，也被推进",
+    title: "任务记忆增强 Agent 概念设计",
     keywords: ["聊天待办识别", "任务记忆增强", "情境主动提醒", "记忆回溯画布"],
     categoryLabel: "Human–AI Interaction · Mobile UX · Interaction Design",
     year: "2025.09—11",
@@ -100,9 +105,10 @@ const REAL_PROJECTS: ProjectItem[] = [
   {
     id: "resonance",
     number: "05",
+    shortName: "Resonance",
     badgeLabel: "个人课程作品",
     badgeTone: "terracotta",
-    title: "Resonance｜可对话的家具定制",
+    title: "对话式参数化家具定制体验设计",
     keywords: ["对话式家具定制", "参数化设计", "自然语言交互", "实时报价反馈"],
     categoryLabel: "个人课程作品 · 参数化设计 · 自然语言交互",
     year: "2026.03—2026.06",
@@ -115,10 +121,11 @@ const REAL_PROJECTS: ProjectItem[] = [
   {
     id: "thesis",
     number: "06",
+    shortName: "硕士毕设",
     badgeLabel: "在研课题 · 硕士毕业设计",
     badgeTone: "sage",
     statusLabel: "文献研究阶段",
-    title: "情境自适应 Agent｜移动信息流中的主动交互研究",
+    title: "移动信息流中的情境自适应 Agent 交互研究",
     keywords: ["移动信息流", "情境自适应", "主动式 Agent", "介入时机决策"],
     categoryLabel: "Human–AI Interaction · Proactive Agent · UX Research",
     year: "2026.11 — Present",
@@ -300,14 +307,22 @@ export function Home() {
           {/* Subtle warm incandescent counter-glow from physical lamp */}
           <div className="absolute top-1/3 right-1/4 w-[360px] h-[360px] bg-[#ffaa44]/10 blur-[130px] rounded-full pointer-events-none" />
           
-          {/* Bottom Desk Surface Plane with Soft Gradient Lift */}
-          <div className="absolute bottom-0 left-0 right-0 h-64 overflow-hidden pointer-events-none opacity-40">
-            <img 
-              src={spatialDesk} 
-              alt="Desk Plane Perspective" 
-              className="w-full h-full object-cover object-top filter brightness-75 contrast-125 mask-radial"
+          {/* Bottom Desk Surface Plane with Soft Top Feathering */}
+          <div
+            className="absolute -bottom-8 -left-6 -right-6 h-72 overflow-hidden pointer-events-none opacity-35"
+            style={{
+              maskImage:
+                "linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.45) 45%, rgba(0, 0, 0, 0.95) 82%, transparent 100%)",
+              WebkitMaskImage:
+                "linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.45) 45%, rgba(0, 0, 0, 0.95) 82%, transparent 100%)",
+            }}
+          >
+            <img
+              src={spatialDesk}
+              alt="Desk Plane Perspective"
+              className="w-full h-full object-cover object-center filter brightness-75 contrast-125"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0d0e12] to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0d0e12] via-[#0d0e12]/25 to-transparent" />
           </div>
         </div>
 
@@ -337,10 +352,10 @@ export function Home() {
               {/* Spatial Editorial Subtext */}
               <div className="text-base sm:text-lg text-stone-300 max-w-2xl font-light leading-relaxed mb-8 space-y-3">
                 <p>
-                  我是 <strong className="text-white font-medium">Clara</strong>，本科毕业于北京师范大学人工智能专业，目前就读于同济大学设计创意学院，攻读交互设计硕士。
+                  Hi！我是 <strong className="text-white font-medium">Clara</strong>，欢迎来到我的个人网站！
                 </p>
                 <p>
-                  我对人的感知、认知和行为，以及技术如何影响我们的生活与体验很感兴趣。这里记录我的研究、项目和一些持续进行的探索。
+                  如果你也对人与技术如何相互影响、彼此塑造感兴趣，不妨继续向下看看！这里会持续记录我的研究、项目与个人探索，希望其中有一些内容能让你产生共鸣。
                 </p>
               </div>
 
@@ -916,9 +931,11 @@ export function Home() {
                     <article className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
                       <div className={`${cols.left} p-6 sm:p-8 flex flex-col justify-between gap-6`}>
                         <div className="space-y-3.5">
-                          {/* Top Eyebrow: Number / Nature / Time */}
+                          {/* Top Eyebrow: Number / English Name / Nature / Time */}
                           <div className="flex flex-wrap items-center gap-2 text-xs font-mono text-[#94A3B8]">
                             <span className="text-[#A8D56C] font-bold tabular-nums">{project.number}</span>
+                            <span>/</span>
+                            <span className="font-display font-bold text-white tracking-tight">{project.shortName}</span>
                             <span>/</span>
                             <span className="text-[#E2E8F0]">{project.badgeLabel}</span>
                             <span>/</span>
@@ -995,10 +1012,14 @@ export function Home() {
                     }`}
                   >
                     <div className="space-y-3.5">
-                      {/* Top Eyebrow: Number / Nature / Time */}
+                      {/* Top Eyebrow: Number / English Name / Nature / Time */}
                       <div className="flex flex-wrap items-center gap-2 text-xs font-mono text-[#525660]">
                         <span className="font-bold tabular-nums" style={{ color: accentColor }}>
                           {project.number}
+                        </span>
+                        <span>/</span>
+                        <span className="font-display font-bold text-[#111214] tracking-tight">
+                          {project.shortName}
                         </span>
                         <span>/</span>
                         <span className="text-[#111214] font-medium">{project.badgeLabel}</span>

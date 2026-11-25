@@ -287,16 +287,16 @@ export function LogicWeaverProject() {
               {/* Left Column: Typography & Core Narrative */}
               <div className="lg:col-span-5 space-y-6">
                 <div className="font-mono text-xs tracking-wider text-[#A8D56C]">
-                  人机协同推理工作台
+                  LogicWeaver · 人机协同推理工作台
                 </div>
 
                 <div className="space-y-2.5">
-                  <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-display font-bold tracking-tight text-[#EDF0F2] leading-[1.08]">
+                  <div className="text-lg sm:text-xl font-display font-bold tracking-tight text-[#A0AAB4]">
                     LogicWeaver
+                  </div>
+                  <h1 className="text-3xl sm:text-4xl lg:text-[2.6rem] font-editorial-cn font-bold tracking-tight text-[#EDF0F2] leading-[1.18] text-balance">
+                    法律案件 AI 推理辅助工作台
                   </h1>
-                  <p className="text-xl sm:text-2xl font-editorial-cn font-semibold text-[#A0AAB4] leading-snug">
-                    法律案件事实与证据推理工作台
-                  </p>
                 </div>
 
                 <p className="text-base sm:text-[17px] text-[#EDF0F2]/90 leading-[1.75] max-w-xl font-normal">

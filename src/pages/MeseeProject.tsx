@@ -229,29 +229,28 @@ export function MeseeProject() {
         {/* ==================== HERO ==================== */}
         <section className="py-8 sm:py-10 mesee-enter">
           {/* Full-Width Spanning Hero Header Band */}
-          <div className="pb-8 mb-8 lg:mb-10 border-b border-[#292B35]/[0.07] space-y-3.5">
-            <p className="text-[11px] sm:text-xs tracking-[0.08em] text-[#4D77E8] font-medium">
-              交互设计 · 课程团队项目 · 2025
-            </p>
-
-            <div className="flex flex-col sm:flex-row sm:items-baseline gap-3 sm:gap-5">
-              <div className="flex items-center gap-3.5 shrink-0">
-                <div
-                  aria-hidden="true"
-                  className="mesee-float w-11 h-11 rounded-[15px] bg-gradient-to-br from-[#6C93FF] via-[#597FF2] to-[#9887EA] shadow-[0_10px_24px_-8px_rgba(77,119,232,0.55),inset_0_2px_6px_rgba(255,255,255,0.45)] flex items-center justify-center gap-2 shrink-0"
-                >
-                  <span className="mesee-blink w-1.5 h-3.5 rounded-full bg-white/95 shadow-[0_0_8px_rgba(255,255,255,0.85)]" />
-                  <span className="mesee-blink w-1.5 h-3.5 rounded-full bg-white/95 shadow-[0_0_8px_rgba(255,255,255,0.85)]" />
-                </div>
-                <h1 className="text-4xl sm:text-5xl lg:text-[52px] font-display-title font-bold tracking-tight text-[#292B35] leading-[1.06]">
-                  Mesee
-                </h1>
+          <div className="pb-8 mb-8 lg:mb-10 border-b border-[#292B35]/[0.07] space-y-4">
+            <div className="flex flex-wrap items-center gap-3">
+              <div
+                aria-hidden="true"
+                className="mesee-float w-9 h-9 rounded-[12px] bg-gradient-to-br from-[#6C93FF] via-[#597FF2] to-[#9887EA] shadow-[0_8px_18px_-6px_rgba(77,119,232,0.5),inset_0_2px_5px_rgba(255,255,255,0.45)] flex items-center justify-center gap-1.5 shrink-0"
+              >
+                <span className="mesee-blink w-1 h-2.5 rounded-full bg-white/95" />
+                <span className="mesee-blink w-1 h-2.5 rounded-full bg-white/95" />
               </div>
-
-              <p className="text-xl sm:text-2xl lg:text-[28px] font-editorial-cn font-semibold text-[#292B35] leading-snug">
-                让重要的事被记住，也被推进。
-              </p>
+              <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-0.5">
+                <span className="text-lg font-display-title font-bold tracking-tight text-[#292B35]">
+                  Mesee
+                </span>
+                <span className="text-[11px] sm:text-xs tracking-[0.08em] text-[#4D77E8] font-medium">
+                  交互设计 · 课程团队项目 · 2025
+                </span>
+              </div>
             </div>
+
+            <h1 className="text-3xl sm:text-4xl lg:text-[44px] font-editorial-cn font-bold tracking-tight text-[#292B35] leading-[1.16]">
+              任务记忆增强 Agent 概念设计
+            </h1>
           </div>
 
           {/* Balanced 2-Column Intro + Showcase Body */}

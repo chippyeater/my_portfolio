@@ -124,7 +124,7 @@ export function ResonanceProject() {
             </div>
 
             <h1 className="text-3xl sm:text-4xl lg:text-[44px] font-editorial-cn font-bold text-[#3B2014] leading-[1.2] tracking-tight text-balance">
-              让家具定制，从理解参数变成表达需求。
+              对话式参数化家具定制体验设计
             </h1>
 
             <p className="text-[15px] sm:text-[17px] text-[#593E31] leading-[1.82] font-normal">

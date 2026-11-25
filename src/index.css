@@ -45,6 +45,59 @@ body {
   50% { transform: scaleY(1); }
 }
 
+@keyframes popbox-firework-spark {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translate(0px, 0px) rotate(var(--rot, 0deg)) scale(0.25);
+  }
+  16% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translate(calc(var(--tx) * 0.42), calc(var(--ty) * 0.42)) rotate(var(--rot, 0deg)) scale(1.15);
+  }
+  72% {
+    opacity: 0.95;
+    transform: translate(-50%, -50%) translate(var(--tx), var(--ty)) rotate(var(--rot, 0deg)) scale(0.9);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translate(calc(var(--tx) * 1.24), calc(var(--ty) * 1.24)) rotate(var(--rot, 0deg)) scale(0.15);
+  }
+}
+
+@keyframes popbox-firework-star {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translate(0px, 0px) scale(0.2) rotate(0deg);
+  }
+  25% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translate(calc(var(--tx) * 0.65), calc(var(--ty) * 0.65)) scale(1.2) rotate(35deg);
+  }
+  75% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) translate(var(--tx), var(--ty)) scale(0.85) rotate(75deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translate(calc(var(--tx) * 1.18), calc(var(--ty) * 1.18)) scale(0.1) rotate(110deg);
+  }
+}
+
+@keyframes popbox-firework-core {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.15);
+  }
+  22% {
+    opacity: 0.95;
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(2.2);
+  }
+}
+
 .animate-marquee {
   animation: marquee 75s linear infinite;
 }
@@ -425,7 +478,10 @@ body {
   .mesee-enter,
   .mesee-float,
   .mesee-blink,
-  .mesee-nudge {
+  .mesee-nudge,
+  .popbox-firework-spark,
+  .popbox-firework-star,
+  .popbox-firework-core {
     animation: none !important;
   }
 }

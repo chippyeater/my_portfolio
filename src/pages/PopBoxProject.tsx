@@ -36,7 +36,7 @@ const INTERACTION_STEPS = [
   {
     step: "02",
     title: "选择玩法",
-    summary: "触发「日常群聊」自由交流，或开启「限时辩论」设定观点主题。",
+    summary: "触发「日常群聊」随时开口自由交流，或开启「限时辩论」设定辩题并倒计时，双方轮流输出观点、按键拉票。",
     accentBg: "bg-[#67e8f9]",
     cardTint: "bg-[#67e8f9]/15",
   },
@@ -60,6 +60,71 @@ const INTERACTION_STEPS = [
     summary: "倒计时结束后屏幕揭晓本轮胜出立场，沉淀该角色的专属互动记录。",
     accentBg: "bg-[#fb7185]",
     cardTint: "bg-[#fb7185]/15",
+  },
+] as const;
+
+const STEP5_FIREWORKS = [
+  {
+    id: "fw-top-right",
+    positionClass: "-top-4 -right-4",
+    ringColor: "border-[#fb7185]",
+    delayOffset: 0,
+    rays: [
+      { tx: "0px", ty: "-42px", rot: "-90deg", color: "bg-[#ffe600]", len: "w-3.5" },
+      { tx: "32px", ty: "-30px", rot: "-43deg", color: "bg-[#fb7185]", len: "w-3.5" },
+      { tx: "44px", ty: "0px", rot: "0deg", color: "bg-[#67e8f9]", len: "w-3.5" },
+      { tx: "30px", ty: "30px", rot: "45deg", color: "bg-[#c084fc]", len: "w-3" },
+      { tx: "0px", ty: "40px", rot: "90deg", color: "bg-[#ccff00]", len: "w-3" },
+      { tx: "-30px", ty: "28px", rot: "137deg", color: "bg-[#ffe600]", len: "w-3" },
+      { tx: "-42px", ty: "-2px", rot: "180deg", color: "bg-[#fb7185]", len: "w-3.5" },
+      { tx: "-30px", ty: "-32px", rot: "-133deg", color: "bg-[#67e8f9]", len: "w-3" },
+    ],
+    stars: [
+      { tx: "20px", ty: "-38px", color: "text-[#ffe600]" },
+      { tx: "38px", ty: "-14px", color: "text-[#fb7185]" },
+      { tx: "-22px", ty: "-34px", color: "text-[#c084fc]" },
+      { tx: "22px", ty: "24px", color: "text-[#67e8f9]" },
+    ],
+  },
+  {
+    id: "fw-top-left",
+    positionClass: "-top-3 left-6",
+    ringColor: "border-[#ffe600]",
+    delayOffset: 0.38,
+    rays: [
+      { tx: "0px", ty: "-34px", rot: "-90deg", color: "bg-[#67e8f9]", len: "w-3" },
+      { tx: "26px", ty: "-24px", rot: "-42deg", color: "bg-[#ffe600]", len: "w-3" },
+      { tx: "34px", ty: "4px", rot: "6deg", color: "bg-[#fb7185]", len: "w-3" },
+      { tx: "22px", ty: "24px", rot: "48deg", color: "bg-[#c084fc]", len: "w-2.5" },
+      { tx: "-24px", ty: "22px", rot: "138deg", color: "bg-[#ccff00]", len: "w-2.5" },
+      { tx: "-34px", ty: "-2px", rot: "180deg", color: "bg-[#ffe600]", len: "w-3" },
+      { tx: "-24px", ty: "-26px", rot: "-132deg", color: "bg-[#fb7185]", len: "w-3" },
+    ],
+    stars: [
+      { tx: "16px", ty: "-32px", color: "text-[#fb7185]" },
+      { tx: "-28px", ty: "-18px", color: "text-[#ffe600]" },
+      { tx: "28px", ty: "14px", color: "text-[#67e8f9]" },
+    ],
+  },
+  {
+    id: "fw-bottom-right",
+    positionClass: "-bottom-4 right-10",
+    ringColor: "border-[#67e8f9]",
+    delayOffset: 0.74,
+    rays: [
+      { tx: "0px", ty: "-32px", rot: "-90deg", color: "bg-[#c084fc]", len: "w-3" },
+      { tx: "26px", ty: "-22px", rot: "-40deg", color: "bg-[#ffe600]", len: "w-3" },
+      { tx: "34px", ty: "2px", rot: "3deg", color: "bg-[#67e8f9]", len: "w-3" },
+      { tx: "24px", ty: "26px", rot: "47deg", color: "bg-[#fb7185]", len: "w-3" },
+      { tx: "-22px", ty: "26px", rot: "130deg", color: "bg-[#ffe600]", len: "w-3" },
+      { tx: "-34px", ty: "0px", rot: "180deg", color: "bg-[#ccff00]", len: "w-3" },
+      { tx: "-22px", ty: "-24px", rot: "-132deg", color: "bg-[#fb7185]", len: "w-2.5" },
+    ],
+    stars: [
+      { tx: "32px", ty: "-12px", color: "text-[#ffe600]" },
+      { tx: "14px", ty: "32px", color: "text-[#fb7185]" },
+      { tx: "-26px", ty: "16px", color: "text-[#67e8f9]" },
+    ],
   },
 ] as const;
 
@@ -125,11 +190,11 @@ export function PopBoxProject() {
         </div>
 
         {/* ═════════════════════════════════════════════════════════════
-            1. HERO: PopBox · 让潮玩，不止于观赏。
+            1. HERO: PopBox · 实体潮玩与数字交互融合的角色互动体验设计
            ═════════════════════════════════════════════════════════════ */}
         <section className="mb-16 sm:mb-20">
           {/* Top Editorial Title Row */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-10 lg:mb-14">
             <div className="lg:col-span-8 space-y-5">
               <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
                 <span className="px-3 py-1 bg-[#ffe600] border-2 border-[#161719] shadow-[3px_3px_0px_#161719] text-[10px] sm:text-[11px] font-bold tracking-wide rotate-[-1.5deg] max-w-full">
@@ -140,11 +205,12 @@ export function PopBoxProject() {
                 </span>
               </div>
 
-              <h1 className="text-4xl sm:text-6xl font-editorial-cn font-black tracking-tight text-[#161719] leading-[1.12] break-words">
+              <div className="text-lg sm:text-xl font-display font-black tracking-tight text-[#161719]">
                 PopBox
-                <span className="block text-2xl sm:text-4xl font-bold mt-2 text-[#161719]">
-                  让潮玩，不止于观赏。
-                </span>
+              </div>
+
+              <h1 className="text-3xl sm:text-5xl font-editorial-cn font-black tracking-tight text-[#161719] leading-[1.18] break-words text-balance">
+                实体潮玩与数字交互融合的角色互动体验设计
               </h1>
 
               <p className="text-sm sm:text-base text-[#3a3d45] max-w-2xl leading-relaxed">
@@ -159,7 +225,9 @@ export function PopBoxProject() {
               </div>
               <div>
                 <span className="text-[#5e626b] text-[11px] block">个人工作</span>
-                <span className="font-semibold">产品交互 · Web 前端 · CoreS3 单角色语音 API</span>
+                <span className="font-semibold leading-relaxed block">
+                  整体交互方案 · Web 前端 · CoreS3 单角色语音 API
+                </span>
               </div>
               <div>
                 <span className="text-[#5e626b] text-[11px] block">原型形态</span>
@@ -168,33 +236,35 @@ export function PopBoxProject() {
             </div>
           </div>
 
-          {/* Hybrid Hero Visual Stage: Rich Textured Backdrop + Left Concept Theater + Right Small Physical Prototype */}
-          <div className="relative rounded-3xl border-2 border-[#161719] bg-[#f3ecd8]/80 shadow-[8px_8px_0px_#161719] p-4 sm:p-6 lg:p-7 overflow-hidden">
-            {/* Layered Architectural Grid + Warm Accent Texture (eliminates blank white feel) */}
-            <div
-              className="absolute inset-0 pointer-events-none opacity-45"
-              style={{
-                backgroundImage:
-                  "linear-gradient(to right, rgba(22,23,25,0.07) 1px, transparent 1px), linear-gradient(to bottom, rgba(22,23,25,0.07) 1px, transparent 1px)",
-                backgroundSize: "24px 24px",
-              }}
-            />
-            <div
-              className="absolute -top-12 -right-12 w-56 h-56 rounded-full pointer-events-none opacity-40"
-              style={{
-                background: "radial-gradient(circle, #ffe600 0%, transparent 70%)",
-              }}
-            />
-            <div
-              className="absolute -bottom-16 -left-10 w-64 h-64 rounded-full pointer-events-none opacity-30"
-              style={{
-                background: "radial-gradient(circle, #67e8f9 0%, transparent 70%)",
-              }}
-            />
+          {/* Hybrid Hero Visual Stage: Outer Container with Clipped Backdrop & 3D Breakout Physical Stage */}
+          <div className="relative rounded-3xl border-2 border-[#161719] bg-[#f3ecd8]/85 shadow-[8px_8px_0px_#161719] p-4 sm:p-6 lg:p-7 overflow-visible">
+            {/* Clipped Architectural Grid & Warm Accent Texture */}
+            <div className="absolute inset-0 rounded-[22px] overflow-hidden pointer-events-none">
+              <div
+                className="absolute inset-0 opacity-45"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(to right, rgba(22,23,25,0.07) 1px, transparent 1px), linear-gradient(to bottom, rgba(22,23,25,0.07) 1px, transparent 1px)",
+                  backgroundSize: "24px 24px",
+                }}
+              />
+              <div
+                className="absolute -top-12 -right-12 w-56 h-56 rounded-full opacity-40"
+                style={{
+                  background: "radial-gradient(circle, #ffe600 0%, transparent 70%)",
+                }}
+              />
+              <div
+                className="absolute -bottom-16 -left-10 w-64 h-64 rounded-full opacity-30"
+                style={{
+                  background: "radial-gradient(circle, #67e8f9 0%, transparent 70%)",
+                }}
+              />
+            </div>
 
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center pt-2">
-              {/* LEFT (8/12): Atmospheric AI Stage Concept Render */}
-              <div className="lg:col-span-8">
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+              {/* LEFT (7/12): Atmospheric AI Stage Concept Render */}
+              <div className="lg:col-span-7 relative z-10">
                 <div className="rounded-2xl border-2 border-[#161719] bg-[#161719] text-white shadow-[6px_6px_0px_#ffe600] p-3 sm:p-4">
                   <div className="flex flex-wrap items-center justify-between gap-2 mb-2.5">
                     <span className="px-2.5 py-0.5 bg-[#c084fc] text-[#161719] text-[10px] font-bold rounded-sm">
@@ -214,59 +284,43 @@ export function PopBoxProject() {
                 </div>
               </div>
 
-              {/* RIGHT (4/12): Compact Small Physical Prototype Artifact Card + Stickers */}
-              <div className="lg:col-span-4 flex flex-col items-center lg:items-end justify-center gap-4 relative">
-                {/* Small Tilted Artifact Card */}
-                <div className="relative w-full max-w-[260px] rounded-2xl border-2 border-[#161719] bg-[#fffdf5] shadow-[6px_6px_0px_#161719] p-3 pt-5 transform lg:rotate-[2deg] hover:rotate-0 transition-transform duration-300">
-                  {/* Top Washi Tape Label */}
-                  <div className="absolute -top-3 left-4 px-2.5 py-0.5 bg-[#67e8f9] border-2 border-[#161719] shadow-[2px_2px_0px_#161719] text-[10px] font-bold rotate-[-2deg]">
-                    实物原型
-                  </div>
-
-                  {/* Textured Warm Studio Mat Behind Transparent Cutout */}
-                  <div
-                    className="rounded-xl border border-[#161719]/25 p-2.5 relative overflow-hidden"
-                    style={{
-                      backgroundColor: "#f6eed8",
-                      backgroundImage:
-                        "radial-gradient(rgba(22,23,25,0.16) 1px, transparent 1px)",
-                      backgroundSize: "10px 10px",
-                    }}
-                  >
-                    <img
-                      src={POPBOX_MEDIA.physicalPrototype}
-                      alt="PopBox 真实实体装置原型（Physical Prototype）"
-                      className="w-full max-h-[120px] sm:max-h-[135px] object-contain mx-auto relative z-10"
-                    />
-                  </div>
-
-                  {/* Compact Meta Below Small Prototype */}
-                  <div className="mt-2.5 pt-2 border-t border-dashed border-[#161719]/25 space-y-1.5">
-                    <div className="flex flex-wrap items-center gap-1.5">
-                      <span className="px-1.5 py-0.5 bg-[#ffe600] border border-[#161719] text-[10px] font-bold">
-                        齐妃 · P1
-                      </span>
-                      <span className="px-1.5 py-0.5 bg-[#c084fc] border border-[#161719] text-[10px] font-bold">
-                        库里 · P2
-                      </span>
-                    </div>
-                    <p className="text-[11px] text-[#44474f] leading-snug">
-                      实体舞台原型实拍（含 M5Stack CoreS3 与实体按键）
-                    </p>
-                  </div>
+              {/* RIGHT (5/12): Direct 3D Breakout Physical Prototype (No Nested Inner Card) */}
+              <div className="lg:col-span-5 relative z-20 flex flex-col justify-between overflow-visible">
+                <div className="relative flex items-center justify-center overflow-visible">
+                  <img
+                    src={POPBOX_MEDIA.physicalPrototype}
+                    alt="PopBox 真实实体装置原型（Physical Prototype）"
+                    className="relative z-20 w-[104%] lg:w-[120%] max-w-none h-auto max-h-[340px] lg:max-h-[370px] -mt-2 lg:-mt-14 lg:-mb-4 lg:-ml-6 lg:-mr-10 object-contain drop-shadow-[0_28px_36px_rgba(22,23,25,0.34)] pointer-events-none select-none"
+                  />
                 </div>
 
-                {/* Circular Neo-Brutalist Seal below small prototype */}
-                <div className="hidden sm:flex items-center gap-3 lg:pr-2">
-                  <div className="w-20 h-20 rounded-full bg-[#ffe600] border-2 border-[#161719] shadow-[3px_3px_0px_#161719] flex items-center justify-center text-center p-2 text-[9px] font-sans font-black tracking-tight leading-[1.3] rotate-[8deg] overflow-hidden">
-                    <span>
-                      玩具的
-                      <br />
-                      平行宇宙
+                {/* Clean Metadata Strip directly in the outer container */}
+                <div className="mt-3 pt-3 border-t border-dashed border-[#161719]/25 space-y-2 pr-0 sm:pr-20">
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    <span className="px-2 py-0.5 bg-[#67e8f9] border border-[#161719] text-[10px] font-bold">
+                      实物原型
+                    </span>
+                    <span className="px-2 py-0.5 bg-[#ffe600] border border-[#161719] text-[10px] font-bold">
+                      林黛玉 · P1
+                    </span>
+                    <span className="px-2 py-0.5 bg-[#c084fc] border border-[#161719] text-[10px] font-bold">
+                      孙悟空 · P2
                     </span>
                   </div>
+                  <p className="text-xs text-[#3a3d45] leading-snug">
+                    实体舞台原型实拍（含 M5Stack CoreS3 与实体按键）
+                  </p>
                 </div>
               </div>
+            </div>
+
+            {/* Circular Neo-Brutalist Seal anchored cleanly to the outer container's bottom-right corner */}
+            <div className="hidden sm:flex absolute -bottom-5 -right-4 z-30 w-20 h-20 rounded-full bg-[#ffe600] border-2 border-[#161719] shadow-[4px_4px_0px_#161719] items-center justify-center text-center p-2 text-[10px] font-sans font-black tracking-tight leading-[1.3] rotate-[8deg] pointer-events-none select-none">
+              <span>
+                玩具的
+                <br />
+                平行宇宙
+              </span>
             </div>
           </div>
         </section>
@@ -538,288 +592,588 @@ export function PopBoxProject() {
             </div>
           )}
 
-          {/* 5B. Unified Interaction Process: Stacked Video + Flow Diagram (Left) & Animated Visual Steps (Right) */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch mb-10">
-            {/* Left 7 cols: Video + Interaction Flowchart stacked vertically */}
-            <div className="lg:col-span-7 flex flex-col gap-6">
-              {POPBOX_MEDIA.coreS3InteractionVideoUrl && (
-                <div className="p-4 sm:p-5 rounded-2xl bg-white border-2 border-[#161719] shadow-[6px_6px_0px_#161719]">
-                  <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-                    <span className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold">
-                      <Cpu size={15} /> 实体装置与 M5Stack CoreS3 交互演示
-                    </span>
-                    <span className="px-2.5 py-0.5 bg-[#ccff00] border border-[#161719] text-[10px] font-mono font-bold">
-                      实拍交互录像
-                    </span>
-                  </div>
-                  <video
-                    src={POPBOX_MEDIA.coreS3InteractionVideoUrl}
-                    controls
-                    playsInline
-                    preload="metadata"
-                    className="w-full aspect-video rounded-xl border-2 border-[#161719] bg-black"
-                  />
-                </div>
-              )}
-
-              {hasFlowShot && (
-                <div className="p-4 sm:p-5 rounded-2xl bg-white border-2 border-[#161719] shadow-[6px_6px_0px_#161719] flex-1 flex flex-col justify-between">
-                  <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-                    <span className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold">
-                      <GitBranch size={15} /> 交互流程图
-                    </span>
-                    <div className="flex items-center gap-2">
-                      <button
-                        type="button"
-                        onClick={() => setIsFlowZoomed(true)}
-                        className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#f8f6f0] hover:bg-[#ffe600] border border-[#161719] text-[10px] font-bold transition-colors cursor-pointer"
-                      >
-                        <Maximize2 size={11} />
-                        <span>查看大图</span>
-                      </button>
-                      <span className="px-2.5 py-0.5 bg-[#67e8f9] border border-[#161719] text-[10px] font-bold">
-                        交互流程
-                      </span>
-                    </div>
-                  </div>
-                  <div
-                    onClick={() => setIsFlowZoomed(true)}
-                    className="rounded-xl overflow-hidden border-2 border-[#161719] bg-[#fff8e8] cursor-zoom-in group"
-                  >
-                    <img
-                      src={POPBOX_MEDIA.interactionFlowShot}
-                      alt="PopBox 交互流程图"
-                      loading="lazy"
-                      className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-[1.015]"
-                    />
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Right 5 cols: Interactive Visual Steps Pipeline */}
-            <aside
-              onMouseEnter={() => setIsStepPaused(true)}
-              onMouseLeave={() => setIsStepPaused(false)}
-              className="lg:col-span-5 p-5 sm:p-6 rounded-2xl bg-white border-2 border-[#161719] shadow-[6px_6px_0px_#161719] flex flex-col justify-between gap-5"
-            >
-              <div>
-                {/* Panel Header */}
-                <div className="flex items-center justify-between gap-2 pb-4 mb-5 border-b-2 border-dashed border-[#161719]/20">
-                  <div>
-                    <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-[#ffe600] border border-[#161719] text-[10px] font-bold mb-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#161719] animate-ping" />
-                      <span>步骤演示</span>
-                    </div>
-                    <h3 className="text-base sm:text-lg font-editorial-cn font-black text-[#161719]">
-                      五步串联实拍与交互流程
-                    </h3>
-                  </div>
-                  <span className="px-2.5 py-1 rounded-lg bg-[#161719] text-[#ccff00] font-mono text-xs font-black tabular-nums shrink-0">
-                    {String(activeStep + 1).padStart(2, "0")} / 05
+          {/* 5B. Top Row: Side-by-Side Physical Video & Interaction Flowchart */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch mb-6">
+            {POPBOX_MEDIA.coreS3InteractionVideoUrl && (
+              <div className="p-4 sm:p-5 rounded-2xl bg-white border-2 border-[#161719] shadow-[6px_6px_0px_#161719] flex flex-col gap-3">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <span className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold">
+                    <Cpu size={15} /> 实体装置与 M5Stack CoreS3 交互演示
+                  </span>
+                  <span className="px-2.5 py-0.5 bg-[#ccff00] border border-[#161719] text-[10px] font-mono font-bold">
+                    实拍交互录像
                   </span>
                 </div>
+                <video
+                  src={POPBOX_MEDIA.coreS3InteractionVideoUrl}
+                  controls
+                  playsInline
+                  preload="metadata"
+                  className="w-full aspect-video rounded-xl border-2 border-[#161719] bg-black"
+                />
+                <p className="text-[11px] text-[#5e626b] leading-relaxed">
+                  实拍物理舞台互动、M5Stack CoreS3 语音对话与实体按键爆灯联动过程。
+                </p>
+              </div>
+            )}
 
-                {/* Vertical Connected Step Timeline */}
-                <div className="relative space-y-3">
-                  {/* Connector Track Line */}
-                  <div className="absolute left-[19px] top-5 bottom-5 w-[2px] bg-[#161719]/15 pointer-events-none">
-                    <div
-                      className="w-full bg-[#161719] transition-all duration-500 ease-out"
-                      style={{
-                        height: `${(activeStep / (INTERACTION_STEPS.length - 1)) * 100}%`,
-                      }}
-                    />
+            {hasFlowShot && (
+              <div className="p-4 sm:p-5 rounded-2xl bg-white border-2 border-[#161719] shadow-[6px_6px_0px_#161719] flex flex-col gap-3">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <span className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold">
+                    <GitBranch size={15} /> 交互流程图
+                  </span>
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setIsFlowZoomed(true)}
+                      className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#f8f6f0] hover:bg-[#ffe600] border border-[#161719] text-[10px] font-bold transition-colors cursor-pointer"
+                    >
+                      <Maximize2 size={11} />
+                      <span>查看大图</span>
+                    </button>
+                    <span className="px-2.5 py-0.5 bg-[#67e8f9] border border-[#161719] text-[10px] font-bold">
+                      交互流程
+                    </span>
                   </div>
+                </div>
+                <div
+                  onClick={() => setIsFlowZoomed(true)}
+                  className="aspect-video rounded-xl overflow-hidden border-2 border-[#161719] bg-[#fff8e8] cursor-zoom-in group flex items-center justify-center"
+                >
+                  <img
+                    src={POPBOX_MEDIA.interactionFlowShot}
+                    alt="PopBox 交互流程图"
+                    loading="lazy"
+                    className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-[1.015]"
+                  />
+                </div>
+                <p className="text-[11px] text-[#5e626b] leading-relaxed">
+                  涵盖角色识别、日常群聊与限时辩论双分支状态机，点击图片可放大查看全图细节。
+                </p>
+              </div>
+            )}
+          </div>
 
-                  {INTERACTION_STEPS.map((item, idx) => {
-                    const isActive = idx === activeStep;
-                    const isPassed = idx < activeStep;
-                    const StepIcon =
-                      idx === 0
-                        ? ScanFace
-                        : idx === 1
-                        ? GitBranch
-                        : idx === 2
-                        ? Mic
-                        : idx === 3
-                        ? Zap
-                        : Trophy;
+          {/* 5B-2. Full-Width Horizontal Interactive Steps Pipeline */}
+          <aside
+            onMouseEnter={() => setIsStepPaused(true)}
+            onMouseLeave={() => setIsStepPaused(false)}
+            className="mb-10 p-4 sm:p-6 rounded-2xl bg-white border-2 border-[#161719] shadow-[6px_6px_0px_#161719] overflow-visible"
+          >
+            {/* Panel Header */}
+            <div className="flex flex-wrap items-center justify-between gap-3 pb-3.5 mb-5 border-b-2 border-dashed border-[#161719]/20">
+              <div className="flex flex-wrap items-center gap-3">
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-[#ffe600] border border-[#161719] text-[10px] font-bold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#161719] animate-ping" />
+                  <span>步骤演示</span>
+                </div>
+                <h3 className="text-base sm:text-lg font-editorial-cn font-black text-[#161719]">
+                  五步串联实拍与交互流程
+                </h3>
+              </div>
+              <span className="px-2.5 py-1 rounded-lg bg-[#161719] text-[#ccff00] font-mono text-xs font-black tabular-nums shrink-0">
+                {String(activeStep + 1).padStart(2, "0")} / 05
+              </span>
+            </div>
 
-                    return (
-                      <div
-                        key={item.step}
-                        onClick={() => {
-                          setActiveStep(idx);
-                          setIsStepPaused(true);
-                        }}
-                        onMouseEnter={() => {
-                          setActiveStep(idx);
-                          setIsStepPaused(true);
-                        }}
-                        className="relative flex items-start gap-3.5 cursor-pointer group"
-                      >
-                        {/* Step Node Badge on Rail */}
+            {/* Horizontal Pipeline: Step 01 -> Step 02 -> Fork -> [Chat Lane (Step 03 -> Banter) | Debate Lane (Step 04 -> Step 05)] */}
+            <div className="flex flex-col lg:flex-row items-stretch gap-3.5 lg:gap-0 overflow-visible">
+              {/* Step 01 */}
+              {(() => {
+                const item = INTERACTION_STEPS[0];
+                const isActive = activeStep === 0;
+                const isPassed = activeStep > 0;
+                return (
+                  <div className="lg:w-[19%] shrink-0 flex items-center">
+                    <div
+                      onClick={() => {
+                        setActiveStep(0);
+                        setIsStepPaused(true);
+                      }}
+                      onMouseEnter={() => {
+                        setActiveStep(0);
+                        setIsStepPaused(true);
+                      }}
+                      className={`w-full p-3 rounded-xl border-2 cursor-pointer transition-all duration-300 ${
+                        isActive
+                          ? `border-[#161719] ${item.cardTint} shadow-[4px_4px_0px_#161719] -translate-y-0.5`
+                          : "border-[#161719]/15 bg-[#f8f6f0]/65 hover:border-[#161719]/50"
+                      }`}
+                    >
+                      <div className="flex items-center gap-2 mb-2">
                         <div
-                          className={`relative z-10 w-10 h-10 rounded-xl border-2 border-[#161719] flex items-center justify-center shrink-0 transition-all duration-300 ${
+                          className={`w-8 h-8 rounded-lg border-2 border-[#161719] flex items-center justify-center shrink-0 transition-all duration-300 ${
                             isActive
-                              ? `${item.accentBg} shadow-[3px_3px_0px_#161719] scale-105 -rotate-3`
+                              ? `${item.accentBg} shadow-[2px_2px_0px_#161719] -rotate-3`
                               : isPassed
                               ? "bg-[#161719] text-[#ccff00]"
-                              : "bg-white text-[#161719] group-hover:bg-[#f8f6f0]"
+                              : "bg-white text-[#161719]"
                           }`}
                         >
-                          <StepIcon size={17} />
+                          <ScanFace size={15} />
                         </div>
+                        <div className="min-w-0">
+                          <span className="font-mono text-[9px] font-black px-1.5 py-0.5 rounded bg-[#161719] text-white tabular-nums inline-block">
+                            步骤 {item.step}
+                          </span>
+                          <div className="text-xs sm:text-[13px] font-editorial-cn font-black text-[#161719] truncate mt-0.5">
+                            {item.title}
+                          </div>
+                        </div>
+                      </div>
 
-                        {/* Step Visual Card */}
+                      <p className="text-[11px] text-[#44474f] leading-relaxed">
+                        {item.summary}
+                      </p>
+
+                      <div className="mt-2.5 pt-2 border-t border-dashed border-[#161719]/15 flex flex-wrap items-center gap-1.5 text-[10px] font-mono">
+                        <span className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded border border-[#161719] font-bold transition-colors ${isActive ? "bg-[#ffe600]" : "bg-white"}`}>
+                          <span className={`w-1.5 h-1.5 rounded-full bg-[#16a34a] ${isActive ? "animate-pulse" : ""}`} />
+                          P1 林黛玉
+                        </span>
+                        <span className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded border border-[#161719] font-bold transition-colors ${isActive ? "bg-[#c084fc]" : "bg-white"}`}>
+                          <span className={`w-1.5 h-1.5 rounded-full bg-[#0284c7] ${isActive ? "animate-pulse" : ""}`} />
+                          P2 孙悟空
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })()}
+
+              {/* Horizontal Connector 01 -> 02 */}
+              <div className="hidden lg:flex w-6 shrink-0 items-center justify-center pointer-events-none" aria-hidden="true">
+                <div className={`w-full h-[2px] relative transition-colors duration-300 ${activeStep >= 1 ? "bg-[#161719]" : "bg-[#161719]/20"}`}>
+                  <span className={`absolute -right-0.5 top-1/2 -translate-y-1/2 w-2 h-2 border-t-2 border-r-2 rotate-45 transition-colors duration-300 ${activeStep >= 1 ? "border-[#161719]" : "border-[#161719]/20"}`} />
+                </div>
+              </div>
+
+              {/* Step 02 (Branch Hub) */}
+              {(() => {
+                const item = INTERACTION_STEPS[1];
+                const isActive = activeStep === 1;
+                const isPassed = activeStep > 1;
+                const effectiveBranch =
+                  activeStep === 2
+                    ? "chat"
+                    : activeStep >= 3
+                    ? "debate"
+                    : flowBranch;
+                return (
+                  <div className="lg:w-[22%] shrink-0 flex items-center">
+                    <div
+                      onClick={() => {
+                        setActiveStep(1);
+                        setIsStepPaused(true);
+                      }}
+                      onMouseEnter={() => {
+                        setActiveStep(1);
+                        setIsStepPaused(true);
+                      }}
+                      className={`w-full p-3 rounded-xl border-2 cursor-pointer transition-all duration-300 ${
+                        isActive
+                          ? `border-[#161719] ${item.cardTint} shadow-[4px_4px_0px_#161719] -translate-y-0.5`
+                          : "border-[#161719]/15 bg-[#f8f6f0]/65 hover:border-[#161719]/50"
+                      }`}
+                    >
+                      <div className="flex items-center gap-2 mb-2">
                         <div
-                          className={`flex-1 min-w-0 p-3 rounded-xl border-2 transition-all duration-300 ${
+                          className={`w-8 h-8 rounded-lg border-2 border-[#161719] flex items-center justify-center shrink-0 transition-all duration-300 ${
                             isActive
-                              ? `border-[#161719] ${item.cardTint} shadow-[4px_4px_0px_#161719] translate-x-1`
+                              ? `${item.accentBg} shadow-[2px_2px_0px_#161719] -rotate-3`
+                              : isPassed
+                              ? "bg-[#161719] text-[#ccff00]"
+                              : "bg-white text-[#161719]"
+                          }`}
+                        >
+                          <GitBranch size={15} />
+                        </div>
+                        <div className="min-w-0">
+                          <span className="font-mono text-[9px] font-black px-1.5 py-0.5 rounded bg-[#161719] text-white tabular-nums inline-block">
+                            步骤 {item.step}
+                          </span>
+                          <div className="text-xs sm:text-[13px] font-editorial-cn font-black text-[#161719] truncate mt-0.5">
+                            {item.title}
+                          </div>
+                        </div>
+                      </div>
+
+                      <p className="text-[11px] text-[#44474f] leading-relaxed">
+                        {item.summary}
+                      </p>
+
+                      <div className="mt-2.5 pt-2 border-t border-dashed border-[#161719]/15 flex flex-wrap items-center gap-1.5 text-[10px]">
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setFlowBranch("chat");
+                            setActiveStep(2);
+                            setIsStepPaused(true);
+                          }}
+                          className={`inline-flex items-center gap-1 px-2 py-0.5 rounded border border-[#161719] font-bold transition-all cursor-pointer ${
+                            effectiveBranch === "chat"
+                              ? "bg-[#67e8f9] text-[#161719] shadow-[2px_2px_0px_#161719]"
+                              : "bg-white text-[#5e626b] hover:text-[#161719]"
+                          }`}
+                        >
+                          <MessageCircle size={10} />
+                          <span>群聊互动</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setFlowBranch("debate");
+                            setActiveStep(3);
+                            setIsStepPaused(true);
+                          }}
+                          className={`inline-flex items-center gap-1 px-2 py-0.5 rounded border border-[#161719] font-bold transition-all cursor-pointer ${
+                            effectiveBranch === "debate"
+                              ? "bg-[#ffe600] text-[#161719] shadow-[2px_2px_0px_#161719]"
+                              : "bg-white text-[#5e626b] hover:text-[#161719]"
+                          }`}
+                        >
+                          <Zap size={10} />
+                          <span>限时辩论</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })()}
+
+              {/* Horizontal Fork Split Connector */}
+              <div className="hidden lg:flex w-8 shrink-0 items-center pointer-events-none" aria-hidden="true">
+                <div className={`w-3 h-[2px] transition-colors duration-300 ${activeStep >= 2 ? "bg-[#161719]" : "bg-[#161719]/20"}`} />
+                <div className="flex-1 h-[54%] flex flex-col">
+                  <div
+                    className={`flex-1 border-l-2 border-t-2 rounded-tl-lg transition-colors duration-300 ${
+                      activeStep === 2 ? "border-[#161719]" : "border-[#161719]/20"
+                    }`}
+                  />
+                  <div
+                    className={`flex-1 border-l-2 border-b-2 rounded-bl-lg transition-colors duration-300 ${
+                      activeStep >= 3 ? "border-[#161719]" : "border-[#161719]/20"
+                    }`}
+                  />
+                </div>
+              </div>
+
+              {/* Right Side: Two Unboxed Parallel Horizontal Mode Lanes */}
+              <div className="flex-1 min-w-0 flex flex-col gap-5 overflow-visible">
+                {/* Lane A: 群聊互动模式 (No outer wrapper card) */}
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#67e8f9] border border-[#161719] text-[10px] font-bold text-[#161719] shrink-0">
+                      <MessageCircle size={10} />
+                      <span>群聊互动模式</span>
+                    </span>
+                    <div className="flex-1 border-t border-dashed border-[#161719]/20" />
+                    <span className="text-[10px] font-mono text-[#5e626b] shrink-0">自由闲聊</span>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row items-stretch gap-2.5 sm:gap-0">
+                    {/* Step 03 */}
+                    {(() => {
+                      const item = INTERACTION_STEPS[2];
+                      const isActive = activeStep === 2;
+                      return (
+                        <div
+                          onClick={() => {
+                            setFlowBranch("chat");
+                            setActiveStep(2);
+                            setIsStepPaused(true);
+                          }}
+                          onMouseEnter={() => {
+                            setFlowBranch("chat");
+                            setActiveStep(2);
+                            setIsStepPaused(true);
+                          }}
+                          className={`flex-1 min-w-0 p-3 rounded-xl border-2 cursor-pointer transition-all duration-300 flex flex-col justify-between ${
+                            isActive
+                              ? `border-[#161719] ${item.cardTint} shadow-[4px_4px_0px_#161719] -translate-y-0.5`
                               : "border-[#161719]/15 bg-[#f8f6f0]/65 hover:border-[#161719]/50"
                           }`}
                         >
-                          <div className="flex items-center justify-between gap-2 mb-1">
-                            <div className="flex items-center gap-1.5 min-w-0">
-                              <span className="font-mono text-[10px] font-black px-1.5 py-0.5 rounded bg-[#161719] text-white tabular-nums">
+                          <div>
+                            <div className="flex items-center gap-2 mb-1.5">
+                              <div
+                                className={`w-7 h-7 rounded-lg border-2 border-[#161719] flex items-center justify-center shrink-0 transition-all duration-300 ${
+                                  isActive
+                                    ? `${item.accentBg} shadow-[2px_2px_0px_#161719] -rotate-3`
+                                    : "bg-white text-[#161719]"
+                                }`}
+                              >
+                                <Mic size={14} />
+                              </div>
+                              <span className="font-mono text-[9px] font-black px-1.5 py-0.5 rounded bg-[#161719] text-white tabular-nums shrink-0">
                                 步骤 {item.step}
                               </span>
-                              <span className="text-xs sm:text-sm font-editorial-cn font-black text-[#161719] truncate">
+                              <span className="text-xs sm:text-[13px] font-editorial-cn font-black text-[#161719] truncate">
                                 {item.title}
                               </span>
                             </div>
+
+                            <p className="text-[11px] text-[#44474f] leading-relaxed">
+                              {item.summary}
+                            </p>
                           </div>
 
-                          <p className="text-[11px] sm:text-xs text-[#44474f] leading-relaxed">
-                            {item.summary}
-                          </p>
-
-                          {/* Per-Step Custom Visual Micro-Widgets */}
-                          {idx === 0 && (
-                            <div className="mt-2 pt-2 border-t border-dashed border-[#161719]/15 flex items-center justify-between gap-2 text-[10px] font-mono">
-                              <div className="flex items-center gap-1.5">
-                                <span className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded border border-[#161719] font-bold transition-colors ${isActive ? "bg-[#ffe600]" : "bg-white"}`}>
-                                  <span className={`w-1.5 h-1.5 rounded-full bg-[#16a34a] ${isActive ? "animate-pulse" : ""}`} />
-                                  P1 齐妃
-                                </span>
-                                <span className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded border border-[#161719] font-bold transition-colors ${isActive ? "bg-[#c084fc]" : "bg-white"}`}>
-                                  <span className={`w-1.5 h-1.5 rounded-full bg-[#0284c7] ${isActive ? "animate-pulse" : ""}`} />
-                                  P2 库里
-                                </span>
-                              </div>
-                              <span className="text-[#5e626b] font-sans">人设加载</span>
-                            </div>
-                          )}
-
-                          {idx === 1 && (
-                            <div className="mt-2 pt-2 border-t border-dashed border-[#161719]/15 flex flex-wrap items-center gap-1.5 text-[10px]">
-                              <button
-                                type="button"
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  setActiveStep(1);
-                                  setIsStepPaused(true);
-                                  setFlowBranch("chat");
-                                }}
-                                className={`inline-flex items-center gap-1 px-2 py-0.5 rounded border border-[#161719] font-bold transition-all cursor-pointer ${
-                                  flowBranch === "chat"
-                                    ? "bg-[#67e8f9] text-[#161719] shadow-[2px_2px_0px_#161719]"
-                                    : "bg-white text-[#5e626b]"
-                                }`}
-                              >
-                                <MessageCircle size={10} />
-                                <span>群聊互动 · 自由交流</span>
-                              </button>
-                              <button
-                                type="button"
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  setActiveStep(1);
-                                  setIsStepPaused(true);
-                                  setFlowBranch("debate");
-                                }}
-                                className={`inline-flex items-center gap-1 px-2 py-0.5 rounded border border-[#161719] font-bold transition-all cursor-pointer ${
-                                  flowBranch === "debate"
-                                    ? "bg-[#ffe600] text-[#161719] shadow-[2px_2px_0px_#161719]"
-                                    : "bg-white text-[#5e626b]"
-                                }`}
-                              >
-                                <Zap size={10} />
-                                <span>限时辩论 · 设定主题</span>
-                              </button>
-                              <div className="w-full text-[10px] text-[#5e626b] pt-0.5">
-                                {flowBranch === "chat"
-                                  ? "→ 随时开口闲聊，由角色各自性格接话互动"
-                                  : "→ 设定辩题并倒计时，双方轮流输出观点、按键拉票"}
-                              </div>
-                            </div>
-                          )}
-
-                          {idx === 2 && (
-                            <div className="mt-2 pt-2 border-t border-dashed border-[#161719]/15 flex items-center justify-between gap-2">
-                              <div className="flex items-end gap-1 h-4 px-1.5 py-0.5 rounded bg-[#161719]">
-                                {[0.5, 0.9, 0.65, 1, 0.45].map((h, barIdx) => (
-                                  <span
-                                    key={barIdx}
-                                    className="w-1 rounded-full bg-[#c084fc] origin-bottom"
-                                    style={{
-                                      height: `${Math.round(h * 11)}px`,
-                                      animation: isActive
-                                        ? `popbox-eq 0.75s ease-in-out ${barIdx * 0.12}s infinite`
-                                        : "none",
-                                    }}
-                                  />
-                                ))}
-                              </div>
-                              <span className="text-[10px] text-[#5e626b]">
-                                语音输入 → 多轮角色回应
-                              </span>
-                            </div>
-                          )}
-
-                          {idx === 3 && (
-                            <div className="mt-2 pt-2 border-t border-dashed border-[#161719]/15 space-y-1">
-                              <div className="flex items-center justify-between text-[10px] font-bold text-[#161719]">
-                                <span>P1 齐妃支持率</span>
-                                <span>P2 库里支持率</span>
-                              </div>
-                              <div className="h-2.5 w-full rounded-full border border-[#161719] bg-white overflow-hidden flex">
-                                <div
-                                  className="h-full bg-[#ffe600] transition-all duration-700 ease-out"
-                                  style={{ width: isActive ? "62%" : "50%" }}
+                          <div className="mt-2.5 pt-2 border-t border-dashed border-[#161719]/15 flex items-center justify-between gap-2">
+                            <div className="flex items-end gap-1 h-4 px-1.5 py-0.5 rounded bg-[#161719]">
+                              {[0.5, 0.9, 0.65, 1, 0.45].map((h, barIdx) => (
+                                <span
+                                  key={barIdx}
+                                  className="w-1 rounded-full bg-[#c084fc] origin-bottom"
+                                  style={{
+                                    height: `${Math.round(h * 11)}px`,
+                                    animation: isActive
+                                      ? `popbox-eq 0.75s ease-in-out ${barIdx * 0.12}s infinite`
+                                      : "none",
+                                  }}
                                 />
-                                <div
-                                  className="h-full bg-[#67e8f9] transition-all duration-700 ease-out"
-                                  style={{ width: isActive ? "38%" : "50%" }}
-                                />
-                              </div>
+                              ))}
                             </div>
-                          )}
+                            <span className="text-[10px] text-[#5e626b]">
+                              语音输入 → 多轮回应
+                            </span>
+                          </div>
+                        </div>
+                      );
+                    })()}
 
-                          {idx === 4 && (
-                            <div className="mt-2 pt-2 border-t border-dashed border-[#161719]/15 flex items-center justify-between gap-2 text-[10px]">
-                              <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded border border-[#161719] font-bold transition-colors ${isActive ? "bg-[#ffe600]" : "bg-white"}`}>
-                                <Sparkles size={10} />
-                                <span>胜出立场结算</span>
-                              </span>
-                              <span className="text-[#5e626b] font-sans">双路径结算输出</span>
-                            </div>
-                          )}
+                    {/* Arrow 03 -> Simulated Chat Scenario */}
+                    <div className="hidden sm:flex w-6 shrink-0 items-center justify-center pointer-events-none" aria-hidden="true">
+                      <div className={`w-full h-[2px] relative transition-colors duration-300 ${activeStep === 2 ? "bg-[#161719]" : "bg-[#161719]/20"}`}>
+                        <span className={`absolute -right-0.5 top-1/2 -translate-y-1/2 w-2 h-2 border-t-2 border-r-2 rotate-45 transition-colors duration-300 ${activeStep === 2 ? "border-[#161719]" : "border-[#161719]/20"}`} />
+                      </div>
+                    </div>
+
+                    {/* Simulated Casual Banter Card (Balances Debate Lane's 2nd column) */}
+                    <div
+                      onClick={() => {
+                        setFlowBranch("chat");
+                        setActiveStep(2);
+                        setIsStepPaused(true);
+                      }}
+                      onMouseEnter={() => {
+                        setFlowBranch("chat");
+                        setActiveStep(2);
+                        setIsStepPaused(true);
+                      }}
+                      className={`flex-1 min-w-0 p-3 rounded-xl border-2 cursor-pointer transition-all duration-300 flex flex-col justify-between ${
+                        activeStep === 2
+                          ? "border-[#161719] bg-[#67e8f9]/15 shadow-[4px_4px_0px_#161719] -translate-y-0.5"
+                          : "border-[#161719]/15 bg-[#f8f6f0]/65 hover:border-[#161719]/50"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between gap-2 mb-1.5">
+                        <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-white border border-[#161719] text-[#161719]">
+                          闲聊情景示例
+                        </span>
+                        <span className="text-[10px] text-[#5e626b] truncate">
+                          你：“好困，还点夜宵吗…”
+                        </span>
+                      </div>
+
+                      <div className="space-y-1.5 text-[11px] leading-snug">
+                        <div className="px-2 py-1.5 rounded-lg bg-[#ffe600]/35 border border-[#161719]/35 text-[#161719]">
+                          <span className="font-bold mr-1">林黛玉：</span>
+                          <span>“这会子吃可不积食？不如早些歇着，省得明早又叹气。”</span>
+                        </div>
+                        <div className="px-2 py-1.5 rounded-lg bg-[#67e8f9]/30 border border-[#161719]/35 text-[#161719]">
+                          <span className="font-bold mr-1">孙悟空：</span>
+                          <span>“管他呢！先整口热的垫垫肚子，天塌下来明天再扛！”</span>
                         </div>
                       </div>
-                    );
-                  })}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Lane B: 限时辩论模式 (No outer wrapper card) */}
+                <div className="space-y-2 overflow-visible">
+                  <div className="flex items-center gap-2">
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#ffe600] border border-[#161719] text-[10px] font-bold text-[#161719] shrink-0">
+                      <Zap size={10} />
+                      <span>限时辩论模式</span>
+                    </span>
+                    <div className="flex-1 border-t border-dashed border-[#161719]/20" />
+                    <span className="text-[10px] font-mono text-[#5e626b] shrink-0">投票与结算</span>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row items-stretch gap-2.5 sm:gap-0 overflow-visible">
+                    {/* Step 04 */}
+                    {(() => {
+                      const item = INTERACTION_STEPS[3];
+                      const isActive = activeStep === 3;
+                      const isPassed = activeStep > 3;
+                      return (
+                        <div
+                          onClick={() => {
+                            setFlowBranch("debate");
+                            setActiveStep(3);
+                            setIsStepPaused(true);
+                          }}
+                          onMouseEnter={() => {
+                            setFlowBranch("debate");
+                            setActiveStep(3);
+                            setIsStepPaused(true);
+                          }}
+                          className={`flex-1 min-w-0 p-3 rounded-xl border-2 cursor-pointer transition-all duration-300 flex flex-col justify-between ${
+                            isActive
+                              ? `border-[#161719] ${item.cardTint} shadow-[4px_4px_0px_#161719] -translate-y-0.5`
+                              : "border-[#161719]/15 bg-[#f8f6f0]/65 hover:border-[#161719]/50"
+                          }`}
+                        >
+                          <div>
+                            <div className="flex items-center gap-2 mb-1.5">
+                              <div
+                                className={`w-7 h-7 rounded-lg border-2 border-[#161719] flex items-center justify-center shrink-0 transition-all duration-300 ${
+                                  isActive
+                                    ? `${item.accentBg} shadow-[2px_2px_0px_#161719] -rotate-3`
+                                    : isPassed
+                                    ? "bg-[#161719] text-[#ccff00]"
+                                    : "bg-white text-[#161719]"
+                                }`}
+                              >
+                                <Zap size={14} />
+                              </div>
+                              <span className="font-mono text-[9px] font-black px-1.5 py-0.5 rounded bg-[#161719] text-white tabular-nums shrink-0">
+                                步骤 {item.step}
+                              </span>
+                              <span className="text-xs sm:text-[13px] font-editorial-cn font-black text-[#161719] truncate">
+                                {item.title}
+                              </span>
+                            </div>
+
+                            <p className="text-[11px] text-[#44474f] leading-relaxed">
+                              {item.summary}
+                            </p>
+                          </div>
+
+                          <div className="mt-2.5 pt-2 border-t border-dashed border-[#161719]/15 space-y-1">
+                            <div className="flex items-center justify-between text-[10px] font-bold text-[#161719]">
+                              <span>P1 林黛玉支持率</span>
+                              <span>P2 孙悟空支持率</span>
+                            </div>
+                            <div className="h-2.5 w-full rounded-full border border-[#161719] bg-white overflow-hidden flex">
+                              <div
+                                className="h-full bg-[#ffe600] transition-all duration-700 ease-out"
+                                style={{ width: isActive ? "62%" : "50%" }}
+                              />
+                              <div
+                                className="h-full bg-[#67e8f9] transition-all duration-700 ease-out"
+                                style={{ width: isActive ? "38%" : "50%" }}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })()}
+
+                    {/* Arrow 04 -> 05 */}
+                    <div className="hidden sm:flex w-6 shrink-0 items-center justify-center pointer-events-none" aria-hidden="true">
+                      <div className={`w-full h-[2px] relative transition-colors duration-300 ${activeStep >= 4 ? "bg-[#161719]" : "bg-[#161719]/20"}`}>
+                        <span className={`absolute -right-0.5 top-1/2 -translate-y-1/2 w-2 h-2 border-t-2 border-r-2 rotate-45 transition-colors duration-300 ${activeStep >= 4 ? "border-[#161719]" : "border-[#161719]/20"}`} />
+                      </div>
+                    </div>
+
+                    {/* Step 05 (Overflowing Multi-Burst Fireworks when Active, No Bottom Row) */}
+                    {(() => {
+                      const item = INTERACTION_STEPS[4];
+                      const isActive = activeStep === 4;
+                      return (
+                        <div
+                          onClick={() => {
+                            setFlowBranch("debate");
+                            setActiveStep(4);
+                            setIsStepPaused(true);
+                          }}
+                          onMouseEnter={() => {
+                            setFlowBranch("debate");
+                            setActiveStep(4);
+                            setIsStepPaused(true);
+                          }}
+                          className={`relative overflow-visible flex-1 min-w-0 p-3 rounded-xl border-2 cursor-pointer transition-all duration-300 flex flex-col justify-between ${
+                            isActive
+                              ? `border-[#161719] ${item.cardTint} shadow-[4px_4px_0px_#161719] -translate-y-0.5`
+                              : "border-[#161719]/15 bg-[#f8f6f0]/65 hover:border-[#161719]/50"
+                          }`}
+                        >
+                          {/* Celebratory Fireworks extending outside Step 05 card boundaries */}
+                          {isActive && (
+                            <div className="absolute inset-0 pointer-events-none overflow-visible z-30" aria-hidden="true">
+                              {STEP5_FIREWORKS.map((fw) => (
+                                <div key={fw.id} className={`absolute ${fw.positionClass} w-0 h-0`}>
+                                  <span
+                                    className={`popbox-firework-core absolute w-9 h-9 rounded-full border-2 ${fw.ringColor}`}
+                                    style={{
+                                      animation: `popbox-firework-core 1.55s ease-out ${fw.delayOffset}s infinite`,
+                                    }}
+                                  />
+                                  {fw.rays.map((ray, rayIdx) => (
+                                    <span
+                                      key={`ray-${rayIdx}`}
+                                      className={`popbox-firework-spark absolute h-[2.5px] rounded-full ${ray.len} ${ray.color}`}
+                                      style={{
+                                        ["--tx" as string]: ray.tx,
+                                        ["--ty" as string]: ray.ty,
+                                        ["--rot" as string]: ray.rot,
+                                        animation: `popbox-firework-spark 1.55s cubic-bezier(0.16, 1, 0.3, 1) ${fw.delayOffset}s infinite`,
+                                      }}
+                                    />
+                                  ))}
+                                  {fw.stars.map((star, starIdx) => (
+                                    <span
+                                      key={`star-${starIdx}`}
+                                      className={`popbox-firework-star absolute text-[11px] font-black leading-none select-none ${star.color}`}
+                                      style={{
+                                        ["--tx" as string]: star.tx,
+                                        ["--ty" as string]: star.ty,
+                                        animation: `popbox-firework-star 1.55s ease-out ${fw.delayOffset + 0.08}s infinite`,
+                                      }}
+                                    >
+                                      ✦
+                                    </span>
+                                  ))}
+                                </div>
+                              ))}
+                            </div>
+                          )}
+
+                          <div className="relative z-10">
+                            <div className="flex items-center gap-2 mb-1.5">
+                              <div
+                                className={`w-7 h-7 rounded-lg border-2 border-[#161719] flex items-center justify-center shrink-0 transition-all duration-300 ${
+                                  isActive
+                                    ? `${item.accentBg} shadow-[2px_2px_0px_#161719] -rotate-3`
+                                    : "bg-white text-[#161719]"
+                                }`}
+                              >
+                                <Trophy size={14} />
+                              </div>
+                              <span className="font-mono text-[9px] font-black px-1.5 py-0.5 rounded bg-[#161719] text-white tabular-nums shrink-0">
+                                步骤 {item.step}
+                              </span>
+                              <span className="text-xs sm:text-[13px] font-editorial-cn font-black text-[#161719] truncate">
+                                {item.title}
+                              </span>
+                            </div>
+
+                            <p className="text-[11px] text-[#44474f] leading-relaxed">
+                              {item.summary}
+                            </p>
+                          </div>
+                        </div>
+                      );
+                    })()}
+                  </div>
                 </div>
               </div>
-
-              {/* Scope & Credit Note */}
-              <div className="p-3.5 rounded-xl bg-[#f8f6f0] border-2 border-dashed border-[#161719]/25 text-[11px] text-[#44474f] leading-relaxed">
-                <strong className="text-[#161719] font-bold">模块分工：</strong>
-                本人负责整体交互方案、Web 前端与 CoreS3 单角色语音基础 API 调用；双角色语音对话由队友完成。
-              </div>
-            </aside>
-          </div>
+            </div>
+          </aside>
 
           {/* 5C. Real Web Interface Screenshots (Character-specific views when activated) */}
           {webShots.length > 0 && (

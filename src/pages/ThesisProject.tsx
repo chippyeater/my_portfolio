@@ -147,26 +147,20 @@ export function ThesisProject() {
                 <span className="h-px flex-1 bg-[#111111]/20" aria-hidden="true" />
               </div>
 
-              <h1 className="text-3xl sm:text-4xl lg:text-[46px] font-editorial-cn font-black tracking-tight text-[#111111] leading-[1.16] text-balance">
-                在不断变化的浏览中，
-                <span className="inline-block relative">
-                  Agent 何时应该介入？
-                  <span
-                    aria-hidden="true"
-                    className="block h-1.5 w-full bg-[#FF7A00] mt-1"
-                  />
-                </span>
+              <h1 className="text-3xl sm:text-4xl lg:text-[44px] font-editorial-cn font-black tracking-tight text-[#111111] leading-[1.18] text-balance">
+                移动信息流中的情境自适应 Agent 交互研究
+                <span
+                  aria-hidden="true"
+                  className="block h-1.5 w-32 bg-[#FF7A00] mt-3"
+                />
               </h1>
 
-              {/* Formal Title & Attribution Block */}
+              {/* Attribution Block */}
               <div className="border border-[#111111]/20 bg-white p-4 space-y-1.5">
                 <div className="flex items-center gap-2 text-[11px] font-mono text-[#6E6E6E]">
                   <span className="w-1.5 h-1.5 bg-[#FF7A00]" aria-hidden="true" />
-                  <span>FORMAL THESIS TOPIC · 正式题目</span>
+                  <span>MASTER THESIS · 硕士毕业设计</span>
                 </div>
-                <p className="text-sm sm:text-[15px] font-bold text-[#111111] leading-snug">
-                  面向移动社交媒体的情境自适应个人智能体交互设计研究
-                </p>
                 <p className="text-xs text-[#525252]">
                   同济大学设计创意学院 · 交互设计硕士毕业设计 · 文献调研阶段
                 </p>
@@ -625,7 +619,7 @@ export function ThesisProject() {
         <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-10 py-7 sm:py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-[#525252]">
             <span className="font-editorial-cn font-bold text-[#111111]">
-              面向移动社交媒体的情境自适应个人智能体交互设计研究
+              移动信息流中的情境自适应 Agent 交互研究
             </span>
             <span aria-hidden="true">·</span>
             <span>文献调研阶段</span>
