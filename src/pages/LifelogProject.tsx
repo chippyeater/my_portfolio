@@ -198,10 +198,10 @@ const DOCTOR_PLATFORM_STEPS: DoctorPlatformStep[] = [
   {
     step: "03",
     title: "用户回忆表现报告",
-    caption: "统计总分、错误次数、提示请求与交互耗时，辅助临床回顾评估。",
+    caption: "统计总分、错误次数、提示请求与交互耗时，辅助回顾与评估。",
     image: doctorRecallReportImg,
     alt: "Lifelog 实验分析平台：用户回忆表现报告界面",
-    frontLabel: "临床统计与交互日志",
+    frontLabel: "统计数据与交互日志",
   },
 ];
 
@@ -293,31 +293,55 @@ export function LifelogProject() {
               </h1>
 
               <p className="text-base sm:text-lg text-[#475569] leading-relaxed max-w-3xl mb-9">
-                将第一人称生活记录转化为结构化事件与记忆线索，支持从活动回顾到实体细节的渐进式回忆。
+                Lifelog 是一个面向情景记忆障碍人群、基于生活记录的引导式回忆辅助系统。它通过第一视角视频记录日常活动，并利用 AI 将生活片段转化为可用于回忆训练的事件与细节线索。
               </p>
             </div>
 
             {/* Clean Metadata Spec Strip */}
             <div className="grid grid-cols-1 md:grid-cols-12 gap-6 pt-6 border-t border-[#e2e8f0] text-sm">
-              <div className="md:col-span-6">
-                <div className="text-xs text-[#64748b] mb-1">个人分工与实现</div>
-                <div className="font-medium text-[#0f172a]">
-                  视频理解与后端实现 · 医生端网页搭建 · Unity 端搭建
-                  <span className="text-[#64748b] font-normal">（Unity UI 负责修改调整）</span>
-                </div>
+              <div className="md:col-span-4">
+                <div className="text-xs text-[#64748b] mb-1">面向人群</div>
+                <div className="font-medium text-[#0f172a]">情景记忆障碍人群</div>
               </div>
-              <div className="md:col-span-2">
+              <div className="md:col-span-3">
                 <div className="text-xs text-[#64748b] mb-1">项目类型</div>
                 <div className="font-medium text-[#0f172a]">团队研究项目</div>
               </div>
-              <div className="md:col-span-4">
+              <div className="md:col-span-5">
                 <div className="text-xs text-[#64748b] mb-1">核心链路</div>
                 <div className="font-medium text-[#0f172a]">
-                  <span className="text-[#16a34a]">视频理解</span>
+                  <span className="text-[#16a34a]">生活记录</span>
                   <span className="mx-1.5 text-[#cbd5e1]">·</span>
-                  <span className="text-[#0284c7]">实体核验</span>
+                  <span className="text-[#0284c7]">AI 材料提取</span>
                   <span className="mx-1.5 text-[#cbd5e1]">·</span>
-                  <span>渐进引导回忆</span>
+                  <span>渐进式回忆</span>
+                </div>
+              </div>
+            </div>
+
+            {/* My Contribution integrated at the bottom of Hero */}
+            <div className="mt-6 pt-6 border-t border-[#e2e8f0] space-y-4">
+              <div className="flex flex-col lg:flex-row lg:items-baseline gap-2 lg:gap-6">
+                <div className="text-xs font-semibold text-[#0284c7] tracking-wide shrink-0 lg:w-20">
+                  我的工作
+                </div>
+                <p className="text-sm text-[#334155] leading-relaxed max-w-4xl">
+                  我主要负责项目的整体交互方案设计与系统原型实现，包括医生端 Web 管理平台、患者端 Unity 训练应用的交互界面与关卡逻辑，以及视频处理和回忆材料生成流程的开发与调试。
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 lg:pl-[104px]">
+                <div className="px-4 py-2.5 rounded-xl bg-[#f8fafc] border border-[#e2e8f0] flex items-center gap-2.5 text-xs sm:text-[13px] font-medium text-[#0f172a]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0284c7] shrink-0" aria-hidden="true" />
+                  <span>整体交互方案设计</span>
+                </div>
+                <div className="px-4 py-2.5 rounded-xl bg-[#f8fafc] border border-[#e2e8f0] flex items-center gap-2.5 text-xs sm:text-[13px] font-medium text-[#0f172a]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#16a34a] shrink-0" aria-hidden="true" />
+                  <span>医生端 Web 与患者端 Unity 原型实现</span>
+                </div>
+                <div className="px-4 py-2.5 rounded-xl bg-[#f8fafc] border border-[#e2e8f0] flex items-center gap-2.5 text-xs sm:text-[13px] font-medium text-[#0f172a]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0284c7] shrink-0" aria-hidden="true" />
+                  <span>视频处理与回忆材料生成流程开发调试</span>
                 </div>
               </div>
             </div>
@@ -326,35 +350,153 @@ export function LifelogProject() {
 
         {/* Main Case Study Content */}
         <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12 py-14 sm:py-18 space-y-20">
-          {/* 01 · TECHNICAL ROUTE, INTERACTION DESIGN & FIELD CAPTURE */}
+          {/* 01 · RESEARCH MOTIVATION */}
           <section>
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-7">
+            <div className="mb-7">
+              <div className="flex items-center gap-2 text-xs font-medium text-[#0284c7] mb-2">
+                <span className="font-mono font-semibold tabular-nums">01</span>
+                <span aria-hidden="true" className="text-[#cbd5e1]">/</span>
+                <span>研究背景与设计动机</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-editorial-cn font-bold tracking-tight text-[#0f172a]">
+                为什么需要从真实生活开始？
+              </h2>
+            </div>
+
+            <div className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <article className="bg-white rounded-2xl border border-[#e2e8f0] p-6 sm:p-7 shadow-[0_1px_3px_rgba(15,23,42,0.04)] space-y-3">
+                  <h3 className="text-base sm:text-lg font-semibold text-[#0f172a]">
+                    什么是情景记忆？
+                  </h3>
+                  <p className="text-sm text-[#475569] leading-relaxed">
+                    情景记忆是我们对自己亲身经历过的事件的记忆，例如什么时候去了什么地方、遇到了什么人、做了什么事情。情景记忆障碍人群在回忆近期生活经历时，往往会遇到困难，可能记不清事件发生的时间、地点，或者具体的活动过程。
+                  </p>
+                </article>
+
+                <article className="bg-white rounded-2xl border border-[#e2e8f0] p-6 sm:p-7 shadow-[0_1px_3px_rgba(15,23,42,0.04)] space-y-3">
+                  <h3 className="text-base sm:text-lg font-semibold text-[#0f172a]">
+                    为什么需要新的训练方式？
+                  </h3>
+                  <p className="text-sm text-[#475569] leading-relaxed">
+                    传统记忆康复训练通常使用词语、图片或固定物品等标准化材料。这些材料比较容易控制，但与患者真实的生活经历存在一定距离。
+                  </p>
+                  <p className="text-sm text-[#475569] leading-relaxed">
+                    Lifelog 希望探索一种更生活化的康复方式——自然语境下的情景记忆干预：直接利用患者日常生活中真实发生的活动作为回忆材料，让训练更贴近个人经历，以期提高训练的生态效度。
+                  </p>
+                </article>
+              </div>
+
+              {/* Clean Material Comparison Strip */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="bg-white rounded-xl border border-[#e2e8f0] px-5 py-4 flex flex-col gap-1">
+                  <span className="text-xs font-medium text-[#64748b]">传统训练</span>
+                  <span className="text-sm font-medium text-[#0f172a]">
+                    标准化词语、图片与固定物品
+                  </span>
+                </div>
+                <div className="bg-[#f0f9ff] rounded-xl border border-[#bae6fd]/80 px-5 py-4 flex flex-col gap-1">
+                  <span className="text-xs font-medium text-[#0284c7]">Lifelog</span>
+                  <span className="text-sm font-medium text-[#0f172a]">
+                    患者真实生活中的活动与经历
+                  </span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* 02 · AI IN THE REHABILITATION WORKFLOW */}
+          <section className="pt-14 border-t border-[#e2e8f0]">
+            <div className="mb-7">
+              <div className="flex items-center gap-2 text-xs font-medium text-[#0284c7] mb-2">
+                <span className="font-mono font-semibold tabular-nums">02</span>
+                <span aria-hidden="true" className="text-[#cbd5e1]">/</span>
+                <span>AI 业务价值与协作定位</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-editorial-cn font-bold tracking-tight text-[#0f172a]">
+                AI 如何融入康复工作流？
+              </h2>
+            </div>
+
+            <div className="bg-white rounded-2xl border border-[#e2e8f0] p-6 sm:p-8 shadow-[0_1px_3px_rgba(15,23,42,0.04)] space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-[#475569] leading-relaxed">
+                <p>
+                  在传统流程中，医生或康复师需要人工浏览患者的生活记录、筛选有价值的回忆线索，还需要根据患者的记忆表现不断调整提问和引导方式，其中包含不少重复性工作。
+                </p>
+                <p>
+                  Lifelog 希望利用 AI 自动化材料提取和部分引导过程，减少专业人员的重复性劳动，让他们能够更多地关注患者本身的康复需求和专业判断。
+                </p>
+              </div>
+
+              {/* Clean Workflow Comparison */}
+              <div className="pt-6 border-t border-[#e2e8f0] space-y-3">
+                <div className="rounded-xl border border-[#e2e8f0] bg-[#f8fafc] px-4 py-3.5 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+                  <span className="text-xs font-semibold text-[#64748b] w-20 shrink-0">
+                    传统流程
+                  </span>
+                  <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs sm:text-sm text-[#334155]">
+                    <span>人工浏览记录</span>
+                    <span aria-hidden="true" className="text-[#94a3b8]">→</span>
+                    <span>筛选回忆线索</span>
+                    <span aria-hidden="true" className="text-[#94a3b8]">→</span>
+                    <span>准备训练材料</span>
+                    <span aria-hidden="true" className="text-[#94a3b8]">→</span>
+                    <span>根据表现调整引导</span>
+                  </div>
+                </div>
+
+                <div className="rounded-xl border border-[#bbf7d0] bg-[#f0fdf4] px-4 py-3.5 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+                  <span className="text-xs font-semibold text-[#16a34a] w-20 shrink-0">
+                    Lifelog
+                  </span>
+                  <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs sm:text-sm font-medium text-[#0f172a]">
+                    <span>AI 辅助材料提取与部分引导</span>
+                    <span aria-hidden="true" className="text-[#16a34a]">→</span>
+                    <span>专业人员关注患者需求与康复判断</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* 03 · FROM LIFE LOGS TO RECALL MATERIALS */}
+          <section className="pt-14 border-t border-[#e2e8f0]">
+            <div className="mb-7 space-y-4">
               <div>
                 <div className="flex items-center gap-2 text-xs font-medium text-[#0284c7] mb-2">
-                  <span className="font-mono font-semibold tabular-nums">01</span>
+                  <span className="font-mono font-semibold tabular-nums">03</span>
                   <span aria-hidden="true" className="text-[#cbd5e1]">/</span>
-                  <span>技术路线与交互总览</span>
+                  <span>从生活记录到回忆材料</span>
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-display font-bold tracking-tight text-[#0f172a]">
-                  From Life Logs to Guided Recall
+                <h2 className="text-2xl sm:text-3xl font-editorial-cn font-bold tracking-tight text-[#0f172a]">
+                  从生活记录到回忆材料
                 </h2>
               </div>
-              <span className="text-xs text-[#64748b]">
-                记忆材料提取技术路线 · 三层系统交互设计 · 穿戴记录与试验实拍
-              </span>
+
+              <p className="text-sm sm:text-base text-[#475569] leading-relaxed max-w-3xl">
+                患者通过第一视角设备记录购物、用餐等日常活动。AI 从视频中提取有意义的事件、人物、物体及其细节，经过整理与核验，逐步组织成可以用于回忆训练的材料。
+              </p>
+
+              <div className="inline-flex flex-wrap items-center gap-x-2.5 gap-y-1.5 px-4 py-2.5 rounded-xl bg-white border border-[#e2e8f0] text-xs sm:text-sm font-medium text-[#0f172a]">
+                <span>第一视角生活记录</span>
+                <span aria-hidden="true" className="text-[#0284c7]">→</span>
+                <span>AI 事件与实体提取</span>
+                <span aria-hidden="true" className="text-[#0284c7]">→</span>
+                <span>回忆材料生成</span>
+              </div>
             </div>
 
             <figure className="bg-white rounded-2xl border border-[#e2e8f0] p-4 sm:p-6 shadow-[0_1px_3px_rgba(15,23,42,0.04)] space-y-5">
               <div className="rounded-xl overflow-hidden bg-white border border-[#e2e8f0]/80">
                 <img
                   src={OVERVIEW_IMAGE}
-                  alt="Lifelog 记忆材料提取技术路线、系统交互设计框架及穿戴硬件实拍总览图"
+                  alt="Lifelog 记忆材料提取技术路线、系统交互设计框架及穿戴设备实拍总览图"
                   onClick={() =>
                     setZoomedMedia({
-                      title: "技术路线、交互设计与现场实拍总览",
-                      subtitle: "01 · From Life Logs to Guided Recall",
+                      title: "从生活记录到回忆材料：整体架构与设备记录",
+                      subtitle: "03 · 从生活记录到回忆材料",
                       image: OVERVIEW_IMAGE,
-                      alt: "Lifelog 记忆材料提取技术路线、系统交互设计框架及穿戴硬件实拍总览图",
+                      alt: "Lifelog 记忆材料提取技术路线、系统交互设计框架及穿戴设备实拍总览图",
                     })
                   }
                   className="w-full h-auto object-contain block cursor-zoom-in"
@@ -364,42 +506,42 @@ export function LifelogProject() {
               <figcaption className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-[#e2e8f0] text-xs leading-relaxed text-[#475569]">
                 <div>
                   <div className="font-semibold text-[#0f172a] mb-1">
-                    01 / 记忆材料提取技术路线（左）
+                    01 / 记忆材料提取路径（左）
                   </div>
                   <p>
-                    通过全局多模态理解生成候选事件与实体，结合交互帧视觉核验与事件仲裁，分别输出叙事层线索与实体层细节问题。
+                    对应上方流程中的分析与核验阶段：先由全局理解提炼候选事件与实体，再结合交互帧核验与事件仲裁，生成叙事线索与细节问题。
                   </p>
                 </div>
                 <div>
                   <div className="font-semibold text-[#0f172a] mb-1">
-                    02 / 三层渐进交互设计（右）
+                    02 / 三层渐进回忆结构（右）
                   </div>
                   <p>
-                    围绕框架层（活动主题）、叙事层（场景行为与时间排序）与实体层（物品明细），兼顾项目记忆与联结记忆双路径唤醒。
+                    将提取到的材料组织为活动主题、活动情节与顺序、活动项目三层任务结构，支持由粗到细地唤醒活动情景与物品细节。
                   </p>
                 </div>
                 <div>
                   <div className="font-semibold text-[#0f172a] mb-1">
-                    03 / 硬件佩戴与临床测试（下）
+                    03 / 硬件佩戴与患者端使用场景（下）
                   </div>
                   <p>
-                    展示胸前穿戴式第一人称记录设备实际佩戴形态、货架采购交互捕捉，以及患者在病房场景下使用平板开展回忆测试的画面。
+                    展示胸前穿戴式第一人称记录设备实际佩戴形态、货架采购交互捕捉，以及患者端使用场景。
                   </p>
                 </div>
               </figcaption>
             </figure>
           </section>
 
-          {/* 02 · PIPELINE EVOLUTION */}
+          {/* 04 · RECALL MATERIAL PIPELINE */}
           <section className="pt-14 border-t border-[#e2e8f0]">
             <div className="mb-7">
               <div className="flex items-center gap-2 text-xs font-medium text-[#16a34a] mb-2">
-                <span className="font-mono font-semibold tabular-nums">02</span>
+                <span className="font-mono font-semibold tabular-nums">04</span>
                 <span aria-hidden="true" className="text-[#cbd5e1]">/</span>
-                <span>算法流程演进</span>
+                <span>回忆材料生成流程</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-display font-bold tracking-tight text-[#0f172a]">
-                From One-Pass Generation to Evidence-Based Verification
+              <h2 className="text-2xl sm:text-3xl font-editorial-cn font-bold tracking-tight text-[#0f172a]">
+                从整体理解到细节核验
               </h2>
             </div>
 
@@ -426,7 +568,7 @@ export function LifelogProject() {
                       onClick={() =>
                         setZoomedMedia({
                           title: "早期 Full Context · 早期方案",
-                          subtitle: "02 · 算法流程演进",
+                          subtitle: "04 · 回忆材料生成流程",
                           image: pipelineEarlyImg,
                           alt: "早期 Full Context 技术流程图：基于全场景上下文的记忆材料生成",
                         })
@@ -459,7 +601,7 @@ export function LifelogProject() {
                       onClick={() =>
                         setZoomedMedia({
                           title: "精炼 Full Context + 核验 · 演进方案",
-                          subtitle: "02 · 算法流程演进",
+                          subtitle: "04 · 回忆材料生成流程",
                           image: pipelineRefinedImg,
                           alt: "精炼 Full Context + 核验技术流程图：基于证据的上下文精炼与记忆材料生成",
                         })
@@ -476,34 +618,136 @@ export function LifelogProject() {
             </div>
           </section>
 
-          {/* 03 · SYSTEM INTERFACES */}
+          {/* 05 · DUAL-END COLLABORATION (DOCTOR WEB FIRST, UNITY SECOND) */}
           <section className="pt-14 border-t border-[#e2e8f0]">
             <div className="mb-7">
               <div className="flex items-center gap-2 text-xs font-medium text-[#0284c7] mb-2">
-                <span className="font-mono font-semibold tabular-nums">03</span>
+                <span className="font-mono font-semibold tabular-nums">05</span>
                 <span aria-hidden="true" className="text-[#cbd5e1]">/</span>
-                <span>系统交互界面</span>
+                <span>双端协同系统</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-display font-bold tracking-tight text-[#0f172a]">
-                From Understanding to Guided Recall
+              <h2 className="text-2xl sm:text-3xl font-editorial-cn font-bold tracking-tight text-[#0f172a]">
+                两个端如何协同工作？
               </h2>
             </div>
 
             <div className="space-y-8">
-              {/* Subsystem 1: Unity User Interface (10 Real Screens across 4 Stages) */}
+              {/* Subsystem 1: Doctor Web Platform */}
               <div className="bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden shadow-[0_1px_3px_rgba(15,23,42,0.04)]">
-                <div className="bg-[#f0fdf4] border-b border-[#bbf7d0]/80 px-5 sm:px-6 py-4 flex flex-wrap items-baseline justify-between gap-3">
+                <div className="bg-[#f0f9ff] border-b border-[#bae6fd]/70 px-5 sm:px-6 py-4 space-y-2">
                   <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                     <h3 className="text-lg sm:text-xl font-display font-bold text-[#0f172a]">
-                      Unity 用户端界面
+                      医生端网页平台
+                    </h3>
+                    <span className="text-xs font-medium text-[#0284c7] whitespace-nowrap shrink-0">
+                      管理与评估
+                    </span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-[#475569] leading-relaxed max-w-4xl">
+                    医生端负责训练准备与过程管理。医生或康复师可以配置回忆任务、上传生活记录、查看 AI 处理状态和生成的回忆材料，以及查看患者的训练表现。
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[#e2e8f0]">
+                  {DOCTOR_PLATFORM_STEPS.map((item) => {
+                    const hasFlip = Boolean(item.backImage);
+                    return (
+                      <div key={item.step} className="p-5 sm:p-6 flex flex-col justify-between gap-4">
+                        <div>
+                          <div className="flex items-baseline gap-2 mb-1.5">
+                            <span className="font-mono text-xs font-semibold text-[#0284c7] tabular-nums">
+                              {item.step}
+                            </span>
+                            <h4 className="text-sm sm:text-base font-semibold text-[#0f172a]">
+                              {item.title}
+                            </h4>
+                          </div>
+                          <p className="text-xs text-[#64748b] leading-relaxed">
+                            {item.caption}
+                          </p>
+                        </div>
+
+                        <div className="space-y-2">
+                          {hasFlip && item.backImage ? (
+                            <div
+                              data-testid="doctor-step-02-flip"
+                              onMouseEnter={() => setIsStep2Hovered(true)}
+                              onMouseLeave={() => setIsStep2Hovered(false)}
+                              onClick={() =>
+                                setZoomedMedia({
+                                  title: item.title,
+                                  subtitle: `医生端网页 · 步骤 ${item.step}`,
+                                  image: item.image,
+                                  alt: item.alt,
+                                  primaryLabel: item.frontLabel,
+                                  alternateImage: item.backImage,
+                                  alternateAlt: item.backAlt,
+                                  alternateLabel: item.backLabel,
+                                  activeVariant: isStep2Hovered ? "alternate" : "primary",
+                                })
+                              }
+                              className="group perspective-1200 cursor-zoom-in"
+                            >
+                              <div className="relative w-full transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] preserve-3d group-hover:[transform:rotateY(180deg)]">
+                                <div className="w-full rounded-xl overflow-hidden border border-[#e2e8f0] bg-white [backface-visibility:hidden]">
+                                  <img
+                                    src={item.image}
+                                    alt={item.alt}
+                                    className="w-full h-auto object-contain block"
+                                  />
+                                </div>
+
+                                <div className="absolute inset-0 w-full h-full rounded-xl overflow-hidden border border-[#7dd3fc] bg-white shadow-sm [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                                  <img
+                                    src={item.backImage}
+                                    alt={item.backAlt || item.alt}
+                                    className="w-full h-full object-contain block"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="rounded-xl overflow-hidden border border-[#e2e8f0] bg-white">
+                              <img
+                                src={item.image}
+                                alt={item.alt}
+                                onClick={() =>
+                                  setZoomedMedia({
+                                    title: item.title,
+                                    subtitle: `医生端网页 · 步骤 ${item.step}`,
+                                    image: item.image,
+                                    alt: item.alt,
+                                  })
+                                }
+                                className="w-full h-auto object-contain block cursor-zoom-in"
+                              />
+                            </div>
+                          )}
+
+                          <div className="flex items-center justify-between gap-2 text-[11px] text-[#64748b] px-0.5">
+                            <span>{hasFlip ? "视频处理进度监控 · 结果详情" : item.frontLabel}</span>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Subsystem 2: Unity User Interface (10 Real Screens across 4 Stages) */}
+              <div className="bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden shadow-[0_1px_3px_rgba(15,23,42,0.04)]">
+                <div className="bg-[#f0fdf4] border-b border-[#bbf7d0]/80 px-5 sm:px-6 py-4 space-y-2">
+                  <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                    <h3 className="text-lg sm:text-xl font-display font-bold text-[#0f172a]">
+                      患者端 Unity 应用
                     </h3>
                     <span className="text-xs font-medium text-[#16a34a] whitespace-nowrap shrink-0">
                       渐进回忆交互
                     </span>
                   </div>
-                  <span className="text-xs text-[#475569]">
-                    承担 Unity 端逻辑搭建 · UI 界面协助修改与细节调整
-                  </span>
+                  <p className="text-xs sm:text-sm text-[#475569] leading-relaxed max-w-4xl">
+                    患者端基于 Unity 开发，通过游戏化方式组织回忆任务。从整体活动回顾开始，逐步进入具体事件，再到人物和物体等细节。过程中结合视觉线索与对话引导，帮助患者逐步完成回忆。
+                  </p>
                 </div>
 
                 {/* Stage Switcher Bar */}
@@ -653,121 +897,19 @@ export function LifelogProject() {
                   </p>
                 </div>
               </div>
-
-              {/* Subsystem 2: Doctor Web Platform */}
-              <div className="bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden shadow-[0_1px_3px_rgba(15,23,42,0.04)]">
-                <div className="bg-[#f0f9ff] border-b border-[#bae6fd]/70 px-5 sm:px-6 py-4 flex flex-wrap items-baseline justify-between gap-3">
-                  <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                    <h3 className="text-lg sm:text-xl font-display font-bold text-[#0f172a]">
-                      医生端网页平台
-                    </h3>
-                    <span className="text-xs font-medium text-[#0284c7] whitespace-nowrap shrink-0">
-                      管理与评估
-                    </span>
-                  </div>
-                  <span className="text-xs text-[#475569]">
-                    独立完成医生端 Web 前端页面搭建与任务管理链路集成
-                  </span>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[#e2e8f0]">
-                  {DOCTOR_PLATFORM_STEPS.map((item) => {
-                    const hasFlip = Boolean(item.backImage);
-                    return (
-                      <div key={item.step} className="p-5 sm:p-6 flex flex-col justify-between gap-4">
-                        <div>
-                          <div className="flex items-baseline gap-2 mb-1.5">
-                            <span className="font-mono text-xs font-semibold text-[#0284c7] tabular-nums">
-                              {item.step}
-                            </span>
-                            <h4 className="text-sm sm:text-base font-semibold text-[#0f172a]">
-                              {item.title}
-                            </h4>
-                          </div>
-                          <p className="text-xs text-[#64748b] leading-relaxed">
-                            {item.caption}
-                          </p>
-                        </div>
-
-                        <div className="space-y-2">
-                          {hasFlip && item.backImage ? (
-                            <div
-                              data-testid="doctor-step-02-flip"
-                              onMouseEnter={() => setIsStep2Hovered(true)}
-                              onMouseLeave={() => setIsStep2Hovered(false)}
-                              onClick={() =>
-                                setZoomedMedia({
-                                  title: item.title,
-                                  subtitle: `医生端网页 · 步骤 ${item.step}`,
-                                  image: item.image,
-                                  alt: item.alt,
-                                  primaryLabel: item.frontLabel,
-                                  alternateImage: item.backImage,
-                                  alternateAlt: item.backAlt,
-                                  alternateLabel: item.backLabel,
-                                  activeVariant: isStep2Hovered ? "alternate" : "primary",
-                                })
-                              }
-                              className="group perspective-1200 cursor-zoom-in"
-                            >
-                              <div className="relative w-full transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] preserve-3d group-hover:[transform:rotateY(180deg)]">
-                                <div className="w-full rounded-xl overflow-hidden border border-[#e2e8f0] bg-white [backface-visibility:hidden]">
-                                  <img
-                                    src={item.image}
-                                    alt={item.alt}
-                                    className="w-full h-auto object-contain block"
-                                  />
-                                </div>
-
-                                <div className="absolute inset-0 w-full h-full rounded-xl overflow-hidden border border-[#7dd3fc] bg-white shadow-sm [backface-visibility:hidden] [transform:rotateY(180deg)]">
-                                  <img
-                                    src={item.backImage}
-                                    alt={item.backAlt || item.alt}
-                                    className="w-full h-full object-contain block"
-                                  />
-                                </div>
-                              </div>
-                            </div>
-                          ) : (
-                            <div className="rounded-xl overflow-hidden border border-[#e2e8f0] bg-white">
-                              <img
-                                src={item.image}
-                                alt={item.alt}
-                                onClick={() =>
-                                  setZoomedMedia({
-                                    title: item.title,
-                                    subtitle: `医生端网页 · 步骤 ${item.step}`,
-                                    image: item.image,
-                                    alt: item.alt,
-                                  })
-                                }
-                                className="w-full h-auto object-contain block cursor-zoom-in"
-                              />
-                            </div>
-                          )}
-
-                          <div className="flex items-center justify-between gap-2 text-[11px] text-[#64748b] px-0.5">
-                            <span>{hasFlip ? "视频处理进度监控 · 结果详情" : item.frontLabel}</span>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
             </div>
           </section>
 
-          {/* 04 · FUTURE DIRECTIONS */}
+          {/* 06 · FUTURE DIRECTIONS */}
           <section className="pt-14 border-t border-[#e2e8f0]">
             <div className="mb-7">
               <div className="flex items-center gap-2 text-xs font-medium text-[#16a34a] mb-2">
-                <span className="font-mono font-semibold tabular-nums">04</span>
+                <span className="font-mono font-semibold tabular-nums">06</span>
                 <span aria-hidden="true" className="text-[#cbd5e1]">/</span>
-                <span>未来改进方向</span>
+                <span>后续改进方向</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-display font-bold tracking-tight text-[#0f172a]">
-                Future Directions
+              <h2 className="text-2xl sm:text-3xl font-editorial-cn font-bold tracking-tight text-[#0f172a]">
+                后续改进方向
               </h2>
             </div>
 
@@ -824,6 +966,7 @@ export function LifelogProject() {
               })}
             </div>
           </section>
+
         </div>
       </main>
 

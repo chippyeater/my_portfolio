@@ -63,18 +63,21 @@ const USER_PROBLEMS = [
     num: "01",
     title: "01｜窗口切换频繁",
     body: "文书撰写、法条检索与证据对比分布在不同平台，频繁切换容易造成注意力破碎和逻辑链条中断。",
+    designNeed: "对应设计需求：将材料、关系与推理整合进统一工作空间",
     accent: "text-[#A8D56C]",
   },
   {
     num: "02",
     title: "02｜人力查证低效",
     body: "在数百至上千页材料中查找矛盾耗费大量精力，人工跨文件核对容易遗漏细节，需要反复复查。",
+    designNeed: "对应设计需求：通过结构化整理与 AI 检索降低人工比对成本",
     accent: "text-[#A79AF4]",
   },
   {
     num: "03",
     title: "03｜AI 信任赤字",
     body: "常见对话式 AI 给出的总结偏概括，难以捕捉证据链关键细节，幻觉输出会干扰律师对裁判逻辑的判断。",
+    designNeed: "对应设计需求：让每个 AI 判断保留原文溯源并支持人工核验修改",
     accent: "text-[#E5A85F]",
   },
 ] as const;
@@ -84,24 +87,28 @@ const REASONING_HABITS = [
     index: "01",
     title: "从高确定性信息出发构建推理",
     detail: "优先锚定合同、流水、客观时间点等确定事实，再逐步向外扩展推断。",
+    implication: "→ 需要独立、可定位来源的结构化信息单元",
     tone: "text-[#A8D56C]",
   },
   {
     index: "02",
     title: "以图结构组织多分支关联",
     detail: "围绕多方陈述、争点与反证并行推进，适配网状关联和局部推翻。",
+    implication: "→ 需要非线性的关系画布，而非单向文本流",
     tone: "text-[#A79AF4]",
   },
   {
     index: "03",
     title: "推理路径保持可回溯与可修改",
     detail: "新证据出现或事实被推翻时，能够回退步骤并追溯每个判断的依据。",
+    implication: "→ 需要显式记录推导依据、状态与人工修订权",
     tone: "text-[#E5A85F]",
   },
   {
     index: "04",
     title: "法律条文与事实的层级化呈现",
     detail: "将请求权基础、法条适用条件与具体证据材料分层对应查看。",
+    implication: "→ 需要按任务尺度逐层展开的卡片信息密度",
     tone: "text-[#EDF0F2]",
   },
 ] as const;
@@ -225,10 +232,10 @@ const IA_NODES: IaNodeSpec[] = [
   },
   {
     id: "investigation",
-    label: "Agent Investigation / 调查与更新",
-    sublabel: "检索提案 · 结构修正",
+    label: "Agent Investigation / 调查触发（衔接工作流）",
+    sublabel: "围绕 Issue 检索 · 提交结构化提案",
     tone: "purple",
-    roleNote: "围绕 Issue 检索证据并提出候选关系、假设或缺口，由用户决定是否采纳并回写结构。",
+    roleNote: "作为人机协同流程的推进动作，围绕 Issue 检索证据并提出候选关系、假设或缺口，由用户核验后回写信息模型。",
   },
 ];
 
@@ -495,10 +502,10 @@ export function LogicWeaverProject() {
                 <div className="lg:col-span-7 lg:pl-8 space-y-5">
                   <div className="space-y-1.5">
                     <div className="text-[11px] text-[#A8D56C]">
-                      目标用户群
+                      核心目标用户
                     </div>
                     <h4 className="text-base sm:text-lg font-semibold text-[#EDF0F2]">
-                      逻辑严密的法律从业者、专业维权者、推理解密爱好者
+                      以法律实务从业者为核心（律师、实习律师、法律研究员）
                     </h4>
                   </div>
 
@@ -508,7 +515,7 @@ export function LogicWeaverProject() {
                         职业 / 专业
                       </div>
                       <p className="text-xs sm:text-[13px] text-[#EDF0F2]/85 leading-relaxed">
-                        处理开放式信息系统的专业人员（律师、法律研究员、高级调查员）。
+                        日常处理复杂案件与多源开放材料系统的法律实务从业者。
                       </p>
                     </div>
                     <div className="space-y-1.5">
@@ -539,7 +546,7 @@ export function LogicWeaverProject() {
                   AI 工具使用的痛点与体验障碍
                 </h3>
                 <span className="text-xs text-[#A0AAB4]">
-                  痛点与信任障碍
+                  痛点 → 设计需求映射
                 </span>
               </div>
 
@@ -547,14 +554,19 @@ export function LogicWeaverProject() {
                 {USER_PROBLEMS.map((item) => (
                   <article
                     key={item.num}
-                    className="py-6 md:px-6 first:md:pl-0 last:md:pr-0 space-y-2.5"
+                    className="py-6 md:px-6 first:md:pl-0 last:md:pr-0 flex flex-col justify-between gap-3.5"
                   >
-                    <div className={`font-mono text-xs font-semibold ${item.accent}`}>
-                      {item.title}
+                    <div className="space-y-2.5">
+                      <div className={`font-mono text-xs font-semibold ${item.accent}`}>
+                        {item.title}
+                      </div>
+                      <p className="text-sm sm:text-[15px] text-[#A0AAB4] leading-relaxed">
+                        {item.body}
+                      </p>
                     </div>
-                    <p className="text-sm sm:text-[15px] text-[#A0AAB4] leading-relaxed">
-                      {item.body}
-                    </p>
+                    <div className="pt-2.5 border-t border-white/10 text-xs text-[#EDF0F2]/85 leading-relaxed">
+                      {item.designNeed}
+                    </div>
                   </article>
                 ))}
               </div>
@@ -577,7 +589,7 @@ export function LogicWeaverProject() {
                   用户的推理行为与习惯
                 </h3>
                 <span className="text-xs text-[#A0AAB4]">
-                  推理行为习惯
+                  决定信息结构与画布形态的关键依据
                 </span>
               </div>
 
@@ -585,17 +597,22 @@ export function LogicWeaverProject() {
                 {REASONING_HABITS.map((habit) => (
                   <div
                     key={habit.index}
-                    className="pt-3 border-t border-white/15 space-y-2"
+                    className="pt-3 border-t border-white/15 flex flex-col justify-between gap-3"
                   >
-                    <div className={`text-[11px] font-mono font-semibold ${habit.tone}`}>
-                      习惯 {habit.index}
+                    <div className="space-y-2">
+                      <div className={`text-[11px] font-mono font-semibold ${habit.tone}`}>
+                        习惯 {habit.index}
+                      </div>
+                      <h4 className="text-sm font-semibold text-[#EDF0F2] leading-snug">
+                        {habit.title}
+                      </h4>
+                      <p className="text-xs text-[#A0AAB4] leading-relaxed">
+                        {habit.detail}
+                      </p>
                     </div>
-                    <h4 className="text-sm font-semibold text-[#EDF0F2] leading-snug">
-                      {habit.title}
-                    </h4>
-                    <p className="text-xs text-[#A0AAB4] leading-relaxed">
-                      {habit.detail}
-                    </p>
+                    <div className="text-[11px] text-[#D4DAE2]/90 leading-relaxed pt-2 border-t border-white/8">
+                      {habit.implication}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -663,6 +680,47 @@ export function LogicWeaverProject() {
                   ))}
                 </div>
               </div>
+
+              {/* Journey Outcome -> Core Design Requirements Bridge */}
+              <div className="rounded-2xl lw-silver-frame-subtle bg-[#0B0E14]/90 p-5 sm:p-6 space-y-4">
+                <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 pb-3 border-b border-white/10">
+                  <div className="flex items-center gap-2.5">
+                    <span className="font-mono text-xs font-semibold text-[#A8D56C]">
+                      核心设计需求
+                    </span>
+                    <span className="text-xs text-[#A0AAB4]">
+                      由第 3–5 阶段高频痛点与推理习惯归纳出的产品设计机会
+                    </span>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+                  <div className="flex items-start gap-3">
+                    <span className="font-mono text-xs font-semibold text-[#A8D56C] tabular-nums mt-0.5">
+                      01
+                    </span>
+                    <p className="text-sm text-[#EDF0F2]/90 leading-relaxed">
+                      统一组织分散的案件材料与关联信息。
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="font-mono text-xs font-semibold text-[#A79AF4] tabular-nums mt-0.5">
+                      02
+                    </span>
+                    <p className="text-sm text-[#EDF0F2]/90 leading-relaxed">
+                      降低证据检索、交叉核验的人工成本。
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="font-mono text-xs font-semibold text-[#E5A85F] tabular-nums mt-0.5">
+                      03
+                    </span>
+                    <p className="text-sm text-[#EDF0F2]/90 leading-relaxed">
+                      让 AI 的判断可检查、可追溯、可修改。
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
 
@@ -681,10 +739,10 @@ export function LogicWeaverProject() {
               </h2>
               <div className="space-y-4 text-base sm:text-[17px] text-[#A0AAB4] leading-[1.75]">
                 <p>
-                  团队重点调研了调查分析与开源情报平台代表产品 FALKOR 与 Kaseware。两款产品在多源材料整合、案件总览与多种可视化视图上提供了成熟的工程能力。
+                  围绕上述三项设计需求，团队重点调研了调查分析与开源情报平台代表产品 FALKOR 与 Kaseware。两款产品在多源材料整合、案件总览与多种可视化视图上提供了成熟的工程能力。
                 </p>
                 <p>
-                  基于竞品观察，LogicWeaver 将进一步探索<span className="text-[#A8D56C] font-medium">动态推理过程</span>：让用户在<span className="text-[#A79AF4] font-medium">可编辑画布</span>中检查证据来源，并与 AI 协同推进假设检验、冲突核查与缺口追踪。
+                  不过，它们的核心定位仍偏重材料汇集与静态归档。LogicWeaver 并非简单复刻这类调查分析平台，而是进一步聚焦<span className="text-[#A8D56C] font-medium">材料、关系与动态推理过程</span>如何在同一工作空间中持续组织与更新。
                 </p>
               </div>
             </div>
@@ -753,13 +811,16 @@ export function LogicWeaverProject() {
               ))}
             </div>
 
-            {/* Wide Research Conclusion Panel (Soft Muted Inverted Banner with Restrained Shimmer) */}
-            <div className="lw-inverted-frame lw-inverted-shimmer rounded-2xl px-6 sm:px-8 py-6">
-              <div className="text-xs font-semibold text-[#2D3745] mb-2">
-                调研结论
+            {/* Wide Research Conclusion & Design Opportunity Panel */}
+            <div className="lw-inverted-frame lw-inverted-shimmer rounded-2xl px-6 sm:px-8 py-6 space-y-2.5">
+              <div className="text-xs font-semibold text-[#2D3745]">
+                调研结论与 LogicWeaver 设计机会
               </div>
               <p className="text-lg sm:text-xl font-editorial-cn font-semibold text-[#090C11] leading-relaxed">
                 把<span className="text-[#134222]">「材料」「关系」与「推理」</span>放进同一个可持续编辑的工作空间，让每次 AI 介入都能成为<span className="text-[#31237A]">可检验的结构化结果</span>。
+              </p>
+              <p className="text-xs sm:text-sm text-[#1D2530] leading-relaxed pt-1">
+                因此，下一步需要回答两个核心设计问题：系统应当如何组织案件信息，以及人机应当如何围绕这些信息持续协同推理。
               </p>
             </div>
           </section>
@@ -767,262 +828,314 @@ export function LogicWeaverProject() {
           <div className="lw-silver-divider w-full" />
 
           {/* ═════════════════════════════════════════════════════════════
-              03 ｜ INFORMATION ARCHITECTURE
+              03 ｜ PRODUCT CONCEPT & INFORMATION ARCHITECTURE
              ═════════════════════════════════════════════════════════════ */}
-          <section className="space-y-12">
+          <section className="space-y-14">
             <div className="max-w-3xl space-y-4">
               <div className="font-mono text-xs tracking-wider text-[#A8D56C]">
-                03 / INFORMATION ARCHITECTURE
+                03 / CONCEPT & ARCHITECTURE
               </div>
               <h2 className="text-2xl sm:text-4xl font-editorial-cn font-bold text-[#EDF0F2] leading-tight">
-                区分信息、关系与推论
+                产品概念与信息架构：区分信息组织与人机协作
               </h2>
-              <div className="space-y-3.5 text-base sm:text-[17px] text-[#A0AAB4] leading-[1.75]">
-                <p>
-                  我们将案件材料拆解为 <strong className="text-[#A8D56C] font-semibold">InfoUnit（信息节点 / 元信息）</strong>——即基于案件主题考虑的、可独立操作与引用的最小信息单位，并用 Relation 表达不同信息之间的关联。
-                </p>
-                <p>
-                  分析过程中的 <span className="text-[#A79AF4] font-medium">Hypothesis</span> 用来保存待验证的命题，<span className="text-[#E5A85F] font-medium">Evidence Gap</span> 则指出仍然缺失、且可能改变判断的关键材料。
-                </p>
-                <p>
-                  用户可以随时检查来源，修改关系与判断，让推理过程随着新证据持续更新。
-                </p>
-              </div>
+              <p className="text-base sm:text-[17px] text-[#A0AAB4] leading-[1.75]">
+                为回应前文提出的设计机会，我们将产品底层拆分为两个彼此衔接但职责分明的层次：<span className="text-[#A8D56C] font-medium">A. 信息组织模型</span>回答系统如何表达和存储推理结构，<span className="text-[#A79AF4] font-medium">B. 人机协同推理流程</span>则回答原始材料如何被加工并由用户与 Agent 共同推进修正。
+              </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-              {/* Left 8 cols: Precision Information Architecture Diagram (Single Clean Silver Frame) */}
-              <div className="lg:col-span-8 space-y-4">
-                <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-white/12 text-xs font-mono">
-                  <span className="text-[#EDF0F2]">信息结构图</span>
-                  <span className="text-[#A0AAB4]">点击任意对象查看语义定位</span>
-                </div>
-
-                {/* Precision Diagram Canvas */}
-                <div className="rounded-2xl lw-silver-frame lw-grid-sub p-4 sm:p-6 space-y-5">
-                  {/* Tier 1: Source -> InfoUnit <-> Relation */}
-                  <div className="grid grid-cols-1 sm:grid-cols-11 gap-3 items-center">
-                    <button
-                      type="button"
-                      onClick={() => setSelectedIaId("material")}
-                      className={`sm:col-span-3 text-left p-3.5 rounded-xl border transition-colors cursor-pointer ${
-                        selectedIaId === "material"
-                          ? "bg-[#1D242D] border-[#EDF0F2]"
-                          : "bg-[#0B0E14]/90 border-white/12 hover:border-white/30"
-                      }`}
-                    >
-                      <div className="text-xs font-mono font-semibold text-[#EDF0F2]">
-                        案件材料
-                      </div>
-                      <div className="text-[11px] text-[#A0AAB4] mt-1">
-                        原始输入文档与记录
-                      </div>
-                    </button>
-
-                    <div className="hidden sm:flex sm:col-span-1 justify-center text-[#A8D56C]">
-                      <ArrowRight size={15} />
-                    </div>
-
-                    <button
-                      type="button"
-                      onClick={() => setSelectedIaId("infounit")}
-                      className={`sm:col-span-3 text-left p-3.5 rounded-xl border transition-colors cursor-pointer ${
-                        selectedIaId === "infounit"
-                          ? "bg-[#1D242D] border-[#A8D56C]"
-                          : "bg-[#0B0E14]/90 border-[#A8D56C]/35 hover:border-[#A8D56C]"
-                      }`}
-                    >
-                      <div className="text-xs font-mono font-semibold text-[#A8D56C]">
-                        InfoUnit / 信息单元
-                      </div>
-                      <div className="text-[11px] text-[#A0AAB4] mt-1">
-                        可溯源结构化事实
-                      </div>
-                    </button>
-
-                    <div className="hidden sm:flex sm:col-span-1 justify-center text-[#A8D56C]">
-                      <ArrowRight size={15} />
-                    </div>
-
-                    <button
-                      type="button"
-                      onClick={() => setSelectedIaId("relation")}
-                      className={`sm:col-span-3 text-left p-3.5 rounded-xl border transition-colors cursor-pointer ${
-                        selectedIaId === "relation"
-                          ? "bg-[#1D242D] border-[#A8D56C]"
-                          : "bg-[#0B0E14]/90 border-[#A8D56C]/35 hover:border-[#A8D56C]"
-                      }`}
-                    >
-                      <div className="text-xs font-mono font-semibold text-[#A8D56C]">
-                        Relation / 信息关系
-                      </div>
-                      <div className="text-[11px] text-[#A0AAB4] mt-1">
-                        单元间关联与方向
-                      </div>
-                    </button>
+            {/* A. 信息组织模型（系统如何组织信息） */}
+            <div className="space-y-8 pt-6 border-t border-white/12">
+              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+                <div className="space-y-1">
+                  <div className="font-mono text-xs text-[#A8D56C]">
+                    A · 信息组织模型
                   </div>
-
-                  {/* Connector Line downward */}
-                  <div className="flex items-center justify-center">
-                    <div className="h-5 w-px bg-white/18" />
-                  </div>
-
-                  {/* Tier 2: Issue Anchor */}
-                  <div className="flex justify-center">
-                    <button
-                      type="button"
-                      onClick={() => setSelectedIaId("issue")}
-                      className={`w-full sm:w-3/4 p-3.5 rounded-xl border text-center transition-colors cursor-pointer ${
-                        selectedIaId === "issue"
-                          ? "bg-[#1D242D] border-[#EDF0F2]"
-                          : "bg-[#0B0E14]/90 border-white/15 hover:border-white/35"
-                      }`}
-                    >
-                      <div className="text-xs font-mono font-semibold text-[#EDF0F2]">
-                        Issue / 争议问题
-                      </div>
-                      <div className="text-[11px] text-[#A0AAB4] mt-0.5">
-                        用户与 Agent 协同管理的核心推理锚点
-                      </div>
-                    </button>
-                  </div>
-
-                  {/* Tier 3: Hypothesis, Evidence Gap & Agent Investigation */}
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
-                    <button
-                      type="button"
-                      onClick={() => setSelectedIaId("hypothesis")}
-                      className={`text-left p-3.5 rounded-xl border transition-colors cursor-pointer ${
-                        selectedIaId === "hypothesis"
-                          ? "bg-[#1D242D] border-[#A79AF4]"
-                          : "bg-[#0B0E14]/90 border-[#A79AF4]/35 hover:border-[#A79AF4]"
-                      }`}
-                    >
-                      <div className="text-xs font-mono font-semibold text-[#A79AF4]">
-                        Hypothesis / 待验证假设
-                      </div>
-                      <div className="text-[11px] text-[#A0AAB4] mt-1">
-                        待核实命题与推理链
-                      </div>
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={() => setSelectedIaId("gap")}
-                      className={`text-left p-3.5 rounded-xl border transition-colors cursor-pointer ${
-                        selectedIaId === "gap"
-                          ? "bg-[#1D242D] border-[#E5A85F]"
-                          : "bg-[#0B0E14]/90 border-[#E5A85F]/35 hover:border-[#E5A85F]"
-                      }`}
-                    >
-                      <div className="text-xs font-mono font-semibold text-[#E5A85F]">
-                        Evidence Gap / 证据缺口
-                      </div>
-                      <div className="text-[11px] text-[#A0AAB4] mt-1">
-                        待补充验证条件
-                      </div>
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={() => setSelectedIaId("investigation")}
-                      className={`text-left p-3.5 rounded-xl border transition-colors cursor-pointer ${
-                        selectedIaId === "investigation"
-                          ? "bg-[#1D242D] border-[#A79AF4]"
-                          : "bg-[#0B0E14]/90 border-white/15 hover:border-[#A79AF4]"
-                      }`}
-                    >
-                      <div className="text-xs font-mono font-semibold text-[#A79AF4]">
-                        Agent Investigation / 调查与更新
-                      </div>
-                      <div className="text-[11px] text-[#A0AAB4] mt-1">
-                        持续修正证据与推理结构
-                      </div>
-                    </button>
-                  </div>
-
-                  {/* Selected Node Inspector Strip */}
-                  <div className="pt-3.5 border-t border-white/12 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
-                    <span
-                      className={`font-mono font-semibold shrink-0 ${
-                        selectedIaNode.tone === "green"
-                          ? "text-[#A8D56C]"
-                          : selectedIaNode.tone === "purple"
-                            ? "text-[#A79AF4]"
-                            : selectedIaNode.tone === "amber"
-                              ? "text-[#E5A85F]"
-                              : "text-[#EDF0F2]"
-                      }`}
-                    >
-                      {selectedIaNode.label}
-                    </span>
-                    <span className="text-[#A0AAB4] leading-relaxed">
-                      {selectedIaNode.roleNote}
-                    </span>
-                  </div>
-                </div>
-
-                <p className="text-xs sm:text-sm text-[#A0AAB4] leading-relaxed">
-                  案件材料经过解析形成 InfoUnit，信息单元之间通过 Relation 表达关联；围绕 Issue，用户与 Agent 共同管理 Hypothesis 和 Evidence Gap，并根据后续调查结果持续修正结构。
-                </p>
-              </div>
-
-              {/* Right 4 cols: InfoUnit Card Detail + Traceability Principle (Open Vertical Stack) */}
-              <div className="lg:col-span-4 flex flex-col justify-between gap-6">
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between text-xs font-mono pb-2 border-b border-white/12">
-                    <span className="text-[#A8D56C]">InfoUnit 信息节点</span>
-                    <span className="text-[#A0AAB4]">最小信息单位</span>
-                  </div>
-                  {LOGICWEAVER_MEDIA.infoUnitDetail ? (
-                    <div className="space-y-3">
-                      <div className="rounded-xl lw-silver-frame-subtle p-3.5 flex items-center justify-center bg-[#1B222B]">
-                        <img
-                          src={LOGICWEAVER_MEDIA.infoUnitDetail}
-                          alt="信息单元卡片来源与状态区分设计细节"
-                          className="w-full max-h-[240px] object-contain"
-                        />
-                      </div>
-                      <p className="text-xs text-[#A0AAB4] leading-relaxed">
-                        基于案件主题考虑的，可独立操作、引用的最小信息单位；内含类型标签、事实陈述字段与原文引文溯源。
-                      </p>
-                    </div>
-                  ) : (
-                    <div className="p-4 rounded-xl lw-silver-frame-subtle space-y-2">
-                      <div className="text-xs font-mono text-[#A8D56C]">
-                        InfoUnit 节点结构定义
-                      </div>
-                      <div className="text-xs text-[#EDF0F2]">
-                        基于案件主题考虑的，可独立操作、引用的最小信息单位。
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                <div className="lw-inverted-frame rounded-xl p-5 space-y-2">
-                  <div className="text-base sm:text-lg font-editorial-cn font-bold text-[#090C11]">
-                    来源可追溯，推论可检验。
-                  </div>
-                  <p className="text-sm text-[#1D2530] leading-relaxed">
-                    原文出现过陈述记录，尚需经过多方材料<span className="text-[#134222] font-semibold">交叉核验</span>后方可作为支撑依据；AI 生成的候选假设同样须经<span className="text-[#31237A] font-semibold">人工检视与反证检验</span>。
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Rebuilt System Architecture & Human-AI Reasoning Loop (Open 4-Column Divider Pipeline) */}
-            <div className="space-y-5 pt-4">
-              <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-white/12">
-                <div className="flex items-center gap-2.5">
-                  <Network size={15} className="text-[#D4DAE2]" />
-                  <h3 className="text-base sm:text-lg font-semibold text-[#EDF0F2]">
-                    系统架构 · 人机协同推理循环
+                  <h3 className="text-xl sm:text-2xl font-display font-bold text-[#EDF0F2]">
+                    区分信息、关系与推论
                   </h3>
                 </div>
                 <span className="text-xs text-[#A0AAB4]">
-                  四阶段架构流程
+                  回答「系统如何组织信息」
                 </span>
               </div>
+
+              {/* Explicit 5-Object Semantics Strip */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5">
+                <div className="p-4 rounded-xl bg-[#0B0E14]/90 border border-[#A8D56C]/35 space-y-1.5">
+                  <div className="font-mono text-xs font-semibold text-[#A8D56C]">InfoUnit</div>
+                  <p className="text-xs text-[#A0AAB4] leading-relaxed">
+                    案件中的最小可独立操作、引用的信息单位。
+                  </p>
+                </div>
+                <div className="p-4 rounded-xl bg-[#0B0E14]/90 border border-[#A8D56C]/35 space-y-1.5">
+                  <div className="font-mono text-xs font-semibold text-[#A8D56C]">Relation</div>
+                  <p className="text-xs text-[#A0AAB4] leading-relaxed">
+                    表达信息单元之间的关联（支持、冲突、时序等）。
+                  </p>
+                </div>
+                <div className="p-4 rounded-xl bg-[#0B0E14]/90 border border-white/15 space-y-1.5">
+                  <div className="font-mono text-xs font-semibold text-[#EDF0F2]">Issue</div>
+                  <p className="text-xs text-[#A0AAB4] leading-relaxed">
+                    组织当前调查任务的核心争点与问题锚点。
+                  </p>
+                </div>
+                <div className="p-4 rounded-xl bg-[#0B0E14]/90 border border-[#A79AF4]/35 space-y-1.5">
+                  <div className="font-mono text-xs font-semibold text-[#A79AF4]">Hypothesis</div>
+                  <p className="text-xs text-[#A0AAB4] leading-relaxed">
+                    围绕争点建立的待验证命题，须经证据检验。
+                  </p>
+                </div>
+                <div className="p-4 rounded-xl bg-[#0B0E14]/90 border border-[#E5A85F]/35 space-y-1.5">
+                  <div className="font-mono text-xs font-semibold text-[#E5A85F]">Evidence Gap</div>
+                  <p className="text-xs text-[#A0AAB4] leading-relaxed">
+                    识别当前推理链中缺失的关键证据与核验前提。
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                {/* Left 8 cols: Precision Information Architecture Diagram (Single Clean Silver Frame) */}
+                <div className="lg:col-span-8 space-y-4">
+                  <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-white/12 text-xs font-mono">
+                    <span className="text-[#EDF0F2]">对象关系图</span>
+                    <span className="text-[#A0AAB4]">点击任意对象查看语义定位</span>
+                  </div>
+
+                  {/* Precision Diagram Canvas */}
+                  <div className="rounded-2xl lw-silver-frame lw-grid-sub p-4 sm:p-6 space-y-5">
+                    {/* Tier 1: Source -> InfoUnit <-> Relation */}
+                    <div className="grid grid-cols-1 sm:grid-cols-11 gap-3 items-center">
+                      <button
+                        type="button"
+                        onClick={() => setSelectedIaId("material")}
+                        className={`sm:col-span-3 text-left p-3.5 rounded-xl border transition-colors cursor-pointer ${
+                          selectedIaId === "material"
+                            ? "bg-[#1D242D] border-[#EDF0F2]"
+                            : "bg-[#0B0E14]/90 border-white/12 hover:border-white/30"
+                        }`}
+                      >
+                        <div className="text-xs font-mono font-semibold text-[#EDF0F2]">
+                          案件材料
+                        </div>
+                        <div className="text-[11px] text-[#A0AAB4] mt-1">
+                          原始输入文档与记录
+                        </div>
+                      </button>
+
+                      <div className="hidden sm:flex sm:col-span-1 justify-center text-[#A8D56C]">
+                        <ArrowRight size={15} />
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={() => setSelectedIaId("infounit")}
+                        className={`sm:col-span-3 text-left p-3.5 rounded-xl border transition-colors cursor-pointer ${
+                          selectedIaId === "infounit"
+                            ? "bg-[#1D242D] border-[#A8D56C]"
+                            : "bg-[#0B0E14]/90 border-[#A8D56C]/35 hover:border-[#A8D56C]"
+                        }`}
+                      >
+                        <div className="text-xs font-mono font-semibold text-[#A8D56C]">
+                          InfoUnit / 信息单元
+                        </div>
+                        <div className="text-[11px] text-[#A0AAB4] mt-1">
+                          可溯源结构化事实
+                        </div>
+                      </button>
+
+                      <div className="hidden sm:flex sm:col-span-1 justify-center text-[#A8D56C]">
+                        <ArrowRight size={15} />
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={() => setSelectedIaId("relation")}
+                        className={`sm:col-span-3 text-left p-3.5 rounded-xl border transition-colors cursor-pointer ${
+                          selectedIaId === "relation"
+                            ? "bg-[#1D242D] border-[#A8D56C]"
+                            : "bg-[#0B0E14]/90 border-[#A8D56C]/35 hover:border-[#A8D56C]"
+                        }`}
+                      >
+                        <div className="text-xs font-mono font-semibold text-[#A8D56C]">
+                          Relation / 信息关系
+                        </div>
+                        <div className="text-[11px] text-[#A0AAB4] mt-1">
+                          单元间关联与方向
+                        </div>
+                      </button>
+                    </div>
+
+                    {/* Connector Line downward */}
+                    <div className="flex items-center justify-center">
+                      <div className="h-5 w-px bg-white/18" />
+                    </div>
+
+                    {/* Tier 2: Issue Anchor */}
+                    <div className="flex justify-center">
+                      <button
+                        type="button"
+                        onClick={() => setSelectedIaId("issue")}
+                        className={`w-full sm:w-3/4 p-3.5 rounded-xl border text-center transition-colors cursor-pointer ${
+                          selectedIaId === "issue"
+                            ? "bg-[#1D242D] border-[#EDF0F2]"
+                            : "bg-[#0B0E14]/90 border-white/15 hover:border-white/35"
+                        }`}
+                      >
+                        <div className="text-xs font-mono font-semibold text-[#EDF0F2]">
+                          Issue / 争议问题
+                        </div>
+                        <div className="text-[11px] text-[#A0AAB4] mt-0.5">
+                          组织当前调查任务的核心争点
+                        </div>
+                      </button>
+                    </div>
+
+                    {/* Tier 3: Hypothesis, Evidence Gap & Bridge to Investigation */}
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+                      <button
+                        type="button"
+                        onClick={() => setSelectedIaId("hypothesis")}
+                        className={`text-left p-3.5 rounded-xl border transition-colors cursor-pointer ${
+                          selectedIaId === "hypothesis"
+                            ? "bg-[#1D242D] border-[#A79AF4]"
+                            : "bg-[#0B0E14]/90 border-[#A79AF4]/35 hover:border-[#A79AF4]"
+                        }`}
+                      >
+                        <div className="text-xs font-mono font-semibold text-[#A79AF4]">
+                          Hypothesis / 待验证假设
+                        </div>
+                        <div className="text-[11px] text-[#A0AAB4] mt-1">
+                          待核实命题与推理链
+                        </div>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => setSelectedIaId("gap")}
+                        className={`text-left p-3.5 rounded-xl border transition-colors cursor-pointer ${
+                          selectedIaId === "gap"
+                            ? "bg-[#1D242D] border-[#E5A85F]"
+                            : "bg-[#0B0E14]/90 border-[#E5A85F]/35 hover:border-[#E5A85F]"
+                        }`}
+                      >
+                        <div className="text-xs font-mono font-semibold text-[#E5A85F]">
+                          Evidence Gap / 证据缺口
+                        </div>
+                        <div className="text-[11px] text-[#A0AAB4] mt-1">
+                          待补充验证条件
+                        </div>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => setSelectedIaId("investigation")}
+                        className={`text-left p-3.5 rounded-xl border border-dashed transition-colors cursor-pointer ${
+                          selectedIaId === "investigation"
+                            ? "bg-[#1D242D] border-[#A79AF4]"
+                            : "bg-[#0B0E14]/60 border-white/20 hover:border-[#A79AF4]"
+                        }`}
+                      >
+                        <div className="text-xs font-mono font-semibold text-[#A79AF4]">
+                          ⇄ 调查与更新动作
+                        </div>
+                        <div className="text-[11px] text-[#A0AAB4] mt-1">
+                          衔接下方人机协同流程
+                        </div>
+                      </button>
+                    </div>
+
+                    {/* Selected Node Inspector Strip */}
+                    <div className="pt-3.5 border-t border-white/12 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+                      <span
+                        className={`font-mono font-semibold shrink-0 ${
+                          selectedIaNode.tone === "green"
+                            ? "text-[#A8D56C]"
+                            : selectedIaNode.tone === "purple"
+                              ? "text-[#A79AF4]"
+                              : selectedIaNode.tone === "amber"
+                                ? "text-[#E5A85F]"
+                                : "text-[#EDF0F2]"
+                        }`}
+                      >
+                        {selectedIaNode.label}
+                      </span>
+                      <span className="text-[#A0AAB4] leading-relaxed">
+                        {selectedIaNode.roleNote}
+                      </span>
+                    </div>
+                  </div>
+
+                  <p className="text-xs sm:text-sm text-[#A0AAB4] leading-relaxed">
+                    这套信息模型将原始材料转化为<span className="text-[#EDF0F2]">可组织、可追溯、可持续修正</span>的推理结构：原始文本经拆解后保留来源定位形成 InfoUnit，通过 Relation 建构事实关联，再围绕 Issue 沉淀 Hypothesis 与 Evidence Gap，确保每次判断都能随新证据修订。
+                  </p>
+                </div>
+
+                {/* Right 4 cols: InfoUnit Card Detail + Traceability Principle (Open Vertical Stack) */}
+                <div className="lg:col-span-4 flex flex-col justify-between gap-6">
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between text-xs font-mono pb-2 border-b border-white/12">
+                      <span className="text-[#A8D56C]">InfoUnit 信息节点</span>
+                      <span className="text-[#A0AAB4]">最小信息单位</span>
+                    </div>
+                    {LOGICWEAVER_MEDIA.infoUnitDetail ? (
+                      <div className="space-y-3">
+                        <div className="rounded-xl lw-silver-frame-subtle p-3.5 flex items-center justify-center bg-[#1B222B]">
+                          <img
+                            src={LOGICWEAVER_MEDIA.infoUnitDetail}
+                            alt="信息单元卡片来源与状态区分设计细节"
+                            className="w-full max-h-[240px] object-contain"
+                          />
+                        </div>
+                        <p className="text-xs text-[#A0AAB4] leading-relaxed">
+                          基于案件主题考虑的，可独立操作、引用的最小信息单位；内含类型标签、事实陈述字段与原文引文溯源。
+                        </p>
+                      </div>
+                    ) : (
+                      <div className="p-4 rounded-xl lw-silver-frame-subtle space-y-2">
+                        <div className="text-xs font-mono text-[#A8D56C]">
+                          InfoUnit 节点结构定义
+                        </div>
+                        <div className="text-xs text-[#EDF0F2]">
+                          基于案件主题考虑的，可独立操作、引用的最小信息单位。
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="lw-inverted-frame rounded-xl p-5 space-y-2">
+                    <div className="text-base sm:text-lg font-editorial-cn font-bold text-[#090C11]">
+                      来源可追溯，推论可检验。
+                    </div>
+                    <p className="text-sm text-[#1D2530] leading-relaxed">
+                      原文出现过陈述记录，尚需经过多方材料<span className="text-[#134222] font-semibold">交叉核验</span>后方可作为支撑依据；AI 生成的候选假设同样须经<span className="text-[#31237A] font-semibold">人工检视与反证检验</span>。
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* B. 人机协同推理流程（信息如何被处理以及人机如何协作） */}
+            <div className="space-y-6 pt-10 border-t border-white/15">
+              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+                <div className="space-y-1">
+                  <div className="font-mono text-xs text-[#A79AF4]">
+                    B · 人机协同推理流程
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <Network size={16} className="text-[#D4DAE2]" />
+                    <h3 className="text-xl sm:text-2xl font-display font-bold text-[#EDF0F2]">
+                      四阶段系统处理与协作闭环
+                    </h3>
+                  </div>
+                </div>
+                <span className="text-xs text-[#A0AAB4]">
+                  回答「信息如何被处理以及人机如何协作」
+                </span>
+              </div>
+
+              <p className="text-sm sm:text-[15px] text-[#A0AAB4] leading-relaxed max-w-3xl">
+                在信息模型之上，系统按四阶段流程运作：原始材料先经解析提取转化为结构化 InfoUnit，再由 Agent 进行检索辅助、提出候选关联与缺口，最后在工作区中由用户确认、修改或推翻，推动推理结果持续更新。
+              </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-y border-white/12 divide-y sm:divide-y-0 sm:divide-x divide-white/10">
                 {/* Stage 1 */}
@@ -1121,11 +1234,11 @@ export function LogicWeaverProject() {
                   <div className="grid grid-cols-2 gap-3 text-[11px] leading-relaxed">
                     <div className="space-y-1">
                       <div className="font-mono text-[10px] text-[#A79AF4]">
-                        AI 辅助生成
+                        AI 辅助建议
                       </div>
                       <ul className="text-[#A0AAB4] space-y-0.5">
                         <li>· 推荐相关证据</li>
-                        <li>· 生成新视图</li>
+                        <li>· 建议任务视图</li>
                         <li>· 发现冲突</li>
                         <li>· 发现缺口</li>
                       </ul>
@@ -1146,10 +1259,10 @@ export function LogicWeaverProject() {
 
                   <div className="pt-2.5 border-t border-white/10 space-y-0.5">
                     <div className="text-[11px] font-mono text-[#D4DAE2] font-semibold">
-                      ⇄ 自定义组件生成
+                      ⇄ 人机交互与结构回写
                     </div>
                     <div className="text-[10px] text-[#A0AAB4]">
-                      随任务切换视图并实时回写画布状态
+                      确认结果沉淀回信息模型；视图生成属于完整交互构想
                     </div>
                   </div>
                 </div>
@@ -1161,7 +1274,7 @@ export function LogicWeaverProject() {
                   人机协同推理闭环
                 </span>
                 <p className="text-[#A0AAB4] leading-relaxed">
-                  AI 与用户在推理过程中持续交替地组织信息、提出假设、验证证据并调整结构，通过循环推进形成可检验的推理结论。
+                  AI 与用户在推理过程中交替组织结构化信息、提出假设、验证证据并调整关系，通过循环推进形成可检验的推理结论。
                 </p>
               </div>
             </div>
@@ -1182,10 +1295,30 @@ export function LogicWeaverProject() {
               </h2>
               <div className="space-y-3.5 text-base sm:text-[17px] text-[#A0AAB4] leading-[1.75]">
                 <p>
-                  复杂案件分析并不总是需要同一种可视化方式。建立全局认知时，用户需要看到信息之间的关系；核对事件时，需要关注先后顺序；处理争议时，需要并列比较冲突；验证主张时，则需要完整的证据支持与反驳。
+                  复杂案件分析并不总是需要同一种可视化方式。因此我们没有把功能做成彼此割裂的工具页，而是在同一关系画布内设计了<span className="text-[#EDF0F2] font-medium">两个互补的交互维度</span>，共同构成面向推理任务的画布交互体系：
                 </p>
-                <p>
-                  因此我们以关系画布作为工作空间，并设计了三种围绕具体任务展开的推理视图。
+              </div>
+            </div>
+
+            {/* Two Complementary Dimensions Framing Strip */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="rounded-xl bg-[#0B0E14]/90 border border-[#A8D56C]/35 p-5 space-y-2">
+                <div className="flex items-center justify-between gap-2 text-xs font-mono">
+                  <span className="text-[#A8D56C] font-semibold">维度 01｜语义缩放</span>
+                  <span className="text-[#A0AAB4]">控制「展示多少信息」</span>
+                </div>
+                <p className="text-xs sm:text-sm text-[#EDF0F2]/88 leading-relaxed">
+                  决定同一画布当前展示的信息密度，让节点能够从远距离的整体关系逐步深入到聚焦摘要、细节字段与原文来源。
+                </p>
+              </div>
+
+              <div className="rounded-xl bg-[#0B0E14]/90 border border-[#A79AF4]/35 p-5 space-y-2">
+                <div className="flex items-center justify-between gap-2 text-xs font-mono">
+                  <span className="text-[#A79AF4] font-semibold">维度 02｜三种推理视图</span>
+                  <span className="text-[#A0AAB4]">改变「信息组织方式」</span>
+                </div>
+                <p className="text-xs sm:text-sm text-[#EDF0F2]/88 leading-relaxed">
+                  根据当前分析任务切换信息排列结构，分别支持时间核查（Timeline）、冲突比较（Conflict）和假设验证（Hypothesis）。
                 </p>
               </div>
             </div>
@@ -1195,10 +1328,10 @@ export function LogicWeaverProject() {
               <div className="lg:col-span-5 space-y-4">
                 <div className="flex items-center gap-2 text-xs font-medium text-[#A8D56C]">
                   <Layers size={14} />
-                  <span>同一画布 · 多层级信息密度</span>
+                  <span>维度一 · 语义缩放（展示多少信息）</span>
                 </div>
                 <p className="text-sm sm:text-[15px] text-[#EDF0F2]/90 leading-relaxed">
-                  信息节点（元信息）作为基于案件主题考虑的、可独立操作与引用的最小信息单位，在画布中<span className="text-[#A8D56C] font-medium">随观察层级展示不同密度的内容</span>：远距离用于识别整体关系，聚焦时展示摘要，深入时查看细节和来源。
+                  信息节点（元信息）作为案件中的最小可独立操作与引用信息单位，在画布中<span className="text-[#A8D56C] font-medium">随观察层级展示不同密度的内容</span>：远距离用于识别整体关系，聚焦时展示摘要，深入时查看细节和来源。
                 </p>
                 <p className="text-sm sm:text-[15px] text-[#A0AAB4] leading-relaxed">
                   AI 以画布当前信息为上下文参与交互，使推理成果直接沉淀在工作区中。
@@ -1298,9 +1431,12 @@ export function LogicWeaverProject() {
             </div>
 
             {/* B. 三种推理视图（核心交互展示区） */}
-            <div className="space-y-5 pt-4">
+            <div className="space-y-5 pt-6 border-t border-white/12">
               <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-                <div>
+                <div className="space-y-1">
+                  <div className="font-mono text-xs text-[#A79AF4]">
+                    维度二 · 推理视图（改变信息组织方式）
+                  </div>
                   <h3 className="text-xl sm:text-2xl font-display font-bold text-[#EDF0F2]">
                     三种面向任务的推理视图
                   </h3>
@@ -1355,6 +1491,16 @@ export function LogicWeaverProject() {
                     <span>03｜Hypothesis</span>
                   </button>
                 </div>
+              </div>
+
+              {/* Explicit Design vs MVP Scope Notice placed BEFORE the three views */}
+              <div className="pl-4 border-l-2 border-[#E5A85F]/75 py-1.5 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-xs sm:text-[13px]">
+                <span className="font-mono text-[11px] font-semibold text-[#E5A85F]">
+                  方案边界说明
+                </span>
+                <span className="text-[#EDF0F2]/90">
+                  以下为完整交互方案的高保真设计；三种视图的动态生成与自动布局尚未进入当前 MVP。
+                </span>
               </div>
 
               {/* Main View Showcase Area (Single Clean Silver Frame, No Inner Double Box) */}
@@ -1721,9 +1867,9 @@ export function LogicWeaverProject() {
                 )}
               </div>
 
-              {/* Exact Required Scope Disclaimer */}
+              {/* Concise Summary */}
               <p className="text-xs text-[#A0AAB4] leading-relaxed">
-                以上为三种推理视图的交互设计方案，系统定义了面向不同调查任务的视图组织与切换机制。
+                三种视图与前文的语义缩放共享同一底层 InfoUnit 与 Relation 数据模型，分别对应案件梳理中的时序核对、冲突比较与论证验证任务。
               </p>
             </div>
           </section>
@@ -1739,17 +1885,17 @@ export function LogicWeaverProject() {
                 05 / MVP SCOPE & TRADE-OFF
               </div>
               <h2 className="text-2xl sm:text-4xl font-editorial-cn font-bold text-[#EDF0F2] leading-tight">
-                先建立可信的推理基础，再生成更丰富的界面
+                为什么先验证信息与提案基础，再做动态视图？
               </h2>
               <div className="space-y-4 text-base sm:text-[17px] text-[#A0AAB4] leading-[1.75]">
                 <p>
-                  最初的完整方案希望 AI 根据当前问题选择时间线、冲突对比或假设—证据视图，并动态组织展示内容。
+                  第 04 节展示的完整交互方案，希望让 Agent 根据当前推理任务动态组织 Timeline、Conflict 或 Hypothesis 视图，并自动完成布局。
                 </p>
                 <p>
-                  进入 MVP 开发后，我们优先解决更基础的工作流：材料能否被结构化为可追溯的信息，Agent 能否有效检索证据、提出假设与证据缺口，用户能否核对和修改这些结果。三种视图的自动生成因此被排在后续阶段。
+                  但进入 MVP 阶段后，我们必须优先验证更基础的能力：<span className="text-[#EDF0F2] font-medium">信息能否被结构化、证据能否被检索和追溯、Agent 能否提出可检查的提案、用户能否直接修改结果</span>。如果底层的结构化与核验机制尚未成立，生成式界面反而会放大不可靠判断的可信度假象。
                 </p>
                 <p>
-                  这是一项同时考虑<span className="text-[#E5A85F] font-medium">产品可行性与用户体验的取舍</span>。法律推理中，漂亮而无法核实的图形可能让不可靠的判断显得可信；因此，<span className="text-[#A8D56C] font-medium">先建立来源、状态和人工修正机制</span>，再增加复杂的生成式呈现。
+                  因此我们做出明确取舍：<span className="text-[#A8D56C] font-medium">先建立可信的信息与推理基础</span>（信息模型、溯源与提案修订闭环），再将复杂的动态视图生成与自动布局逐步延展至后续阶段。
                 </p>
               </div>
             </div>
@@ -1842,43 +1988,66 @@ export function LogicWeaverProject() {
                 06 / WORKING PROTOTYPE
               </div>
               <h2 className="text-2xl sm:text-4xl font-editorial-cn font-bold text-[#EDF0F2] leading-tight">
-                让 Agent 的行动变成可检查、可修改的工作区结果
+                MVP 原型中，Agent 实际如何参与工作？
               </h2>
               <div className="space-y-4 text-base sm:text-[17px] text-[#A0AAB4] leading-[1.75]">
                 <p>
-                  在后续原型实现中，我使用 Vibe Coding 推进前后端功能，将案件信息、假设与证据缺口整合到调查工作区，并围绕 Agent 的<span className="text-[#E5A85F] font-medium">工具调用、提案、状态更新和失败恢复</span>持续迭代。
+                  在可运行原型中，我们将案件材料、结构化信息单元、争点与假设整合进同一工作区，重点跑通了<span className="text-[#E5A85F] font-medium">「设定调查目标 → 工具读取证据 → 结构化提案 → 人工核验 → 上下文回写」</span>五步核心链路。
                 </p>
                 <p>
-                  用户不仅能向 Agent 提问，还能在画布中检查调查产生的结构化结果，决定后续如何继续处理。
+                  当前 MVP 集中验证基础工作流的可靠性（第 04 节三种动态视图尚未进入该原型），并通过可观测轨迹持续调试 Agent 行为。
                 </p>
               </div>
             </div>
 
-            {/* Three Showcase Focus Points (Open 3-Col Ledger) */}
-            <div className="grid grid-cols-1 md:grid-cols-3 border-y border-white/12 divide-y md:divide-y-0 md:divide-x divide-white/10">
-              <div className="py-6 md:px-6 first:md:pl-0 last:md:pr-0 space-y-2">
-                <div className="font-mono text-xs font-semibold text-[#A8D56C]">
-                  01｜结构化材料
-                </div>
-                <p className="text-sm sm:text-[15px] text-[#A0AAB4] leading-relaxed">
-                  将文件中的信息转换为可引用、可编辑的信息单元，保留对应证据来源。
-                </p>
+            {/* 5-Step Actual Agent Workflow Strip */}
+            <div className="space-y-3">
+              <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono pb-2 border-b border-white/12">
+                <span className="text-[#EDF0F2]">MVP 原型实际运行流程 · 五步闭环</span>
+                <span className="text-[#A0AAB4]">区分已实现工作流与未接入动态视图</span>
               </div>
-              <div className="py-6 md:px-6 space-y-2">
-                <div className="font-mono text-xs font-semibold text-[#A79AF4]">
-                  02｜Agent 调查
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 border-b border-white/12 divide-y sm:divide-y-0 lg:divide-x divide-white/10">
+                <div className="py-5 lg:px-4 first:lg:pl-0 space-y-2">
+                  <div className="font-mono text-xs font-semibold text-[#EDF0F2]">
+                    01｜提出调查目标
+                  </div>
+                  <p className="text-xs sm:text-[13px] text-[#A0AAB4] leading-relaxed">
+                    用户围绕工作区中的当前 Issue 明确需要核查或追问的调查目标。
+                  </p>
                 </div>
-                <p className="text-sm sm:text-[15px] text-[#A0AAB4] leading-relaxed">
-                  Agent 通过工具读取案件信息与证据，围绕当前问题形成调查结果与结构化提案。
-                </p>
-              </div>
-              <div className="py-6 md:px-6 last:md:pr-0 space-y-2">
-                <div className="font-mono text-xs font-semibold text-[#E5A85F]">
-                  03｜运行分析与迭代
+                <div className="py-5 lg:px-4 space-y-2">
+                  <div className="font-mono text-xs font-semibold text-[#A8D56C]">
+                    02｜工具读取证据
+                  </div>
+                  <p className="text-xs sm:text-[13px] text-[#A0AAB4] leading-relaxed">
+                    Agent 通过工具检索并读取相关案件信息单元、关联记录与原文材料。
+                  </p>
                 </div>
-                <p className="text-sm sm:text-[15px] text-[#A0AAB4] leading-relaxed">
-                  利用 Langfuse 和本地运行记录检查工具调用、证据读取、异常提案和状态更新问题。
-                </p>
+                <div className="py-5 lg:px-4 space-y-2">
+                  <div className="font-mono text-xs font-semibold text-[#A79AF4]">
+                    03｜提交结构化提案
+                  </div>
+                  <p className="text-xs sm:text-[13px] text-[#A0AAB4] leading-relaxed">
+                    Agent 归纳调查结果，提出候选关系、假设补充或证据缺口提案。
+                  </p>
+                </div>
+                <div className="py-5 lg:px-4 space-y-2">
+                  <div className="font-mono text-xs font-semibold text-[#E5A85F]">
+                    04｜用户核验决策
+                  </div>
+                  <p className="text-xs sm:text-[13px] text-[#A0AAB4] leading-relaxed">
+                    用户对照原文依据检查提案内容，决定确认采纳、手动修改或驳回。
+                  </p>
+                </div>
+                <div className="py-5 lg:px-4 last:lg:pr-0 space-y-2">
+                  <div className="font-mono text-xs font-semibold text-[#A8D56C]">
+                    05｜写回工作区上下文
+                  </div>
+                  <p className="text-xs sm:text-[13px] text-[#A0AAB4] leading-relaxed">
+                    处理后的结果进入工作区状态，成为下一轮提问与调查的上下文。
+                  </p>
+                </div>
               </div>
             </div>
 
@@ -1887,9 +2056,9 @@ export function LogicWeaverProject() {
               {/* Left 7 cols: Workspace & Agent Investigation Interaction */}
               <div className="lg:col-span-7 space-y-3">
                 <div className="flex items-center justify-between gap-2 text-xs pb-2 border-b border-white/12">
-                  <span className="text-[#EDF0F2]">工作区与 Agent 调查交互</span>
+                  <span className="text-[#EDF0F2]">工作区与 Agent 调查交互实录</span>
                   <span className="text-[#D4DAE2]">
-                    {LOGICWEAVER_MEDIA.prototypeWorkspace ? "原型实现" : "交互设计"}
+                    {LOGICWEAVER_MEDIA.prototypeWorkspace ? "MVP 运行原型" : "交互设计"}
                   </span>
                 </div>
 
@@ -1935,23 +2104,38 @@ export function LogicWeaverProject() {
                     </div>
                   )}
                 </div>
+
+                <p className="text-xs text-[#A0AAB4] leading-relaxed">
+                  上图为当前可运行原型界面：左侧管理原始材料与结构化 InfoUnit，中央工作区呈现争点、假设与缺口关系，右侧展示 Agent 调查过程与待用户确认的变更提案（点击图片可新窗口查看大图）。
+                </p>
               </div>
 
               {/* Right 5 cols: Observing Agent Behavior + Langfuse Trace */}
               <div className="lg:col-span-5 space-y-4">
                 <div className="space-y-2.5">
                   <h3 className="text-lg font-display font-semibold text-[#EDF0F2]">
-                    观察 Agent 运行行为
+                    基于 Langfuse Trace 调试与迭代工作流
                   </h3>
                   <p className="text-sm text-[#A0AAB4] leading-relaxed">
-                    我使用 Langfuse 和本地运行记录<span className="text-[#A79AF4] font-medium">观察 Agent 的工具调用与输出</span>，将异常提案、无效工具调用和状态一致性问题定位到具体环节，再调整 Agent 工作流与界面交互。
+                    为了让五步工作流稳定运行，我结合 Langfuse Trace 与本地运行记录追踪每轮调查的完整执行轨迹，重点排查三类问题并据此迭代工作流：
                   </p>
+                  <ul className="space-y-1.5 text-xs text-[#EDF0F2]/85 leading-relaxed pl-3 border-l-2 border-[#A79AF4]/50">
+                    <li>
+                      <span className="text-[#A8D56C] font-medium">工具调用：</span>检查检索参数是否命中正确材料、是否存在无效或重复读取。
+                    </li>
+                    <li>
+                      <span className="text-[#E5A85F] font-medium">异常提案：</span>定位缺乏原文依据、字段格式错位或超出当前 Issue 范围的提案输出。
+                    </li>
+                    <li>
+                      <span className="text-[#A79AF4] font-medium">状态更新：</span>排查用户确认、修改或拒绝提案后，工作区上下文与后端状态的一致性问题。
+                    </li>
+                  </ul>
                 </div>
 
                 <div className="rounded-2xl lw-silver-frame overflow-hidden">
                   <div className="px-3.5 py-2.5 bg-[#0B0E14] border-b border-white/12 flex items-center justify-between text-[11px] text-[#A0AAB4]">
                     <span className="font-mono">Langfuse Trace</span>
-                    <span className="text-[#D4DAE2]">运行轨迹</span>
+                    <span className="text-[#D4DAE2]">调用链与上下文观测</span>
                   </div>
 
                   {LOGICWEAVER_MEDIA.langfuseTrace ? (
@@ -1995,17 +2179,14 @@ export function LogicWeaverProject() {
                 07 / MY ROLE
               </div>
               <h2 className="text-2xl sm:text-4xl font-editorial-cn font-bold text-[#EDF0F2] leading-tight">
-                从信息架构到 AI Agent 的实际运行
+                个人贡献与团队协作分工
               </h2>
               <div className="space-y-4 text-base sm:text-[17px] text-[#A0AAB4] leading-[1.75]">
                 <p>
-                  课程设计阶段，我与团队共同分析法律案件的资料整理和推理需求，参与<span className="text-[#A8D56C] font-medium">信息对象定义、画布交互、三级卡片和推理视图方案</span>的设计。
+                  项目早期研究与设计阶段由团队协作完成：我参与了<span className="text-[#A8D56C] font-medium">竞品调研、法律实务用户访谈分析</span>，并与队友共同定义 <span className="text-[#A8D56C] font-medium">InfoUnit 信息模型与整体信息架构</span>，同时负责高保真交互方案的设计。
                 </p>
                 <p>
-                  后续，我将重心放在可运行原型，通过 Vibe Coding 推进实现，并持续检查 Agent 如何读取证据、形成提案、影响已有推理状态。
-                </p>
-                <p>
-                  这让我能够同时<span className="text-[#A79AF4] font-medium">从交互体验与系统行为两个层面调整产品</span>。
+                  在进入 MVP 阶段后，我独立推进了<span className="text-[#A79AF4] font-medium">React / Vite 前端工作区原型、Agent 调查工作流编排以及 Langfuse 运行分析</span>，从设计与工程两个视角打通可用原型。
                 </p>
               </div>
             </div>
@@ -2016,21 +2197,21 @@ export function LogicWeaverProject() {
               <div className="rounded-2xl bg-[#0D1117]/80 border border-white/10 p-6 sm:p-8 space-y-4">
                 <div className="space-y-1">
                   <div className="text-xs tracking-wider text-[#A8D56C] font-semibold">
-                    团队协作
+                    前期研究与设计 · 团队协作
                   </div>
                   <h3 className="text-xl font-editorial-cn font-semibold text-[#EDF0F2]">
-                    团队协作设计
+                    调研分析、信息架构与交互设计
                   </h3>
                 </div>
                 <p className="text-sm sm:text-base text-[#A0AAB4] leading-relaxed">
-                  用户任务与旅程分析、信息架构、画布交互、分级信息卡片与三种推理视图设计。
+                  负责 FALKOR / Kaseware 竞品研究与法律用户访谈梳理；共同定义 InfoUnit 信息模型及信息架构；完成画布语义缩放三级卡片与三种推理视图的高保真交互设计。
                 </p>
                 <div className="pt-3 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[11px] font-mono text-[#A0AAB4]">
-                  <span className="text-[#EDF0F2]">旅程模型</span>
+                  <span className="text-[#EDF0F2]">用户与竞品调研</span>
                   <span className="text-white/20">/</span>
-                  <span className="text-[#A8D56C]">InfoUnit · Relation</span>
+                  <span className="text-[#A8D56C]">InfoUnit 与信息架构</span>
                   <span className="text-white/20">/</span>
-                  <span className="text-[#A79AF4]">三级卡片 · 推理视图</span>
+                  <span className="text-[#A79AF4]">高保真交互设计</span>
                 </div>
               </div>
 
@@ -2038,21 +2219,21 @@ export function LogicWeaverProject() {
               <div className="lw-inverted-frame rounded-2xl p-6 sm:p-8 space-y-4">
                 <div className="space-y-1">
                   <div className="text-xs tracking-wider text-[#31237A] font-bold">
-                    个人实现
+                    原型实现与调试 · 个人独立负责
                   </div>
                   <h3 className="text-xl font-editorial-cn font-semibold text-[#090C11]">
-                    个人原型实现与迭代
+                    前端原型、Agent 工作流与运行分析
                   </h3>
                 </div>
                 <p className="text-sm sm:text-base text-[#1D2530] leading-relaxed">
-                  Vibe Coding、前后端原型实现、Agent 调查工作流调试、工具调用和状态检查、Langfuse 运行分析。
+                  通过 Vibe Coding 搭建 React / Vite 工作区原型与前后端联调，独立实现 Agent 调查与提案工作流，并依托 Langfuse 运行轨迹开展调用链排查与工作流迭代。
                 </p>
                 <div className="pt-3 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[11px] font-mono text-[#2D3745]">
-                  <span className="text-[#090C11] font-semibold">工作区原型</span>
+                  <span className="text-[#090C11] font-semibold">React / Vite 原型</span>
                   <span className="text-[#090C11]/25">/</span>
-                  <span className="text-[#31237A] font-semibold">工具调用与提案</span>
+                  <span className="text-[#31237A] font-semibold">Agent 工作流实现</span>
                   <span className="text-[#090C11]/25">/</span>
-                  <span className="text-[#6B3507] font-semibold">Langfuse Trace 检查</span>
+                  <span className="text-[#6B3507] font-semibold">Langfuse 运行分析</span>
                 </div>
               </div>
             </div>
@@ -2072,14 +2253,14 @@ export function LogicWeaverProject() {
                 让 Agent 跟随用户变化的推理思路
               </h2>
               <div className="text-xs font-mono text-[#E5A85F]">
-                Future Exploration · 以下方向尚未实现
+                Future Exploration · 以下方向尚未在当前原型中实现，属于后续研究与设计规划
               </div>
               <div className="space-y-4 text-base sm:text-[17px] text-[#A0AAB4] leading-[1.75]">
                 <p>
-                  用户会随着新证据修正假设、切换争点，也会暂时搁置一条推理路径。下一步的核心问题是：<span className="text-[#A8D56C] font-medium">Agent 如何理解这些转向，持续跟上用户正在思考的问题？</span>
+                  在真实案件分析中，用户会随着新证据修正假设、切换争点，甚至暂时搁置某条推理路径。目前原型中的 Agent 仍主要响应显式提问；下一步需要解决的核心问题是：<span className="text-[#A8D56C] font-medium">Agent 如何理解推理过程中的思考转向，从用户画布操作中识别隐含意图，并跟随用户思维继续推进调查？</span>
                 </p>
                 <p>
-                  我希望进一步探索，Agent 如何理解用户尚未明说的判断前提、对证据重要性的取舍，以及何时值得继续追问；再以低打扰的建议介入，将推理过程延伸到法条对应与成果整理。
+                  我希望进一步探索：系统如何从节点聚焦、手动拖拽、修改或驳回等画布动作中捕捉尚未明说的判断前提与证据取舍，并以低打扰的方式介入协同，最终将画布推理结果延伸至法条适用映射与可复核的交付材料。
                 </p>
               </div>
             </div>
@@ -2087,16 +2268,16 @@ export function LogicWeaverProject() {
             {/* Three future directions, distinct from implemented capabilities */}
             <div className="grid grid-cols-1 md:grid-cols-3 border-y border-white/12 divide-y md:divide-y-0 md:divide-x divide-white/10">
               <div className="py-6 md:px-6 first:md:pl-0 space-y-2.5">
-                <div className="font-mono text-xs font-semibold text-[#A8D56C]">01 / 推理协同</div>
+                <div className="font-mono text-xs font-semibold text-[#A8D56C]">01 / 意图感知与转向跟随（规划中）</div>
                 <h3 className="text-base font-editorial-cn font-semibold text-[#EDF0F2]">
-                  跟上推理的转向
+                  读懂画布操作与思考转向
                 </h3>
                 <p className="text-sm sm:text-[15px] text-[#A0AAB4] leading-relaxed">
-                  探索如何结合用户当前关注的证据、手动修改与假设变化，识别调查目标的转移；在意图不明确时主动澄清，让后续调查与用户的思路保持衔接。
+                  探索如何结合用户的画布操作信号（聚焦节点、删改关联、切换争点）理解其隐含调查意图；当检测到推理方向发生转移且目标不明确时主动轻量澄清，让 Agent 跟随用户当前思路继续推进调查。
                 </p>
               </div>
               <div className="py-6 md:px-6 space-y-2.5">
-                <div className="font-mono text-xs font-semibold text-[#A79AF4]">02 / 低打扰交互</div>
+                <div className="font-mono text-xs font-semibold text-[#A79AF4]">02 / 低打扰交互（规划中）</div>
                 <h3 className="text-base font-editorial-cn font-semibold text-[#EDF0F2]">
                   以幽灵提示轻量介入
                 </h3>
@@ -2105,32 +2286,32 @@ export function LogicWeaverProject() {
                 </p>
               </div>
               <div className="py-6 md:px-6 last:md:pr-0 space-y-2.5">
-                <div className="font-mono text-xs font-semibold text-[#E5A85F]">03 / 工作流延伸</div>
+                <div className="font-mono text-xs font-semibold text-[#E5A85F]">03 / 工作流延伸（规划中）</div>
                 <h3 className="text-base font-editorial-cn font-semibold text-[#EDF0F2]">
                   从证据推理到可用成果
                 </h3>
                 <p className="text-sm sm:text-[15px] text-[#A0AAB4] leading-relaxed">
-                  探索争点、法律适用条件与事实证据的对应方式，并设计可筛选、可复核的结构化证据清单与材料导出。保留来源和待核验状态，让分析结果能够进入后续文书与协作流程。
+                  探索争点、法律适用条件与事实证据的对应方式，并设计可筛选、可复核的结构化证据清单与材料导出，使分析结果能够顺畅进入后续文书撰写与协作流程。
                 </p>
               </div>
             </div>
 
             <div className="space-y-4">
               <div className="flex flex-wrap items-center justify-between gap-2 text-xs pb-2 border-b border-white/12">
-                <span className="text-[#EDF0F2]">成果导出的现状与下一步</span>
-                <span className="text-[#A0AAB4]">能力边界</span>
+                <span className="text-[#EDF0F2]">成果导出的现状与未来规划</span>
+                <span className="text-[#A0AAB4]">已实现边界 vs 未实现规划</span>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 border-b border-white/12 divide-y md:divide-y-0 md:divide-x divide-white/10 pb-6">
                 <div className="py-3 md:pr-6 space-y-2">
-                  <div className="text-xs font-mono text-[#A8D56C]">已有原型 / 离线归档</div>
+                  <div className="text-xs font-mono text-[#A8D56C]">当前原型已实现 / 离线归档</div>
                   <p className="text-sm text-[#A0AAB4] leading-relaxed">
-                    已支持离线 ZIP 导出，包含六章节 HTML、manifest 清单与原始文件。
+                    当前 MVP 原型已支持离线 ZIP 导出，包含六章节 HTML、manifest 清单与原始文件归档。
                   </p>
                 </div>
                 <div className="py-3 md:pl-6 space-y-2">
-                  <div className="text-xs font-mono text-[#E5A85F]">待探索 / 结构化交付</div>
+                  <div className="text-xs font-mono text-[#E5A85F]">未来待探索 / 结构化法律交付</div>
                   <p className="text-sm text-[#A0AAB4] leading-relaxed">
-                    尚无结构化法律证据清单与法条映射；导出内容的组织方式、筛选与预览交互仍待设计和验证。
+                    尚未实现结构化法律证据清单、法条适用映射与交互式导出预览；相关组织与筛选交互仍待后续设计与验证。
                   </p>
                 </div>
               </div>
